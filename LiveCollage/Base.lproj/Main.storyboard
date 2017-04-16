@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LiveCollage" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QFw-s7-aiO">
+                                <rect key="frame" x="0.0" y="78" width="375" height="589"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Pu-7D-E1i">
+                                    <size key="itemSize" width="200" height="200"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LiveImageCell" id="4OR-8r-uma" userLabel="LiveImageCell" customClass="LiveImageCell" customModule="LiveCollage" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xGA-Qq-ijj">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstItem="xGA-Qq-ijj" firstAttribute="height" secondItem="4OR-8r-uma" secondAttribute="height" id="0nh-P7-gaj"/>
+                                            <constraint firstItem="xGA-Qq-ijj" firstAttribute="width" secondItem="4OR-8r-uma" secondAttribute="width" id="OnA-qh-qcj"/>
+                                            <constraint firstItem="xGA-Qq-ijj" firstAttribute="leading" secondItem="4OR-8r-uma" secondAttribute="leading" id="tam-If-MGg"/>
+                                            <constraint firstItem="xGA-Qq-ijj" firstAttribute="top" secondItem="4OR-8r-uma" secondAttribute="topMargin" id="yGw-8E-ZMp"/>
+                                        </constraints>
+                                        <size key="customSize" width="180" height="180"/>
+                                        <connections>
+                                            <outlet property="containerView" destination="xGA-Qq-ijj" id="f85-y0-Irj"/>
+                                            <outletCollection property="gestureRecognizers" destination="g3y-4w-05b" appends="YES" id="cGn-Gp-aHq"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddImageCell" id="Ec1-QC-WcJ" userLabel="AddImageCell" customClass="AddImageCell" customModule="LiveCollage" customModuleProvider="target">
+                                        <rect key="frame" x="195" y="0.0" width="180" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVU-Xz-NEB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="62"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstItem="LVU-Xz-NEB" firstAttribute="height" secondItem="Ec1-QC-WcJ" secondAttribute="height" id="16L-1V-XvR"/>
+                                            <constraint firstItem="LVU-Xz-NEB" firstAttribute="leading" secondItem="Ec1-QC-WcJ" secondAttribute="leading" id="SOd-RD-ajn"/>
+                                            <constraint firstItem="LVU-Xz-NEB" firstAttribute="top" secondItem="Ec1-QC-WcJ" secondAttribute="topMargin" id="Txu-nn-erd"/>
+                                            <constraint firstItem="LVU-Xz-NEB" firstAttribute="width" secondItem="Ec1-QC-WcJ" secondAttribute="width" id="ULs-86-iIU"/>
+                                        </constraints>
+                                        <size key="customSize" width="180" height="180"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="iC8-38-vEI" appends="YES" id="iHi-1N-oTL"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="zYP-XL-SG4"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="noT-ly-KQK"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.94663759540000003" blue="0.15024175949999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="QFw-s7-aiO" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="h1a-K8-2Cz"/>
+                            <constraint firstItem="QFw-s7-aiO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="i9y-ec-lT5"/>
+                            <constraint firstItem="QFw-s7-aiO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="58" id="kkC-gY-Jqb"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QFw-s7-aiO" secondAttribute="bottom" id="vhS-xR-0oG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collection" destination="QFw-s7-aiO" id="q8s-Yw-KA9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="g3y-4w-05b">
+                    <connections>
+                        <action selector="onLongPress:" destination="BYZ-38-t0r" id="7px-YE-WMn"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="iC8-38-vEI">
+                    <connections>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="UAW-sW-PTo"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
+        </scene>
+    </scenes>
+</document>
