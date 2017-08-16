@@ -7,23 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490549BD1F4090E100A48977 /* CollageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490549BC1F4090E100A48977 /* CollageView.swift */; };
+		490549BF1F40910500A48977 /* CollageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 490549BE1F40910500A48977 /* CollageView.xib */; };
+		494CD8CE1F3E52AD00FD6375 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494CD8CA1F3E52AC00FD6375 /* Main.storyboard */; };
+		494CD8CF1F3E52AD00FD6375 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494CD8CC1F3E52AC00FD6375 /* LaunchScreen.storyboard */; };
+		49503B531F3F92FD00D3C84C /* PreorderedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49503B521F3F92FD00D3C84C /* PreorderedViewController.swift */; };
+		49FCF1471F3E51B70079D0D1 /* CustomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF1461F3E51B70079D0D1 /* CustomLayout.swift */; };
+		49FCF14C1F3E51FF0079D0D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF14B1F3E51FF0079D0D1 /* ViewController.swift */; };
 		60FE24FF1EA3AFC2000F21DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE24FE1EA3AFC2000F21DF /* AppDelegate.swift */; };
-		60FE25011EA3AFC2000F21DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE25001EA3AFC2000F21DF /* ViewController.swift */; };
-		60FE25041EA3AFC2000F21DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FE25021EA3AFC2000F21DF /* Main.storyboard */; };
 		60FE25061EA3AFC2000F21DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FE25051EA3AFC2000F21DF /* Assets.xcassets */; };
-		60FE25091EA3AFC2000F21DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FE25071EA3AFC2000F21DF /* LaunchScreen.storyboard */; };
 		60FE25141EA3B10E000F21DF /* BaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE25131EA3B10E000F21DF /* BaseCollectionCell.swift */; };
 		60FE25161EA3B13A000F21DF /* AddImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE25151EA3B13A000F21DF /* AddImageCell.swift */; };
 		60FE25181EA3B146000F21DF /* LiveImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE25171EA3B146000F21DF /* LiveImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		490549BC1F4090E100A48977 /* CollageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageView.swift; sourceTree = "<group>"; };
+		490549BE1F40910500A48977 /* CollageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollageView.xib; sourceTree = "<group>"; };
+		494CD8CB1F3E52AC00FD6375 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		494CD8CD1F3E52AC00FD6375 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		49503B521F3F92FD00D3C84C /* PreorderedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreorderedViewController.swift; sourceTree = "<group>"; };
+		49FCF1461F3E51B70079D0D1 /* CustomLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomLayout.swift; path = Layouts/CustomLayout.swift; sourceTree = "<group>"; };
+		49FCF14B1F3E51FF0079D0D1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		60FE24FB1EA3AFC2000F21DF /* LiveCollage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveCollage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FE24FE1EA3AFC2000F21DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		60FE25001EA3AFC2000F21DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		60FE25031EA3AFC2000F21DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		60FE25051EA3AFC2000F21DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		60FE25081EA3AFC2000F21DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60FE250A1EA3AFC2000F21DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60FE25131EA3B10E000F21DF /* BaseCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionCell.swift; sourceTree = "<group>"; };
 		60FE25151EA3B13A000F21DF /* AddImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddImageCell.swift; sourceTree = "<group>"; };
@@ -41,6 +49,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49FCF1451F3E518E0079D0D1 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				49FCF1461F3E51B70079D0D1 /* CustomLayout.swift */,
+			);
+			name = Layouts;
+			sourceTree = "<group>";
+		};
+		49FCF14A1F3E51FF0079D0D1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				49FCF14B1F3E51FF0079D0D1 /* ViewController.swift */,
+				49503B521F3F92FD00D3C84C /* PreorderedViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		60FE24F21EA3AFC2000F21DF = {
 			isa = PBXGroup;
 			children = (
@@ -60,14 +85,14 @@
 		60FE24FD1EA3AFC2000F21DF /* LiveCollage */ = {
 			isa = PBXGroup;
 			children = (
+				494CD8CC1F3E52AC00FD6375 /* LaunchScreen.storyboard */,
+				494CD8CA1F3E52AC00FD6375 /* Main.storyboard */,
 				60FE25101EA3B0F0000F21DF /* Cells */,
-				60FE25111EA3B0F0000F21DF /* Controllers */,
+				49FCF14A1F3E51FF0079D0D1 /* Controllers */,
+				49FCF1451F3E518E0079D0D1 /* Layouts */,
 				60FE25121EA3B0F0000F21DF /* Views */,
 				60FE24FE1EA3AFC2000F21DF /* AppDelegate.swift */,
-				60FE25001EA3AFC2000F21DF /* ViewController.swift */,
-				60FE25021EA3AFC2000F21DF /* Main.storyboard */,
 				60FE25051EA3AFC2000F21DF /* Assets.xcassets */,
-				60FE25071EA3AFC2000F21DF /* LaunchScreen.storyboard */,
 				60FE250A1EA3AFC2000F21DF /* Info.plist */,
 			);
 			path = LiveCollage;
@@ -83,16 +108,11 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		60FE25111EA3B0F0000F21DF /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		60FE25121EA3B0F0000F21DF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				490549BC1F4090E100A48977 /* CollageView.swift */,
+				490549BE1F40910500A48977 /* CollageView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -129,7 +149,7 @@
 				TargetAttributes = {
 					60FE24FA1EA3AFC2000F21DF = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 557WZEGWMH;
+						DevelopmentTeam = 9ZM7UP9YG8;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -157,9 +177,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60FE25091EA3AFC2000F21DF /* LaunchScreen.storyboard in Resources */,
+				494CD8CF1F3E52AD00FD6375 /* LaunchScreen.storyboard in Resources */,
 				60FE25061EA3AFC2000F21DF /* Assets.xcassets in Resources */,
-				60FE25041EA3AFC2000F21DF /* Main.storyboard in Resources */,
+				490549BF1F40910500A48977 /* CollageView.xib in Resources */,
+				494CD8CE1F3E52AD00FD6375 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,29 +191,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60FE25011EA3AFC2000F21DF /* ViewController.swift in Sources */,
+				49FCF14C1F3E51FF0079D0D1 /* ViewController.swift in Sources */,
+				49FCF1471F3E51B70079D0D1 /* CustomLayout.swift in Sources */,
 				60FE25181EA3B146000F21DF /* LiveImageCell.swift in Sources */,
 				60FE25161EA3B13A000F21DF /* AddImageCell.swift in Sources */,
 				60FE25141EA3B10E000F21DF /* BaseCollectionCell.swift in Sources */,
 				60FE24FF1EA3AFC2000F21DF /* AppDelegate.swift in Sources */,
+				490549BD1F4090E100A48977 /* CollageView.swift in Sources */,
+				49503B531F3F92FD00D3C84C /* PreorderedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		60FE25021EA3AFC2000F21DF /* Main.storyboard */ = {
+		494CD8CA1F3E52AC00FD6375 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				60FE25031EA3AFC2000F21DF /* Base */,
+				494CD8CB1F3E52AC00FD6375 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		60FE25071EA3AFC2000F21DF /* LaunchScreen.storyboard */ = {
+		494CD8CC1F3E52AC00FD6375 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				60FE25081EA3AFC2000F21DF /* Base */,
+				494CD8CD1F3E52AC00FD6375 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -297,8 +321,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 557WZEGWMH;
+				DEVELOPMENT_TEAM = 9ZM7UP9YG8;
 				INFOPLIST_FILE = LiveCollage/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.m2media.LiveCollage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -310,8 +335,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 557WZEGWMH;
+				DEVELOPMENT_TEAM = 9ZM7UP9YG8;
 				INFOPLIST_FILE = LiveCollage/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.m2media.LiveCollage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -338,6 +364,7 @@
 				60FE250F1EA3AFC2000F21DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
