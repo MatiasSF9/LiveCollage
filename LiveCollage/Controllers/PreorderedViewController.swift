@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import Photos
+
+struct ImageSet: Equatable {
+    
+    var image: PHAsset
+    var tag: Int
+    
+    static func ==(lhs: ImageSet, rhs: ImageSet) -> Bool {
+        return lhs.tag == rhs.tag
+    }
+    
+}
 
 class PreorderedViewController: UIViewController {
     
-    var images = [UIImage]()
+    var imagesMap = [ImageSet]()
     
-    @IBOutlet fileprivate weak var container: UIView!
     @IBOutlet fileprivate weak var image1: UIImageView!
     @IBOutlet fileprivate weak var image2: UIImageView!
     @IBOutlet fileprivate weak var image3: UIImageView!
@@ -26,7 +37,6 @@ class PreorderedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -43,59 +53,96 @@ class PreorderedViewController: UIViewController {
 
 extension PreorderedViewController {
     
-    func getContainer() -> UIView {
-        return container
-    }
-    
-    func addImage(_ image: UIImage) {
-        if images.count < 9 {
-            images.append(image)
-            orderImages()
-        }
-    }
-    
-    private func orderImages() {
-        var tempView:UIImageView? = nil
-        switch images.getLastIndex() {
-        case 0:
-            tempView = image1
-        break
-        case 1:
-            tempView = image2
-        break
-        case 2:
-            tempView = image3
-        break
-        case 3:
-            tempView = image4
-        break
-        case 4:
-            tempView = image5
-        break
-        case 5:
-            tempView = image6
-        break
-        case 6:
-            tempView = image7
-        break
-        case 7:
-            tempView = image8
-        break
-        case 8:
-            tempView = image9
-        break
-        default:
-            break
-        }
-        if tempView != nil {
-            tempView!.image = images.getLastItem() as! UIImage
+    //Add image to the current collection, then add it to the imagesview
+    func addImage(image: PHAsset, index: IndexPath) {
+        
+        if imagesMap.getNextIndex() >= 9 {
+            return
         }
         
+        imagesMap.append(ImageSet(image: image, tag: index.item))
+        reloadImages()
+    }
+    
+    //Add all available images to imageviews
+    private func reloadImages() {
+        var lastIndex = 0
+        
+        Logger.log(type: .DEBUG, string: "Reload images begin")
+        for (index, value) in imagesMap.enumerated() {
+            let container = getView(index: index)!
+            setImage(withAsset: value.image, forContainer: container)
+            lastIndex = index + 1
+        }
+        
+        if lastIndex > 8 { //No more slots to add
+            return
+        }
+        
+        for index in lastIndex...8 {
+            let container = getView(index: index)!
+            container.image = nil
+            Logger.log(type: .DEBUG, string: "Removed image at index \(index)")
+        }
+        Logger.log(type: .DEBUG, string: "Reload images end")
+    }
+    
+    //Retrieve image from asset and add it to imageview
+    private func setImage(withAsset asset: PHAsset,forContainer container: UIImageView) {
+        AssetHelper.shared.getAsset(asset: asset, forSize: container.frame.size) {image, _ in
+            
+            if image != nil {
+                Logger.log(type: .DEBUG, string: "Adding image for Image at index \(self.imagesMap.getNextIndex())")
+                container.image = image
+            }
+        }
+    }
+    
+    //Remove image from the collection then, reorder imageviews and re add views
+    func removeImage(image: PHAsset, index: IndexPath) {
+        
+        let position = imagesMap.index(of: ImageSet(image: image, tag: index.item))
+        
+        Logger.log(type: .DEBUG, string: "Removing image at index \(String(describing: position))")
+        imagesMap.remove(at: position!)
+        reloadImages()
+    }
+    
+    private func getView(index: Int) -> UIImageView? {
+        Logger.log(type: .DEBUG, string: "Getting image view at Index \(index)")
+        switch index {
+        case 0:
+            return image1
+        case 1:
+            return image2
+        case 2:
+            return image3
+        case 3:
+            return image4
+        case 4:
+            return image5
+        case 5:
+            return image6
+        case 6:
+            return image7
+        case 7:
+            return image8
+        case 8:
+            return image9
+        default:
+            Logger.log(type: .DEBUG, string: "No image view at Index \(index)")
+           break
+        }
+        return nil
     }
     
 }
 
 extension Array {
+    
+    func getNextIndex() -> Int {
+        return self.count
+    }
     
     func getLastIndex() -> Int {
         return count - 1
