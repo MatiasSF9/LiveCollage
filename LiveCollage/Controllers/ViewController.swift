@@ -42,24 +42,29 @@ class ViewController: UIViewController {
     
     fileprivate func iniciateLayoutView() {
         
-        let story = UIStoryboard(name: "Main", bundle: nil)
+        collageController = PreorderedViewController.getInstance()
+        add(controller: collageController, toContainerView: collageContainer)
         
-        collageController = story.instantiateViewController(withIdentifier: "PreorderedViewController") as! PreorderedViewController
-        self.addChildViewController(collageController)
-        collageController.view.frame = collageContainer.frame
-        collageContainer.addSubview(collageController.view)
-        collageController.didMove(toParentViewController: self)
-        
-        photosController = story.instantiateViewController(withIdentifier: "PhotoCollectionViewController") as! PhotoCollectionViewController
-        self.addChildViewController(photosController)
-        photosController.view.frame.size = photosContainer.frame.size
-        photosController.collectionView?.frame = photosController.view.frame
-        photosContainer.addSubview(photosController.view)
-        photosController.didMove(toParentViewController: self)
-        
+        photosController = PhotoCollectionViewController.getInstance()
+        add(controller: photosController, toContainerView: photosContainer)
         photosController.observer = self
     }
-
+    
+    fileprivate func add(controller: UIViewController, toContainerView containerView: UIView) {
+        self.addChildViewController(controller)
+        controller.view.frame.size = containerView.frame.size
+        containerView.addSubview(controller.view)
+        controller.didMove(toParentViewController: self)
+    }
+    
+    fileprivate func add(controller: UICollectionViewController, toContainerView containerView: UIView) {
+        self.addChildViewController(controller)
+        controller.view.frame.size = containerView.frame.size
+        //        controller.collectionView?.frame = controller.view.frame
+        containerView.addSubview(controller.view)
+        controller.didMove(toParentViewController: self)
+    }
+    
 }
 
 extension ViewController: PhotoCollectionSelectionObserver {

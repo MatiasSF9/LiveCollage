@@ -138,6 +138,13 @@ extension PreorderedViewController {
     
 }
 
+extension PreorderedViewController {
+    static func getInstance() -> PreorderedViewController {
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        return story.instantiateViewController(withIdentifier: "PreorderedViewController") as! PreorderedViewController
+    }
+}
+
 extension Array {
     
     func getNextIndex() -> Int {

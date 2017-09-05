@@ -76,13 +76,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		499CB0171F49E165008D45D8 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		499CB0191F49E189008D45D8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +136,6 @@
 			children = (
 				499CB01E1F4A4921008D45D8 /* Utils */,
 				499CB01A1F49E1A6008D45D8 /* Layouts */,
-				499CB0171F49E165008D45D8 /* Protocols */,
 				60FE25101EA3B0F0000F21DF /* Cells */,
 				49FCF14A1F3E51FF0079D0D1 /* Controllers */,
 				60FE25121EA3B0F0000F21DF /* Views */,
@@ -403,6 +395,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -419,6 +412,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

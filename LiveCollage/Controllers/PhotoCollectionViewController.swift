@@ -242,6 +242,15 @@ extension PhotoCollectionViewController {
     
 }
 
+extension PhotoCollectionViewController {
+    
+    static func getInstance() -> PhotoCollectionViewController {
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        return story.instantiateViewController(withIdentifier: "PhotoCollectionViewController") as! PhotoCollectionViewController
+    }
+    
+}
+
 //MARK - PhotoCollectionSelectionObserver
 protocol PhotoCollectionSelectionObserver {
     
