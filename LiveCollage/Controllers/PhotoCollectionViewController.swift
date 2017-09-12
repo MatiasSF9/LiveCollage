@@ -88,6 +88,14 @@ class PhotoCollectionViewController: UICollectionViewController {
             }
         })
         
+        if cell.isSelected {
+            cell.imageView.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
+            cell.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
+        } else {
+            cell.imageView.layer.borderColor = UIColor.clear.cgColor
+            cell.layer.borderColor = UIColor.clear.cgColor
+        }
+        
         return cell
     }
     
@@ -188,6 +196,7 @@ class PhotoCollectionViewController: UICollectionViewController {
 
 // MARK: PHPhotoLibraryChangeObserver
 extension PhotoCollectionViewController: PHPhotoLibraryChangeObserver {
+    
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         
         guard let changes = changeInstance.changeDetails(for: fetchResult)
@@ -231,12 +240,18 @@ extension PhotoCollectionViewController: PHPhotoLibraryChangeObserver {
 extension PhotoCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.cellForItem(at: indexPath)?.isSelected = true
+        let cell = collectionView.cellForItem(at: indexPath) as? GridViewCell
+        cell?.isSelected = true
+        cell?.imageView.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
+        cell?.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
+        
+        
         observer?.didSelect(image: fetchResult.object(at: indexPath.item), index: indexPath)
     }
     
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        collectionView.cellForItem(at: indexPath)?.isSelected = false
+        let cell = collectionView.cellForItem(at: indexPath) as? GridViewCell
+        cell?.isSelected = true
         observer?.didDeselect(image: fetchResult.object(at: indexPath.item), index: indexPath)
     }
     

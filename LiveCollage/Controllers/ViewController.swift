@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var photosContainer: UIView!
     @IBOutlet weak var collageContainer: UIView!
     
+    var collageController: LayoutCollectionViewController!
     var photosController: PhotoCollectionViewController!
-    var collageController: PreorderedViewController!
     
     fileprivate var imagesArray = [PHLivePhoto]()
     //MARK: Lifecycle Methods
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     
     fileprivate func iniciateLayoutView() {
         
-        collageController = PreorderedViewController.getInstance()
+        collageController = LayoutCollectionViewController.getInstance()
         add(controller: collageController, toContainerView: collageContainer)
         
         photosController = PhotoCollectionViewController.getInstance()
