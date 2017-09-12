@@ -71,7 +71,8 @@ extension PreorderedViewController {
         Logger.log(type: .DEBUG, string: "Reload images begin")
         for (index, value) in imagesMap.enumerated() {
             let container = getView(index: index)!
-            setImage(withAsset: value.image, forContainer: container)
+            //Retrieve image from asset and add it to imageview
+            container.setImage(withAsset: value.image)
             lastIndex = index + 1
         }
         
@@ -85,17 +86,6 @@ extension PreorderedViewController {
             Logger.log(type: .DEBUG, string: "Removed image at index \(index)")
         }
         Logger.log(type: .DEBUG, string: "Reload images end")
-    }
-    
-    //Retrieve image from asset and add it to imageview
-    private func setImage(withAsset asset: PHAsset,forContainer container: UIImageView) {
-        AssetHelper.shared.getAsset(asset: asset, forSize: container.frame.size) {image, _ in
-            
-            if image != nil {
-                Logger.log(type: .DEBUG, string: "Adding image for Image at index \(self.imagesMap.getNextIndex())")
-                container.image = image
-            }
-        }
     }
     
     //Remove image from the collection then, reorder imageviews and re add views

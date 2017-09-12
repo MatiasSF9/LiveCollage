@@ -10,7 +10,7 @@ import UIKit
 import MobileCoreServices
 import PhotosUI
 
-class ViewController: UIViewController {
+class CollageViewController: UIViewController {
 
     @IBOutlet weak var photosContainer: UIView!
     @IBOutlet weak var collageContainer: UIView!
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: PhotoCollectionSelectionObserver {
+extension CollageViewController: PhotoCollectionSelectionObserver {
     
     func didSelect(image: PHAsset, index: IndexPath) {
         collageController.addImage(image: image, index: index)

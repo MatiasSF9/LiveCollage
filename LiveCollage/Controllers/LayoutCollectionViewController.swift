@@ -53,8 +53,8 @@ extension LayoutCollectionViewController {
         
         let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0),
                                                   size: cell.frame.size))
-        setImage(withAsset: imagesMap[indexPath.row].image, forContainer: imageView)
-        
+        //Retrieve image from asset and add it to imageview
+        imageView.setImage(withAsset: imagesMap[indexPath.row].image)
         cell.addSubview(imageView)
         return cell
     }
@@ -69,27 +69,12 @@ extension LayoutCollectionViewController {
      override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
      return true
      }
-     */
     
-    /*
+    
+    
      // Uncomment this method to specify if the specified item should be selected
      override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
      return true
-     }
-     */
-    
-    /*
-     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-     return false
-     }
-     
-     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-     
      }
      */
 }
@@ -105,18 +90,7 @@ extension LayoutCollectionViewController {
         imagesMap.append(ImageSet(image: image, tag: index.item))
         collectionView?.reloadData()
     }
-    
-    //Retrieve image from asset and add it to imageview
-    private func setImage(withAsset asset: PHAsset,forContainer container: UIImageView) {
-        AssetHelper.shared.getAsset(asset: asset, forSize: container.frame.size) {image, _ in
-            
-            if image != nil {
-                Logger.log(type: .DEBUG, string: "Adding image for Image at index \(self.imagesMap.getNextIndex())")
-                container.image = image
-            }
-        }
-    }
-    
+
     //Remove image from the collection then, reorder imageviews and re add views
     func removeImage(image: PHAsset, index: IndexPath) {
         
