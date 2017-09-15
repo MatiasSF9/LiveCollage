@@ -16,6 +16,7 @@ extension UIImageView {
             if image != nil {
                 Logger.log(type: .DEBUG, string: "Adding image \(asset) to UIImageView")
                 self.image = image
+                self.sizeToFit()
             } else {
                 Logger.log(type: .WARNING, string: "Failure to add image \(asset) to UIImageView")
             }

@@ -8,6 +8,7 @@
 
 import UIKit
 import PhotosUI
+import CoreImage
 
 
 enum CurrentFilter {
@@ -17,6 +18,7 @@ enum CurrentFilter {
     case Brightness
     case Contrast
     case Temp
+    case Tint
     case None
 }
 
@@ -75,6 +77,19 @@ class EditViewController: UIViewController {
         setContrastFilter()
     }
     
+    @IBAction func onTint(_ sender: UIButton) {
+        setTintFilter()
+    }
+    
+    @IBAction func onBrightness(_ sender: UIButton) {
+        setBrightnessFilter()
+    }
+    
+    @IBAction func onSaturation(_ sender: UIButton) {
+        setSaturationFilter()
+    }
+    
+    
     @IBAction func onDepthToggle(_ sender: UISwitch) {
     }
     
@@ -100,7 +115,7 @@ extension EditViewController {
         case .Temp:
             let scale: CGFloat = CGFloat(6500 * value)
             let vector = CIVector(x: scale, y: 0)
-            filterTempAndTint.setValue(vector, forKey: "inputTargetNeutral")
+            filterTempAndTint.setValue(vector, forKey: kCIInputNeutralTemperatureKey)
         case .Contrast:
             filterControls.setValue(value, forKey: kCIInputSaturationKey)
             filter = filterControls
@@ -112,6 +127,11 @@ extension EditViewController {
         case .Saturation:
             filterControls.setValue(value, forKey: kCIInputSaturationKey)
             filter = filterControls
+            break
+        case .Tint:
+            let scale: CGFloat = CGFloat(6500 * value)
+            let vector = CIVector(x: scale, y: 0)
+            filterControls.setValue(vector, forKey: kCIInputNeutralTintKey)
         default:
             return
         }
@@ -125,6 +145,7 @@ extension EditViewController {
         guard let result = filter.outputImage else {
             return
         }
+        
         guard let cgImage = context.createCGImage(result, from: result.extent) else {
             return
         }
@@ -139,6 +160,18 @@ extension EditViewController {
     
     func setContrastFilter() {
         currentFilter = .Contrast
+    }
+    
+    func setBrightnessFilter() {
+        currentFilter = .Brightness
+    }
+    
+    func setTintFilter() {
+        currentFilter = .Tint
+    }
+    
+    func setSaturationFilter() {
+        currentFilter = .Saturation
     }
 }
 

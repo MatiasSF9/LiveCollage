@@ -18,6 +18,7 @@ class AssetHelper {
     func getAsset(asset: PHAsset, forSize: CGSize, resultHandler: @escaping (UIImage?, [AnyHashable : Any]?) -> Swift.Void) {
         // Request an image for the asset from the PHCachingImageManager.
         let options = PHImageRequestOptions()
+        options.resizeMode = .fast
         options.isSynchronous = true
         //TODO: use Cloud
         // Fetch the image from iCloud if necessary and provide progress
@@ -26,7 +27,8 @@ class AssetHelper {
 //            BOOL *stop) {
 //                [self updateUserVisibleProgress:progress error:error];
 //        };
-        manager.requestImage(for: asset, targetSize: forSize, contentMode: .aspectFill, options: options, resultHandler: resultHandler)
+        manager.requestImage(for: asset, targetSize: forSize, contentMode: .aspectFit,
+                             options: options, resultHandler: resultHandler)
     }
     
     func stopCaching() {
