@@ -9,7 +9,7 @@
 import UIKit
 import PhotosUI
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "GridViewCell"
 
 class LayoutCollectionViewController: UICollectionViewController {
 

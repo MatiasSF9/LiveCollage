@@ -22,6 +22,8 @@
 		60542D2D1F683A87006666B8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D2C1F683A87006666B8 /* EditViewController.swift */; };
 		60542D2F1F6869F1006666B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D2E1F6869F1006666B8 /* HomeViewController.swift */; };
 		60542D321F686E5D006666B8 /* UIImageView+PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D311F686E5D006666B8 /* UIImageView+PHAsset.swift */; };
+		6093BA871F6C55CD00570867 /* FilterMemento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6093BA861F6C55CD00570867 /* FilterMemento.swift */; };
+		60AD56E81F71642A005E5E06 /* FilterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AD56E71F71642A005E5E06 /* FilterHelper.swift */; };
 		60B79E4A1F66E58300634F35 /* LayoutCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B79E491F66E58300634F35 /* LayoutCollectionViewController.swift */; };
 		60FE24FF1EA3AFC2000F21DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FE24FE1EA3AFC2000F21DF /* AppDelegate.swift */; };
 		60FE25061EA3AFC2000F21DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FE25051EA3AFC2000F21DF /* Assets.xcassets */; };
@@ -46,6 +48,9 @@
 		60542D2C1F683A87006666B8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		60542D2E1F6869F1006666B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		60542D311F686E5D006666B8 /* UIImageView+PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+PHAsset.swift"; sourceTree = "<group>"; };
+		6093BA861F6C55CD00570867 /* FilterMemento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMemento.swift; sourceTree = "<group>"; };
+		6093BA881F6C709700570867 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = LiveCollage/MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		60AD56E71F71642A005E5E06 /* FilterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHelper.swift; sourceTree = "<group>"; };
 		60B79E491F66E58300634F35 /* LayoutCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutCollectionViewController.swift; sourceTree = "<group>"; };
 		60FE24FB1EA3AFC2000F21DF /* LiveCollage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveCollage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FE24FE1EA3AFC2000F21DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +109,8 @@
 			children = (
 				499CB01F1F4A4935008D45D8 /* AssetHelper.swift */,
 				495273451F4A5A1F00EE14F9 /* Logger.swift */,
+				6093BA861F6C55CD00570867 /* FilterMemento.swift */,
+				60AD56E71F71642A005E5E06 /* FilterHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -149,6 +156,7 @@
 		60FE24FD1EA3AFC2000F21DF /* LiveCollage */ = {
 			isa = PBXGroup;
 			children = (
+				6093BA881F6C709700570867 /* MyPlayground.playground */,
 				60542D301F686E37006666B8 /* Extensions */,
 				499CB01E1F4A4921008D45D8 /* Utils */,
 				499CB01A1F49E1A6008D45D8 /* Layouts */,
@@ -262,10 +270,12 @@
 				60542D2F1F6869F1006666B8 /* HomeViewController.swift in Sources */,
 				60FE25181EA3B146000F21DF /* LiveImageCell.swift in Sources */,
 				60FE25161EA3B13A000F21DF /* AddImageCell.swift in Sources */,
+				6093BA871F6C55CD00570867 /* FilterMemento.swift in Sources */,
 				4924B18F1F487F1C003C88E8 /* PhotoCollectionViewController.swift in Sources */,
 				60FE25141EA3B10E000F21DF /* BaseCollectionCell.swift in Sources */,
 				4924B1911F490283003C88E8 /* GridViewCell.swift in Sources */,
 				499CB01C1F49E1A7008D45D8 /* GridLayout.swift in Sources */,
+				60AD56E81F71642A005E5E06 /* FilterHelper.swift in Sources */,
 				60FE24FF1EA3AFC2000F21DF /* AppDelegate.swift in Sources */,
 				49503B531F3F92FD00D3C84C /* PreorderedViewController.swift in Sources */,
 			);
@@ -403,13 +413,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9ZM7UP9YG8;
 				INFOPLIST_FILE = LiveCollage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.m2media.LiveCollage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.m2media.deepix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -420,13 +433,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9ZM7UP9YG8;
 				INFOPLIST_FILE = LiveCollage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.m2media.LiveCollage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.m2media.deepix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

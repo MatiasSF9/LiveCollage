@@ -10,42 +10,43 @@ import UIKit
 import PhotosUI
 import CoreImage
 
+public let kColorFilter: String = "CIColorControls"
+public let kTempFilter: String = "CITemperatureAndTint"
+public let kMotionBlurFilter: String = "CIMotionBlur"
 
-enum CurrentFilter {
-    case Sepia
-    case Blur
-    case Saturation
-    case Brightness
-    case Contrast
-    case Temp
-    case Tint
-    case None
+enum FilterType: Int {
+    case Frame = 0, Brightness, Contrast, Temp, Fx, Blur, None
+}
+
+enum SliderType: Int {
+    case Depth = 0, Focal
 }
 
 class EditViewController: UIViewController {
 
+    //Current Assets
     fileprivate var currentAsset: PHAsset!
-    fileprivate var currentImage: UIImage!
     
-    @IBOutlet weak var editedImage: UIImageView!
+    //Filter state handling
+    fileprivate var filterHelper: FilterHelper!
     
-    @IBOutlet weak var slider: UISlider!
-    @IBOutlet weak var depthSwitch: UISwitch!
-    @IBOutlet weak var focalSwitch: UISwitch!
+    //Outlets
+    @IBOutlet fileprivate weak var editedImage: UIImageView!
+    @IBOutlet fileprivate weak var depthSlider: UISlider!
+    @IBOutlet fileprivate weak var focalSlider: UISlider!
     
-    let context = CIContext()
-    let filterSepia = CIFilter(name: "CISepiaTone")!
-    let filterBlur = CIFilter(name: "CIMotionBlur")!
-    let filterControls = CIFilter(name: "CIColorControls")!
-    let filterTempAndTint = CIFilter(name: "CITemperatureAndTint")!
+    //Filters Setup
+    fileprivate let context = CIContext()
+    fileprivate var filterControls = CIFilter(name: kColorFilter)!
+    fileprivate var filterTempAndTint = CIFilter(name: kTempFilter)!
+    fileprivate var filterBlur = CIFilter(name: kMotionBlurFilter)!
     
-    var currentFilter: CurrentFilter = .None
+    fileprivate var currentFilter: FilterType = .None
     
     override func viewDidLoad() {
         super.viewDidLoad()
         editedImage.setImage(withAsset: currentAsset)
-        currentImage = editedImage.image
-        
+        filterHelper = FilterHelper(editedImage: editedImage.image!, frame: editedImage.frame)
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,52 +54,64 @@ class EditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onCrop(_ sender: UIButton) {
+    //MARK: filter set
+    //Binds the sliders to a specific filter
+    @IBAction func onFilterSelected(_ sender: UIButton) {
+        currentFilter = FilterType(rawValue: sender.tag)!
         
-        let clippedRect = CGRect(x: editedImage.frame.origin.x + 10,
-                                 y: editedImage.frame.origin.y + 10,
-                                 width: editedImage.frame.size.width - 10,
-                                 height: editedImage.frame.size.height - 10)
-        
-        guard let ref = editedImage.image!.cgImage!.cropping(to: clippedRect) else {
-            return
+        switch FilterType(rawValue: sender.tag) {
+        case .Frame?:
+            break
+        case .Brightness?:
+            guard let state = filterHelper.getFilter(filterName: kColorFilter) else {
+                return
+            }
+            filterControls = state.filter
+            focalSlider.value = state.filter.value(forKey: kCIInputBrightnessKey) as! Float
+            break
+        case .Contrast?:
+            guard let state = filterHelper.getFilter(filterName: kColorFilter) else {
+                return
+            }
+            filterControls = state.filter
+            focalSlider.value = state.filter.value(forKey: kCIInputContrastKey) as! Float
+            break
+        case .Temp?:
+            guard let state = filterHelper.getFilter(filterName: kTempFilter) else {
+                return
+            }
+            filterControls = state.filter
+            focalSlider.value = state.filter.value(forKey: kCIInputNeutralTemperatureKey) as! Float
+            break
+        case .Fx?:
+            break
+        case .Blur?:
+            guard let state = filterHelper.getFilter(filterName: kMotionBlurFilter) else {
+                return
+            }
+            filterControls = state.filter
+            let vector = state.filter.value(forKey: kCIInputRadiusKey) as! CIVector
+            focalSlider.value = Float(vector.x / 6500)
+            break
+        case .None?: break
+        default: break
+            
         }
-        
-        let newImage = UIImage(cgImage: ref)
-        editedImage.image = newImage
-        
-    }
-    
-    @IBAction func onTemp(_ sender: UIButton) {
-        setTempFilter()
-    }
-    
-    @IBAction func onContrast(_ sender: UIButton) {
-        setContrastFilter()
-    }
-    
-    @IBAction func onTint(_ sender: UIButton) {
-        setTintFilter()
-    }
-    
-    @IBAction func onBrightness(_ sender: UIButton) {
-        setBrightnessFilter()
-    }
-    
-    @IBAction func onSaturation(_ sender: UIButton) {
-        setSaturationFilter()
-    }
-    
-    
-    @IBAction func onDepthToggle(_ sender: UISwitch) {
-    }
-    
-    @IBAction func onFocalToggle(_ sender: UISwitch) {
     }
     
     @IBAction func onValueChange(_ sender: UISlider) {
+        
         let value = sender.value
-        updateValues(value: value)
+        switch SliderType(rawValue: sender.tag) {
+        case .Depth?:
+            updateDepth(value: value)
+            break
+        case .Focal?:
+            updateValues(value: value)
+            break
+        default: break
+
+        }
     }
 }
 
@@ -108,70 +121,38 @@ extension EditViewController {
     func updateValues(value: Float) {
         var filter: CIFilter = CIFilter()
         switch currentFilter {
-        case .Sepia:
-            filterSepia.setValue(value, forKey: kCIInputIntensityKey)
-            filter = filterSepia
-            break
-        case .Temp:
-            let scale: CGFloat = CGFloat(6500 * value)
-            let vector = CIVector(x: scale, y: 0)
-            filterTempAndTint.setValue(vector, forKey: kCIInputNeutralTemperatureKey)
-        case .Contrast:
-            filterControls.setValue(value, forKey: kCIInputSaturationKey)
-            filter = filterControls
+        case .Frame:
+            //TODO:
             break
         case .Brightness:
             filterControls.setValue(value, forKey: kCIInputBrightnessKey)
             filter = filterControls
             break
-        case .Saturation:
-            filterControls.setValue(value, forKey: kCIInputSaturationKey)
+        case .Contrast:
+            filterControls.setValue(value, forKey: kCIInputContrastKey)
             filter = filterControls
             break
-        case .Tint:
+        case .Temp:
             let scale: CGFloat = CGFloat(6500 * value)
             let vector = CIVector(x: scale, y: 0)
-            filterControls.setValue(vector, forKey: kCIInputNeutralTintKey)
+            filterTempAndTint.setValue(vector, forKey: kCIInputNeutralTemperatureKey)
+            break
+        case .Fx:
+            break
+        case .Blur:
+            filterBlur.setValue(value*100, forKey: kCIInputRadiusKey)
+            filter = filterControls
+            break
         default:
             return
         }
         
-        guard let tempCGImage = currentImage.cgImage else {
-            return
-        }
-        let image = CIImage(cgImage: tempCGImage)
-        filter.setValue(image, forKey: kCIInputImageKey)
-        
-        guard let result = filter.outputImage else {
-            return
-        }
-        
-        guard let cgImage = context.createCGImage(result, from: result.extent) else {
-            return
-        }
-        
-        editedImage.image = UIImage(cgImage: cgImage)
-        context.clearCaches()
+        editedImage.image = filterHelper.addFiterToChain(filter: filter, value: CGFloat(value), depthValue: CGFloat(depthSlider.value))
     }
-    
-    func setTempFilter() {
-        currentFilter = .Temp
-    }
-    
-    func setContrastFilter() {
-        currentFilter = .Contrast
-    }
-    
-    func setBrightnessFilter() {
-        currentFilter = .Brightness
-    }
-    
-    func setTintFilter() {
-        currentFilter = .Tint
-    }
-    
-    func setSaturationFilter() {
-        currentFilter = .Saturation
+
+    func updateDepth(value: Float) {
+        //TODO: apply filter
+//        editedImage.image = filterHelper.addFiterToChain(filter: filter, value: CGFloat(value), depthValue: CGFloat(depthSlider.value))
     }
 }
 
