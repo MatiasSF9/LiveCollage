@@ -9,6 +9,7 @@
 import UIKit
 import PhotosUI
 import CoreImage
+import ImageIO
 
 public let kColorFilter: String = "CIColorControls"
 public let kTempFilter: String = "CITemperatureAndTint"
@@ -34,6 +35,7 @@ class EditViewController: UIViewController {
     @IBOutlet fileprivate weak var editedImage: UIImageView!
     @IBOutlet fileprivate weak var depthSlider: UISlider!
     @IBOutlet fileprivate weak var focalSlider: UISlider!
+    @IBOutlet weak var depthLabel: UILabel!
     
     //Filters Setup
     fileprivate let context = CIContext()
@@ -45,8 +47,27 @@ class EditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         editedImage.setImage(withAsset: currentAsset)
         filterHelper = FilterHelper(editedImage: editedImage.image!, frame: editedImage.frame)
+        
+        //Disable depth by default
+        depthLabel.isHidden = true
+        depthSlider.isEnabled = false
+        
+        //Get Image Data Async
+        AssetHelper.shared.getImageData(asset: currentAsset) { [weak self] imageData in
+            
+            if imageData.info == nil  || imageData.data == nil{
+                return
+            }
+            
+            //Check if image has depth info
+            if AssetHelper.shared.hasDepthInformation(info: imageData.info!) {
+                self?.enableDepth(imageData: imageData.data!)
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,6 +138,15 @@ class EditViewController: UIViewController {
 
 //MARK: Effect Actions
 extension EditViewController {
+    
+    func enableDepth(imageData: Data) {
+        guard let cfData = imageData.CFData() else { return }
+        
+        depthLabel.isHidden = false
+        depthSlider.isEnabled = true
+        
+        let depthData = AssetHelper.shared.depthDataFromImageData(data: cfData)
+    }
     
     func updateValues(value: Float) {
         var filter: CIFilter = CIFilter()

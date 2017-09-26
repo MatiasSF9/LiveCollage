@@ -19,6 +19,7 @@
 		499CB01C1F49E1A7008D45D8 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CB01B1F49E1A7008D45D8 /* GridLayout.swift */; };
 		499CB0201F4A4935008D45D8 /* AssetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CB01F1F4A4935008D45D8 /* AssetHelper.swift */; };
 		49FCF14C1F3E51FF0079D0D1 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF14B1F3E51FF0079D0D1 /* CollageViewController.swift */; };
+		604E018D1F7AE4EA002F67C1 /* AssetHelper+Depth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */; };
 		60542D2D1F683A87006666B8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D2C1F683A87006666B8 /* EditViewController.swift */; };
 		60542D2F1F6869F1006666B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D2E1F6869F1006666B8 /* HomeViewController.swift */; };
 		60542D321F686E5D006666B8 /* UIImageView+PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D311F686E5D006666B8 /* UIImageView+PHAsset.swift */; };
@@ -45,6 +46,7 @@
 		499CB01B1F49E1A7008D45D8 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		499CB01F1F4A4935008D45D8 /* AssetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetHelper.swift; sourceTree = "<group>"; };
 		49FCF14B1F3E51FF0079D0D1 /* CollageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageViewController.swift; sourceTree = "<group>"; };
+		604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetHelper+Depth.swift"; sourceTree = "<group>"; };
 		60542D2C1F683A87006666B8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		60542D2E1F6869F1006666B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		60542D311F686E5D006666B8 /* UIImageView+PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+PHAsset.swift"; sourceTree = "<group>"; };
@@ -52,6 +54,8 @@
 		6093BA881F6C709700570867 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = LiveCollage/MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		60AD56E71F71642A005E5E06 /* FilterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHelper.swift; sourceTree = "<group>"; };
 		60B79E491F66E58300634F35 /* LayoutCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutCollectionViewController.swift; sourceTree = "<group>"; };
+		60C334AE1F7AEFD000DA675F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		60C334AF1F7AEFD100DA675F /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		60FE24FB1EA3AFC2000F21DF /* LiveCollage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveCollage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FE24FE1EA3AFC2000F21DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FE25051EA3AFC2000F21DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 		4924B1921F490BC8003C88E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				60C334AE1F7AEFD000DA675F /* Crashlytics.framework */,
+				60C334AF1F7AEFD100DA675F /* Fabric.framework */,
 				4924B1951F490BD3003C88E8 /* Photos.framework */,
 				4924B1961F490BD3003C88E8 /* PhotosUI.framework */,
 				4924B1931F490BC8003C88E8 /* AVFoundation.framework */,
@@ -111,6 +117,7 @@
 				495273451F4A5A1F00EE14F9 /* Logger.swift */,
 				6093BA861F6C55CD00570867 /* FilterMemento.swift */,
 				60AD56E71F71642A005E5E06 /* FilterHelper.swift */,
+				604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -197,6 +204,7 @@
 				60FE24F71EA3AFC2000F21DF /* Sources */,
 				60FE24F81EA3AFC2000F21DF /* Frameworks */,
 				60FE24F91EA3AFC2000F21DF /* Resources */,
+				60C334A91F7AEF7600DA675F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -219,9 +227,9 @@
 				TargetAttributes = {
 					60FE24FA1EA3AFC2000F21DF = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 9ZM7UP9YG8;
+						DevelopmentTeam = EBUWSDW773;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -256,6 +264,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		60C334A91F7AEF7600DA675F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 77b6befa955270d3f5c48a809f24036dd073e84c d931540228807b1ccaebbf7c282ab0d6af6a138d97e0f7580d92e97728481ce1";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		60FE24F71EA3AFC2000F21DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -269,6 +293,7 @@
 				60B79E4A1F66E58300634F35 /* LayoutCollectionViewController.swift in Sources */,
 				60542D2F1F6869F1006666B8 /* HomeViewController.swift in Sources */,
 				60FE25181EA3B146000F21DF /* LiveImageCell.swift in Sources */,
+				604E018D1F7AE4EA002F67C1 /* AssetHelper+Depth.swift in Sources */,
 				60FE25161EA3B13A000F21DF /* AddImageCell.swift in Sources */,
 				6093BA871F6C55CD00570867 /* FilterMemento.swift in Sources */,
 				4924B18F1F487F1C003C88E8 /* PhotoCollectionViewController.swift in Sources */,
@@ -414,14 +439,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9ZM7UP9YG8;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = EBUWSDW773;
 				INFOPLIST_FILE = LiveCollage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.m2media.deepix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.m2.media.deepix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "218ba887-0ab4-482b-8d07-2817c895fc64";
+				PROVISIONING_PROFILE_SPECIFIER = "Deepix Dev";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -433,15 +459,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9ZM7UP9YG8;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = EBUWSDW773;
 				INFOPLIST_FILE = LiveCollage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.m2media.deepix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.m2.media.deepix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "bece0673-6f43-45d4-ba7d-cbbcc5a4dae1";
+				PROVISIONING_PROFILE_SPECIFIER = "Deepix Store";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

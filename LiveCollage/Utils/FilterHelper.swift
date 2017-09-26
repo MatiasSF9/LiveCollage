@@ -94,4 +94,8 @@ class FilterHelper: FilterHelperProtocol {
         return cgImage
     }
     
+    //Applies blend mask for depth enabled images
+    private func applyBlend() {
+        
+    }
 }
