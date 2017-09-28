@@ -57,9 +57,10 @@ class PhotoCollectionViewController: UICollectionViewController {
         // If we get here without a segue, it's because we're visible at app launch,
         // so match the behavior of segue from the default "All Photos" view.
         if fetchResult == nil {
-            let allPhotosOptions = PHFetchOptions()
-            allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-            fetchResult = PHAsset.fetchAssets(with: .image, options: allPhotosOptions)
+            let allPortraitPhotos = PHFetchOptions()
+            allPortraitPhotos.predicate = NSPredicate(format: "((mediaSubtype & %d) != 0)", PHAssetMediaSubtype.photoDepthEffect.rawValue)
+            allPortraitPhotos.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+            fetchResult = PHAsset.fetchAssets(with: .image, options: allPortraitPhotos)
         }
     }
     
