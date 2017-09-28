@@ -28,11 +28,16 @@ class FilterHelper: FilterHelperProtocol {
     private let filterChain = FilterState()
     fileprivate let frame:CGRect!
     private let editedImage: UIImage!
+    private var disparityImage: CIImage?
     
     
     init(editedImage: UIImage, frame: CGRect) {
         self.editedImage = editedImage
         self.frame = frame
+    }
+    
+    func setDisparity(image: CIImage) {
+        self.disparityImage = image
     }
     
     //Add or Update filter values
@@ -96,6 +101,18 @@ class FilterHelper: FilterHelperProtocol {
     
     //Applies blend mask for depth enabled images
     private func applyBlend() {
+        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!,
+                                                     slope:  CGFloat(slopeSlider.value),
+                                                     bias: CGFloat(depthSlider.value))
         
+        var chainedFilter = filterHelper.applyChain()
+        chainedFilter = chainedFilter.resize(targetSize: (currentImage?.size)!)!
+        
+        let currentCIImage = CIImage(cgImage: (currentImage?.cgImage)!)
+        
+        
+        let blend = AssetHelper.shared().blendImages(background: CIImage(cgImage: chainedFilter.cgImage!),
+                                                     foreground: currentCIImage,
+                                                     mask: mask)
     }
 }

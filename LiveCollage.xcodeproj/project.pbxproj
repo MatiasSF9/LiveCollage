@@ -50,12 +50,12 @@
 		60542D2C1F683A87006666B8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		60542D2E1F6869F1006666B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		60542D311F686E5D006666B8 /* UIImageView+PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+PHAsset.swift"; sourceTree = "<group>"; };
+		6075E6EA1F7BCE08001CCFB5 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		6075E6EB1F7BCE08001CCFB5 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		6093BA861F6C55CD00570867 /* FilterMemento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMemento.swift; sourceTree = "<group>"; };
 		6093BA881F6C709700570867 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = LiveCollage/MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		60AD56E71F71642A005E5E06 /* FilterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHelper.swift; sourceTree = "<group>"; };
 		60B79E491F66E58300634F35 /* LayoutCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutCollectionViewController.swift; sourceTree = "<group>"; };
-		60C334AE1F7AEFD000DA675F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		60C334AF1F7AEFD100DA675F /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		60FE24FB1EA3AFC2000F21DF /* LiveCollage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveCollage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FE24FE1EA3AFC2000F21DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FE25051EA3AFC2000F21DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,8 +82,8 @@
 		4924B1921F490BC8003C88E8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				60C334AE1F7AEFD000DA675F /* Crashlytics.framework */,
-				60C334AF1F7AEFD100DA675F /* Fabric.framework */,
+				6075E6EA1F7BCE08001CCFB5 /* Crashlytics.framework */,
+				6075E6EB1F7BCE08001CCFB5 /* Fabric.framework */,
 				4924B1951F490BD3003C88E8 /* Photos.framework */,
 				4924B1961F490BD3003C88E8 /* PhotosUI.framework */,
 				4924B1931F490BC8003C88E8 /* AVFoundation.framework */,
