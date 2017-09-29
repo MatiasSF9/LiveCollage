@@ -9,6 +9,8 @@
 import UIKit
 import Photos
 import PhotosUI
+import TOCropViewController
+
 
 class PhotoCollectionViewController: UICollectionViewController {
 
