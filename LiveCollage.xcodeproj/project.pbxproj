@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3435EC6C076065B43702BF76 /* Pods_LiveCollage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D962C0434391D31417954CF /* Pods_LiveCollage.framework */; };
 		4924B18F1F487F1C003C88E8 /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924B18E1F487F1C003C88E8 /* PhotoCollectionViewController.swift */; };
 		4924B1911F490283003C88E8 /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924B1901F490283003C88E8 /* GridViewCell.swift */; };
 		4924B1941F490BC8003C88E8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4924B1931F490BC8003C88E8 /* AVFoundation.framework */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30CEAEB947E493F041EB385F /* Pods-LiveCollage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveCollage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiveCollage/Pods-LiveCollage.debug.xcconfig"; sourceTree = "<group>"; };
 		4924B18E1F487F1C003C88E8 /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		4924B1901F490283003C88E8 /* GridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
 		4924B1931F490BC8003C88E8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -46,6 +48,7 @@
 		499CB01B1F49E1A7008D45D8 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		499CB01F1F4A4935008D45D8 /* AssetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetHelper.swift; sourceTree = "<group>"; };
 		49FCF14B1F3E51FF0079D0D1 /* CollageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageViewController.swift; sourceTree = "<group>"; };
+		58A976F8DFB05B59CF6D7A87 /* Pods-LiveCollage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveCollage.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveCollage/Pods-LiveCollage.release.xcconfig"; sourceTree = "<group>"; };
 		604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetHelper+Depth.swift"; sourceTree = "<group>"; };
 		60542D2C1F683A87006666B8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		60542D2E1F6869F1006666B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 		60FE25131EA3B10E000F21DF /* BaseCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionCell.swift; sourceTree = "<group>"; };
 		60FE25151EA3B13A000F21DF /* AddImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddImageCell.swift; sourceTree = "<group>"; };
 		60FE25171EA3B146000F21DF /* LiveImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveImageCell.swift; sourceTree = "<group>"; };
+		72AF941B1F7DEA9B0056CB17 /* LiveCollage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LiveCollage-Bridging-Header.h"; sourceTree = "<group>"; };
+		7D962C0434391D31417954CF /* Pods_LiveCollage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveCollage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +78,7 @@
 				4924B1971F490BD3003C88E8 /* Photos.framework in Frameworks */,
 				4924B1981F490BD3003C88E8 /* PhotosUI.framework in Frameworks */,
 				4924B1941F490BC8003C88E8 /* AVFoundation.framework in Frameworks */,
+				3435EC6C076065B43702BF76 /* Pods_LiveCollage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +93,7 @@
 				4924B1951F490BD3003C88E8 /* Photos.framework */,
 				4924B1961F490BD3003C88E8 /* PhotosUI.framework */,
 				4924B1931F490BC8003C88E8 /* AVFoundation.framework */,
+				7D962C0434391D31417954CF /* Pods_LiveCollage.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -149,6 +156,7 @@
 				60FE24FD1EA3AFC2000F21DF /* LiveCollage */,
 				60FE24FC1EA3AFC2000F21DF /* Products */,
 				4924B1921F490BC8003C88E8 /* Frameworks */,
+				7989E89ACA763AB2991D5D6D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,6 +180,7 @@
 				60FE25121EA3B0F0000F21DF /* Views */,
 				499CB0191F49E189008D45D8 /* Resources */,
 				60FE24FE1EA3AFC2000F21DF /* AppDelegate.swift */,
+				72AF941B1F7DEA9B0056CB17 /* LiveCollage-Bridging-Header.h */,
 			);
 			path = LiveCollage;
 			sourceTree = "<group>";
@@ -194,6 +203,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		7989E89ACA763AB2991D5D6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30CEAEB947E493F041EB385F /* Pods-LiveCollage.debug.xcconfig */,
+				58A976F8DFB05B59CF6D7A87 /* Pods-LiveCollage.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -201,10 +219,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60FE250D1EA3AFC2000F21DF /* Build configuration list for PBXNativeTarget "LiveCollage" */;
 			buildPhases = (
+				A6D64E4D2152CF495E92200D /* [CP] Check Pods Manifest.lock */,
 				60FE24F71EA3AFC2000F21DF /* Sources */,
 				60FE24F81EA3AFC2000F21DF /* Frameworks */,
 				60FE24F91EA3AFC2000F21DF /* Resources */,
 				60C334A91F7AEF7600DA675F /* ShellScript */,
+				ADD71AE278A35E3FBD46FF5F /* [CP] Embed Pods Frameworks */,
+				4200715DC84C90DF42B83403 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,6 +261,24 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				ar,
+				"zh-Hans",
+				ja,
+				es,
+				da,
+				it,
+				ms,
+				ko,
+				"zh-Hant",
+				tr,
+				pl,
+				vi,
+				ru,
+				fr,
+				id,
+				nl,
+				pt,
 			);
 			mainGroup = 60FE24F21EA3AFC2000F21DF;
 			productRefGroup = 60FE24FC1EA3AFC2000F21DF /* Products */;
@@ -265,6 +304,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4200715DC84C90DF42B83403 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiveCollage/Pods-LiveCollage-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		60C334A91F7AEF7600DA675F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -277,6 +331,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run 77b6befa955270d3f5c48a809f24036dd073e84c d931540228807b1ccaebbf7c282ab0d6af6a138d97e0f7580d92e97728481ce1";
+		};
+		A6D64E4D2152CF495E92200D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LiveCollage-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADD71AE278A35E3FBD46FF5F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LiveCollage/Pods-LiveCollage-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TOCropViewController/TOCropViewController.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TOCropViewController.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiveCollage/Pods-LiveCollage-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -435,9 +525,11 @@
 		};
 		60FE250E1EA3AFC2000F21DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30CEAEB947E493F041EB385F /* Pods-LiveCollage.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = EBUWSDW773;
@@ -448,6 +540,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "218ba887-0ab4-482b-8d07-2817c895fc64";
 				PROVISIONING_PROFILE_SPECIFIER = "Deepix Dev";
+				SWIFT_OBJC_BRIDGING_HEADER = "LiveCollage/LiveCollage-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -456,9 +550,11 @@
 		};
 		60FE250F1EA3AFC2000F21DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58A976F8DFB05B59CF6D7A87 /* Pods-LiveCollage.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = EBUWSDW773;
@@ -469,6 +565,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bece0673-6f43-45d4-ba7d-cbbcc5a4dae1";
 				PROVISIONING_PROFILE_SPECIFIER = "Deepix Store";
+				SWIFT_OBJC_BRIDGING_HEADER = "LiveCollage/LiveCollage-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

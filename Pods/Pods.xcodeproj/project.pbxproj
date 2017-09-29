@@ -1,0 +1,826 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0124B6ED029BC28A2768A48BB4566D3A /* TOActivityCroppedImageProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = F8D1F2E7429D8F9FCB9672CAA316EDAF /* TOActivityCroppedImageProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		091F459F7D3135A08389B4DCF7673CB9 /* TOCropViewControllerBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 494B5BFB3A1643C49350A0398309C4F1 /* TOCropViewControllerBundle.bundle */; };
+		0DDC7D760FCCDF78CF47546824044602 /* TOCropViewControllerTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 787440B457AB581BD0237B7F9FFF15F7 /* TOCropViewControllerTransitioning.m */; };
+		0EE9A8B878A1675EC508B3E6B1E22E65 /* TOCropOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADF3D8521629FDFC8D2A9390EFDCA96C /* TOCropOverlayView.m */; };
+		138A68052B8DEAFB7BD86BB336546E53 /* TOCropOverlayView.h in Headers */ = {isa = PBXBuildFile; fileRef = D39DDE5770888853471DDC2766D44641 /* TOCropOverlayView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17EF0A114E914FF0D3CA6244D5323EE9 /* fr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A1A50F60A57FD7D99075241A9336555D /* fr.lproj */; };
+		1BF98F3D88FA61B015702B744D176657 /* tr.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 9729AA1080EA6B3BC8D5BFFED2D420CB /* tr.lproj */; };
+		232ADD9A32EAEA4E8E844038AA4B38C7 /* TOActivityCroppedImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5D35542E4CB6D077B76C6B94D42939 /* TOActivityCroppedImageProvider.m */; };
+		255BE8DB88B317C98ABAB50ABE2EF85E /* TOCroppedImageAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 5194C773D793B3339331ECE677867A55 /* TOCroppedImageAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		28B5860E8ADCAD85AB1C6DAA95D2B003 /* TOCropToolbar.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C1487D2E9FF1C066AD7A470592AB9CB /* TOCropToolbar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		28FE434448518BEE41722123A1F15F73 /* TOCropScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA48AABF303EF3C913C2126E86A86CD0 /* TOCropScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F9EE18C0F9958160EF7A2611AB56492 /* TOCropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4848D0E7F5E27D1CD15B0B151372CD1F /* TOCropViewController.m */; };
+		4A530AEED824AE8562CA380728247CC6 /* TOCropViewControllerTransitioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D37D4F6670F889692A6DEAC6B0345A0 /* TOCropViewControllerTransitioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		524416DDB4D7C9F158133AE548696826 /* UIImage+CropRotate.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C012D2911B3D5A3E71D850CD8FD2E2E /* UIImage+CropRotate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5DD5898814A9AF99BEAEF5969FC4F3D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		619F27DD3F1ADDB8D7A9F779FE0917D9 /* da.lproj in Resources */ = {isa = PBXBuildFile; fileRef = F628B1437431624F1B1854612C9C0B2C /* da.lproj */; };
+		634C593DAA853698F53D13B8DDE6056C /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 2D6228C5BEB84AA1E21683DD9E78D61E /* ru.lproj */; };
+		6C11641D9F8F8F42D2E8C3557729B8C7 /* en.lproj in Resources */ = {isa = PBXBuildFile; fileRef = E9BF9D9A16CF60FB1C0FD1CC0889278E /* en.lproj */; };
+		6C35D1C71808E495C13092549245D1C3 /* TOCroppedImageAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = B20D626A2507C719A217566D96B4EDD0 /* TOCroppedImageAttributes.m */; };
+		6FEA15894EB81671E48043AF8E034F0D /* TOCropViewController-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 7401DC3587FE2236EE996DB99660F27B /* TOCropViewController-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79B4B1C03E2AC441ABF9BCD9129DEBAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		80F208972E1171688EDFEEC746EE0BEB /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DD6828CCF9517797D9B8C10628665363 /* nl.lproj */; };
+		811FE68DB92EBCE82AD9FB0E1E90407D /* Pods-LiveCollage-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E59A762DDBEF107345FF7CC91315535F /* Pods-LiveCollage-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		91712A754F5CB5CCBC2C7F021A20B9FB /* TOCropViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA0839395E0F2A507C75BA3C596CAD6 /* TOCropViewController-dummy.m */; };
+		9627712468AE4F16C8E2C92256B9AA6D /* vi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 99F3AA47B342449B7258C8FA9D22D064 /* vi.lproj */; };
+		966051160ABA23A9FD3E588A345608F8 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 167478AE2510B2157796FCE286B61E37 /* de.lproj */; };
+		98F61CDF0CC89F9CC5F4418C0DD27F2A /* ja.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 6C93D2B042944A99C014343C582D2A1F /* ja.lproj */; };
+		9EA96F290B40AA1E01CF034B2EC28AD6 /* TOCropScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A998D61AA80518E8F22C797F71A4043 /* TOCropScrollView.m */; };
+		A98BFFB0414889FE695FF50B073BFBE1 /* TOCropViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 91C9F36A85A58DF8AE2BFF26F813681A /* TOCropViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AB4E5946B4BCC463220F7A3E39906643 /* ko.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C5BB8750AFAF1CB0D665930801BB3474 /* ko.lproj */; };
+		ACA57E4C658B82BDA9152F65EF5440D0 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C6E96B2F6F744FFC350D0EEC66605D18 /* Base.lproj */; };
+		B6E4E0B4E4F29F585D8A541588B5BF42 /* TOCropViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C19E5802172E6898CCC0A81CB75EEC7 /* TOCropViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B727D34ECA16C27661AAA089FA973AE9 /* TOCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = B863753058B9335140BC337BA55FEC6A /* TOCropView.m */; };
+		BA2F78245BB3D16FD8E7F8C776EC1111 /* ar.lproj in Resources */ = {isa = PBXBuildFile; fileRef = DD438FE06438C71C69EACA8799D32C13 /* ar.lproj */; };
+		BD5BC102697EBD9774E9D66DCA0FA6A2 /* pl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = CE45C57497EFCE10E476B03C1CEA380A /* pl.lproj */; };
+		C7D7E8CAD233B8F1B7411289EAF20512 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 590E26355101A7076F7F38BEBBA7C1D6 /* pt.lproj */; };
+		D237F4BF9FC154C972816BD928B93A4D /* TOCropView.h in Headers */ = {isa = PBXBuildFile; fileRef = 76CAF5701F825DCDFAFCCD5E5EBC3279 /* TOCropView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3E572761B3E0C41882936A1E04A2A43 /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 7BD5D5D6A02C94028A809B7786B7C6F4 /* it.lproj */; };
+		D5A36E2E156DE1ADDA7E5C06FA436A5B /* TOCropToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A8FF0B7E9D52D486F80CA7C10261B0 /* TOCropToolbar.m */; };
+		D9FA1D10C53A9A9A49192BCF6A1BCF29 /* id.lproj in Resources */ = {isa = PBXBuildFile; fileRef = C181FECB08EA9E83A39F6A03ED2883F3 /* id.lproj */; };
+		E443B168E2F8FCCAF273A904ECEFA193 /* zh-Hans.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 051CDF652F0185CF1FDEE96A1B0577E3 /* zh-Hans.lproj */; };
+		E609E5DA9E8295E466FD80339E01E9BF /* ms.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A1B7402A9BB6AA235DC24126F424225F /* ms.lproj */; };
+		E789F05162E1AADD2BD86169E500978A /* zh-Hant.lproj in Resources */ = {isa = PBXBuildFile; fileRef = A7F99B5E6DC4C0559906660DBD4D94CF /* zh-Hant.lproj */; };
+		E9DFB9FF81C0AEC52B59DD2EECC978DD /* es.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 451B6E113393DFC94FDBFFB82B811562 /* es.lproj */; };
+		EB6B4EB6EF52237E1B1DB55A5B771751 /* UIImage+CropRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5872B37DA6A33FAAB24FF4AEB48BCBB /* UIImage+CropRotate.m */; };
+		FA5E5146F24BAB7D2565C2D1DD5944CB /* Pods-LiveCollage-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AC965651A7D729FF2DF855C866D64 /* Pods-LiveCollage-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1DC150C91BEA6C056660ABFF5DAF6487 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A41247537FF5DFA100F2D2D5442B2088;
+			remoteInfo = "TOCropViewController-TOCropViewControllerBundle";
+		};
+		29FA38B2289DF08DE3DD76493358AD2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8EAD153103F2C5F74C92DFE6C0D63DD;
+			remoteInfo = TOCropViewController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		051CDF652F0185CF1FDEE96A1B0577E3 /* zh-Hans.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hans.lproj"; path = "TOCropViewController/zh-Hans.lproj"; sourceTree = "<group>"; };
+		09DC6B769E2D2E6F1CC86B251FAA7807 /* Pods-LiveCollage-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LiveCollage-resources.sh"; sourceTree = "<group>"; };
+		0C19E5802172E6898CCC0A81CB75EEC7 /* TOCropViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TOCropViewController-umbrella.h"; sourceTree = "<group>"; };
+		167478AE2510B2157796FCE286B61E37 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = TOCropViewController/de.lproj; sourceTree = "<group>"; };
+		2A3E7CBBB7211634D4729A86494C8627 /* ResourceBundle-TOCropViewControllerBundle-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-TOCropViewControllerBundle-Info.plist"; sourceTree = "<group>"; };
+		2D6228C5BEB84AA1E21683DD9E78D61E /* ru.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ru.lproj; path = TOCropViewController/ru.lproj; sourceTree = "<group>"; };
+		3206E40134C901EE73016C0F04EF57D2 /* TOCropViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TOCropViewController.framework; path = TOCropViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		336E2D3E9057C466B14541C513C1031D /* TOCropViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TOCropViewController.modulemap; sourceTree = "<group>"; };
+		37A8FF0B7E9D52D486F80CA7C10261B0 /* TOCropToolbar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TOCropToolbar.m; path = TOCropViewController/Views/TOCropToolbar.m; sourceTree = "<group>"; };
+		3DA0839395E0F2A507C75BA3C596CAD6 /* TOCropViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TOCropViewController-dummy.m"; sourceTree = "<group>"; };
+		451B6E113393DFC94FDBFFB82B811562 /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = TOCropViewController/es.lproj; sourceTree = "<group>"; };
+		4848D0E7F5E27D1CD15B0B151372CD1F /* TOCropViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TOCropViewController.m; path = TOCropViewController/TOCropViewController.m; sourceTree = "<group>"; };
+		494B5BFB3A1643C49350A0398309C4F1 /* TOCropViewControllerBundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = TOCropViewControllerBundle.bundle; path = TOCropViewControllerBundle.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CF3EDF7172B53750F279ADA54DD79C /* Pods-LiveCollage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LiveCollage.release.xcconfig"; sourceTree = "<group>"; };
+		5194C773D793B3339331ECE677867A55 /* TOCroppedImageAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TOCroppedImageAttributes.h; path = TOCropViewController/Models/TOCroppedImageAttributes.h; sourceTree = "<group>"; };
+		590E26355101A7076F7F38BEBBA7C1D6 /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pt.lproj; path = TOCropViewController/pt.lproj; sourceTree = "<group>"; };
+		65C7C0BD21BBA9ABDC8F3916B40243B6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6C93D2B042944A99C014343C582D2A1F /* ja.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ja.lproj; path = TOCropViewController/ja.lproj; sourceTree = "<group>"; };
+		6D37D4F6670F889692A6DEAC6B0345A0 /* TOCropViewControllerTransitioning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TOCropViewControllerTransitioning.h; path = TOCropViewController/Models/TOCropViewControllerTransitioning.h; sourceTree = "<group>"; };
+		7401DC3587FE2236EE996DB99660F27B /* TOCropViewController-Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TOCropViewController-Bridging-Header.h"; path = "TOCropViewController/TOCropViewController-Bridging-Header.h"; sourceTree = "<group>"; };
+		76CAF5701F825DCDFAFCCD5E5EBC3279 /* TOCropView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TOCropView.h; path = TOCropViewController/Views/TOCropView.h; sourceTree = "<group>"; };
+		772091A603657D8A6AFFA24A8B27E665 /* Pods-LiveCollage-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LiveCollage-frameworks.sh"; sourceTree = "<group>"; };
+		787440B457AB581BD0237B7F9FFF15F7 /* TOCropViewControllerTransitioning.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TOCropViewControllerTransitioning.m; path = TOCropViewController/Models/TOCropViewControllerTransitioning.m; sourceTree = "<group>"; };
+		7BD5D5D6A02C94028A809B7786B7C6F4 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = it.lproj; path = TOCropViewController/it.lproj; sourceTree = "<group>"; };
+		7C012D2911B3D5A3E71D850CD8FD2E2E /* UIImage+CropRotate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+CropRotate.h"; path = "TOCropViewController/Models/UIImage+CropRotate.h"; sourceTree = "<group>"; };
+		7C56DEB5A4269653C86AB58BD5F05D78 /* Pods-LiveCollage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LiveCollage.debug.xcconfig"; sourceTree = "<group>"; };
+		8C1487D2E9FF1C066AD7A470592AB9CB /* TOCropToolbar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TOCropToolbar.h; path = TOCropViewController/Views/TOCropToolbar.h; sourceTree = "<group>"; };
+		9167CACBB2AB3A8FC246D794E21FDE80 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91C9F36A85A58DF8AE2BFF26F813681A /* TOCropViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TOCropViewController.h; path = TOCropViewController/TOCropViewController.h; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9729AA1080EA6B3BC8D5BFFED2D420CB /* tr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = tr.lproj; path = TOCropViewController/tr.lproj; sourceTree = "<group>"; };
+		99F3AA47B342449B7258C8FA9D22D064 /* vi.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = vi.lproj; path = TOCropViewController/vi.lproj; sourceTree = "<group>"; };
+		9A998D61AA80518E8F22C797F71A4043 /* TOCropScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TOCropScrollView.m; path = TOCropViewController/Views/TOCropScrollView.m; sourceTree = "<group>"; };
+		9AD5CAE252256589A5D9F57949008EC7 /* Pods-LiveCollage.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-LiveCollage.modulemap"; sourceTree = "<group>"; };
+		9B3AC965651A7D729FF2DF855C866D64 /* Pods-LiveCollage-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LiveCollage-dummy.m"; sourceTree = "<group>"; };
+		A1A50F60A57FD7D99075241A9336555D /* fr.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = fr.lproj; path = TOCropViewController/fr.lproj; sourceTree = "<group>"; };
+		A1B7402A9BB6AA235DC24126F424225F /* ms.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ms.lproj; path = TOCropViewController/ms.lproj; sourceTree = "<group>"; };
+		A5872B37DA6A33FAAB24FF4AEB48BCBB /* UIImage+CropRotate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CropRotate.m"; path = "TOCropViewController/Models/UIImage+CropRotate.m"; sourceTree = "<group>"; };
+		A7F99B5E6DC4C0559906660DBD4D94CF /* zh-Hant.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = "zh-Hant.lproj"; path = "TOCropViewController/zh-Hant.lproj"; sourceTree = "<group>"; };
+		ADF3D8521629FDFC8D2A9390EFDCA96C /* TOCropOverlayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TOCropOverlayView.m; path = TOCropViewController/Views/TOCropOverlayView.m; sourceTree = "<group>"; };
+		B20D626A2507C719A217566D96B4EDD0 /* TOCroppedImageAttributes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TOCroppedImageAttributes.m; path = TOCropViewController/Models/TOCroppedImageAttributes.m; sourceTree = "<group>"; };
+		B863753058B9335140BC337BA55FEC6A /* TOCropView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TOCropView.m; path = TOCropViewController/Views/TOCropView.m; sourceTree = "<group>"; };
+		BDB990416343250C8FD3BF5A04C972D0 /* TOCropViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TOCropViewController-prefix.pch"; sourceTree = "<group>"; };
+		C181FECB08EA9E83A39F6A03ED2883F3 /* id.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = id.lproj; path = TOCropViewController/id.lproj; sourceTree = "<group>"; };
+		C5BB8750AFAF1CB0D665930801BB3474 /* ko.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ko.lproj; path = TOCropViewController/ko.lproj; sourceTree = "<group>"; };
+		C6E96B2F6F744FFC350D0EEC66605D18 /* Base.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = Base.lproj; path = TOCropViewController/Base.lproj; sourceTree = "<group>"; };
+		CE45C57497EFCE10E476B03C1CEA380A /* pl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = pl.lproj; path = TOCropViewController/pl.lproj; sourceTree = "<group>"; };
+		CFEA3C74A7845C33B9671E7286342022 /* Pods-LiveCollage-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LiveCollage-acknowledgements.plist"; sourceTree = "<group>"; };
+		D39DDE5770888853471DDC2766D44641 /* TOCropOverlayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TOCropOverlayView.h; path = TOCropViewController/Views/TOCropOverlayView.h; sourceTree = "<group>"; };
+		DB48FB393EEF69F8322F8EA56EAA8369 /* Pods_LiveCollage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_LiveCollage.framework; path = "Pods-LiveCollage.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5D35542E4CB6D077B76C6B94D42939 /* TOActivityCroppedImageProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TOActivityCroppedImageProvider.m; path = TOCropViewController/Models/TOActivityCroppedImageProvider.m; sourceTree = "<group>"; };
+		DD438FE06438C71C69EACA8799D32C13 /* ar.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = ar.lproj; path = TOCropViewController/ar.lproj; sourceTree = "<group>"; };
+		DD6828CCF9517797D9B8C10628665363 /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nl.lproj; path = TOCropViewController/nl.lproj; sourceTree = "<group>"; };
+		E59A762DDBEF107345FF7CC91315535F /* Pods-LiveCollage-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LiveCollage-umbrella.h"; sourceTree = "<group>"; };
+		E9BF9D9A16CF60FB1C0FD1CC0889278E /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = TOCropViewController/en.lproj; sourceTree = "<group>"; };
+		EA48AABF303EF3C913C2126E86A86CD0 /* TOCropScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TOCropScrollView.h; path = TOCropViewController/Views/TOCropScrollView.h; sourceTree = "<group>"; };
+		F081645CB7FF2DCC5671E8A406AD2F7B /* TOCropViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TOCropViewController.xcconfig; sourceTree = "<group>"; };
+		F628B1437431624F1B1854612C9C0B2C /* da.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = da.lproj; path = TOCropViewController/da.lproj; sourceTree = "<group>"; };
+		F6946AF8051A4328035886CCDEB9680B /* Pods-LiveCollage-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LiveCollage-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F8D1F2E7429D8F9FCB9672CAA316EDAF /* TOActivityCroppedImageProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TOActivityCroppedImageProvider.h; path = TOCropViewController/Models/TOActivityCroppedImageProvider.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8521A815199BABFA209EBA5E437D0EF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79B4B1C03E2AC441ABF9BCD9129DEBAF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1296EF49361AAA7032A69CB2E1BB74F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DD5898814A9AF99BEAEF5969FC4F3D9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FCC189F74A3292485B3679D351E51503 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0FB4BD3FF47E579316A95D6EA1FC6EB4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DD438FE06438C71C69EACA8799D32C13 /* ar.lproj */,
+				C6E96B2F6F744FFC350D0EEC66605D18 /* Base.lproj */,
+				F628B1437431624F1B1854612C9C0B2C /* da.lproj */,
+				167478AE2510B2157796FCE286B61E37 /* de.lproj */,
+				E9BF9D9A16CF60FB1C0FD1CC0889278E /* en.lproj */,
+				451B6E113393DFC94FDBFFB82B811562 /* es.lproj */,
+				A1A50F60A57FD7D99075241A9336555D /* fr.lproj */,
+				C181FECB08EA9E83A39F6A03ED2883F3 /* id.lproj */,
+				7BD5D5D6A02C94028A809B7786B7C6F4 /* it.lproj */,
+				6C93D2B042944A99C014343C582D2A1F /* ja.lproj */,
+				C5BB8750AFAF1CB0D665930801BB3474 /* ko.lproj */,
+				A1B7402A9BB6AA235DC24126F424225F /* ms.lproj */,
+				DD6828CCF9517797D9B8C10628665363 /* nl.lproj */,
+				CE45C57497EFCE10E476B03C1CEA380A /* pl.lproj */,
+				590E26355101A7076F7F38BEBBA7C1D6 /* pt.lproj */,
+				2D6228C5BEB84AA1E21683DD9E78D61E /* ru.lproj */,
+				9729AA1080EA6B3BC8D5BFFED2D420CB /* tr.lproj */,
+				99F3AA47B342449B7258C8FA9D22D064 /* vi.lproj */,
+				051CDF652F0185CF1FDEE96A1B0577E3 /* zh-Hans.lproj */,
+				A7F99B5E6DC4C0559906660DBD4D94CF /* zh-Hant.lproj */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		3C905454D6C64BD764702675971E7147 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				52D18A88DF920EAE3F97EDF79E34A590 /* TOCropViewController */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		409017310CD93D86B166477673540E1C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				65C7C0BD21BBA9ABDC8F3916B40243B6 /* Info.plist */,
+				2A3E7CBBB7211634D4729A86494C8627 /* ResourceBundle-TOCropViewControllerBundle-Info.plist */,
+				336E2D3E9057C466B14541C513C1031D /* TOCropViewController.modulemap */,
+				F081645CB7FF2DCC5671E8A406AD2F7B /* TOCropViewController.xcconfig */,
+				3DA0839395E0F2A507C75BA3C596CAD6 /* TOCropViewController-dummy.m */,
+				BDB990416343250C8FD3BF5A04C972D0 /* TOCropViewController-prefix.pch */,
+				0C19E5802172E6898CCC0A81CB75EEC7 /* TOCropViewController-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TOCropViewController";
+			sourceTree = "<group>";
+		};
+		52D18A88DF920EAE3F97EDF79E34A590 /* TOCropViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F8D1F2E7429D8F9FCB9672CAA316EDAF /* TOActivityCroppedImageProvider.h */,
+				DB5D35542E4CB6D077B76C6B94D42939 /* TOActivityCroppedImageProvider.m */,
+				D39DDE5770888853471DDC2766D44641 /* TOCropOverlayView.h */,
+				ADF3D8521629FDFC8D2A9390EFDCA96C /* TOCropOverlayView.m */,
+				5194C773D793B3339331ECE677867A55 /* TOCroppedImageAttributes.h */,
+				B20D626A2507C719A217566D96B4EDD0 /* TOCroppedImageAttributes.m */,
+				EA48AABF303EF3C913C2126E86A86CD0 /* TOCropScrollView.h */,
+				9A998D61AA80518E8F22C797F71A4043 /* TOCropScrollView.m */,
+				8C1487D2E9FF1C066AD7A470592AB9CB /* TOCropToolbar.h */,
+				37A8FF0B7E9D52D486F80CA7C10261B0 /* TOCropToolbar.m */,
+				76CAF5701F825DCDFAFCCD5E5EBC3279 /* TOCropView.h */,
+				B863753058B9335140BC337BA55FEC6A /* TOCropView.m */,
+				91C9F36A85A58DF8AE2BFF26F813681A /* TOCropViewController.h */,
+				4848D0E7F5E27D1CD15B0B151372CD1F /* TOCropViewController.m */,
+				7401DC3587FE2236EE996DB99660F27B /* TOCropViewController-Bridging-Header.h */,
+				6D37D4F6670F889692A6DEAC6B0345A0 /* TOCropViewControllerTransitioning.h */,
+				787440B457AB581BD0237B7F9FFF15F7 /* TOCropViewControllerTransitioning.m */,
+				7C012D2911B3D5A3E71D850CD8FD2E2E /* UIImage+CropRotate.h */,
+				A5872B37DA6A33FAAB24FF4AEB48BCBB /* UIImage+CropRotate.m */,
+				0FB4BD3FF47E579316A95D6EA1FC6EB4 /* Resources */,
+				409017310CD93D86B166477673540E1C /* Support Files */,
+			);
+			name = TOCropViewController;
+			path = TOCropViewController;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				3C905454D6C64BD764702675971E7147 /* Pods */,
+				A679B02D06586FD62F9F04E07DE1D2BB /* Products */,
+				A04050BF917BC15ABC8F1891CF4705CF /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		A04050BF917BC15ABC8F1891CF4705CF /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AAE298C44E16DF2717C509143E0D6F34 /* Pods-LiveCollage */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		A679B02D06586FD62F9F04E07DE1D2BB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB48FB393EEF69F8322F8EA56EAA8369 /* Pods_LiveCollage.framework */,
+				3206E40134C901EE73016C0F04EF57D2 /* TOCropViewController.framework */,
+				494B5BFB3A1643C49350A0398309C4F1 /* TOCropViewControllerBundle.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAE298C44E16DF2717C509143E0D6F34 /* Pods-LiveCollage */ = {
+			isa = PBXGroup;
+			children = (
+				9167CACBB2AB3A8FC246D794E21FDE80 /* Info.plist */,
+				9AD5CAE252256589A5D9F57949008EC7 /* Pods-LiveCollage.modulemap */,
+				F6946AF8051A4328035886CCDEB9680B /* Pods-LiveCollage-acknowledgements.markdown */,
+				CFEA3C74A7845C33B9671E7286342022 /* Pods-LiveCollage-acknowledgements.plist */,
+				9B3AC965651A7D729FF2DF855C866D64 /* Pods-LiveCollage-dummy.m */,
+				772091A603657D8A6AFFA24A8B27E665 /* Pods-LiveCollage-frameworks.sh */,
+				09DC6B769E2D2E6F1CC86B251FAA7807 /* Pods-LiveCollage-resources.sh */,
+				E59A762DDBEF107345FF7CC91315535F /* Pods-LiveCollage-umbrella.h */,
+				7C56DEB5A4269653C86AB58BD5F05D78 /* Pods-LiveCollage.debug.xcconfig */,
+				49CF3EDF7172B53750F279ADA54DD79C /* Pods-LiveCollage.release.xcconfig */,
+			);
+			name = "Pods-LiveCollage";
+			path = "Target Support Files/Pods-LiveCollage";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2974BA6CF7DFE4C5978D292F200501BD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0124B6ED029BC28A2768A48BB4566D3A /* TOActivityCroppedImageProvider.h in Headers */,
+				138A68052B8DEAFB7BD86BB336546E53 /* TOCropOverlayView.h in Headers */,
+				255BE8DB88B317C98ABAB50ABE2EF85E /* TOCroppedImageAttributes.h in Headers */,
+				28FE434448518BEE41722123A1F15F73 /* TOCropScrollView.h in Headers */,
+				28B5860E8ADCAD85AB1C6DAA95D2B003 /* TOCropToolbar.h in Headers */,
+				D237F4BF9FC154C972816BD928B93A4D /* TOCropView.h in Headers */,
+				6FEA15894EB81671E48043AF8E034F0D /* TOCropViewController-Bridging-Header.h in Headers */,
+				B6E4E0B4E4F29F585D8A541588B5BF42 /* TOCropViewController-umbrella.h in Headers */,
+				A98BFFB0414889FE695FF50B073BFBE1 /* TOCropViewController.h in Headers */,
+				4A530AEED824AE8562CA380728247CC6 /* TOCropViewControllerTransitioning.h in Headers */,
+				524416DDB4D7C9F158133AE548696826 /* UIImage+CropRotate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8930E949484425A3EC6325A63999EDF4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				811FE68DB92EBCE82AD9FB0E1E90407D /* Pods-LiveCollage-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A41247537FF5DFA100F2D2D5442B2088 /* TOCropViewController-TOCropViewControllerBundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8963FA66981AE989325A9C990653340D /* Build configuration list for PBXNativeTarget "TOCropViewController-TOCropViewControllerBundle" */;
+			buildPhases = (
+				D25AFFD5D7B1D45F45FCE4B02C1B71A5 /* Sources */,
+				FCC189F74A3292485B3679D351E51503 /* Frameworks */,
+				94FFFF942C2DD07BD38F9C6B82A8E2F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TOCropViewController-TOCropViewControllerBundle";
+			productName = "TOCropViewController-TOCropViewControllerBundle";
+			productReference = 494B5BFB3A1643C49350A0398309C4F1 /* TOCropViewControllerBundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		BF1132A6C680D2EFDEAC67B863646CD5 /* Pods-LiveCollage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D018CA05547FF8D626038F54E983466 /* Build configuration list for PBXNativeTarget "Pods-LiveCollage" */;
+			buildPhases = (
+				A359DC371C5A60EE484B2CE9E93EDA55 /* Sources */,
+				A1296EF49361AAA7032A69CB2E1BB74F /* Frameworks */,
+				8930E949484425A3EC6325A63999EDF4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F38D02B5E48AEA6B25D793A000AAABFD /* PBXTargetDependency */,
+			);
+			name = "Pods-LiveCollage";
+			productName = "Pods-LiveCollage";
+			productReference = DB48FB393EEF69F8322F8EA56EAA8369 /* Pods_LiveCollage.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C8EAD153103F2C5F74C92DFE6C0D63DD /* TOCropViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F0C52EE78F97998E46C5A38F94747B5 /* Build configuration list for PBXNativeTarget "TOCropViewController" */;
+			buildPhases = (
+				BE5559E654AE51C33B2EC8FE17FA6DC5 /* Sources */,
+				8521A815199BABFA209EBA5E437D0EF5 /* Frameworks */,
+				7BC2DD1B5131AD0583F0DB1DA5EBCDD8 /* Resources */,
+				2974BA6CF7DFE4C5978D292F200501BD /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6396C2246FFD2A2599D092F329CD1E3E /* PBXTargetDependency */,
+			);
+			name = TOCropViewController;
+			productName = TOCropViewController;
+			productReference = 3206E40134C901EE73016C0F04EF57D2 /* TOCropViewController.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = A679B02D06586FD62F9F04E07DE1D2BB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF1132A6C680D2EFDEAC67B863646CD5 /* Pods-LiveCollage */,
+				C8EAD153103F2C5F74C92DFE6C0D63DD /* TOCropViewController */,
+				A41247537FF5DFA100F2D2D5442B2088 /* TOCropViewController-TOCropViewControllerBundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7BC2DD1B5131AD0583F0DB1DA5EBCDD8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				091F459F7D3135A08389B4DCF7673CB9 /* TOCropViewControllerBundle.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		94FFFF942C2DD07BD38F9C6B82A8E2F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA2F78245BB3D16FD8E7F8C776EC1111 /* ar.lproj in Resources */,
+				ACA57E4C658B82BDA9152F65EF5440D0 /* Base.lproj in Resources */,
+				619F27DD3F1ADDB8D7A9F779FE0917D9 /* da.lproj in Resources */,
+				966051160ABA23A9FD3E588A345608F8 /* de.lproj in Resources */,
+				6C11641D9F8F8F42D2E8C3557729B8C7 /* en.lproj in Resources */,
+				E9DFB9FF81C0AEC52B59DD2EECC978DD /* es.lproj in Resources */,
+				17EF0A114E914FF0D3CA6244D5323EE9 /* fr.lproj in Resources */,
+				D9FA1D10C53A9A9A49192BCF6A1BCF29 /* id.lproj in Resources */,
+				D3E572761B3E0C41882936A1E04A2A43 /* it.lproj in Resources */,
+				98F61CDF0CC89F9CC5F4418C0DD27F2A /* ja.lproj in Resources */,
+				AB4E5946B4BCC463220F7A3E39906643 /* ko.lproj in Resources */,
+				E609E5DA9E8295E466FD80339E01E9BF /* ms.lproj in Resources */,
+				80F208972E1171688EDFEEC746EE0BEB /* nl.lproj in Resources */,
+				BD5BC102697EBD9774E9D66DCA0FA6A2 /* pl.lproj in Resources */,
+				C7D7E8CAD233B8F1B7411289EAF20512 /* pt.lproj in Resources */,
+				634C593DAA853698F53D13B8DDE6056C /* ru.lproj in Resources */,
+				1BF98F3D88FA61B015702B744D176657 /* tr.lproj in Resources */,
+				9627712468AE4F16C8E2C92256B9AA6D /* vi.lproj in Resources */,
+				E443B168E2F8FCCAF273A904ECEFA193 /* zh-Hans.lproj in Resources */,
+				E789F05162E1AADD2BD86169E500978A /* zh-Hant.lproj in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A359DC371C5A60EE484B2CE9E93EDA55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA5E5146F24BAB7D2565C2D1DD5944CB /* Pods-LiveCollage-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE5559E654AE51C33B2EC8FE17FA6DC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				232ADD9A32EAEA4E8E844038AA4B38C7 /* TOActivityCroppedImageProvider.m in Sources */,
+				0EE9A8B878A1675EC508B3E6B1E22E65 /* TOCropOverlayView.m in Sources */,
+				6C35D1C71808E495C13092549245D1C3 /* TOCroppedImageAttributes.m in Sources */,
+				9EA96F290B40AA1E01CF034B2EC28AD6 /* TOCropScrollView.m in Sources */,
+				D5A36E2E156DE1ADDA7E5C06FA436A5B /* TOCropToolbar.m in Sources */,
+				B727D34ECA16C27661AAA089FA973AE9 /* TOCropView.m in Sources */,
+				91712A754F5CB5CCBC2C7F021A20B9FB /* TOCropViewController-dummy.m in Sources */,
+				2F9EE18C0F9958160EF7A2611AB56492 /* TOCropViewController.m in Sources */,
+				0DDC7D760FCCDF78CF47546824044602 /* TOCropViewControllerTransitioning.m in Sources */,
+				EB6B4EB6EF52237E1B1DB55A5B771751 /* UIImage+CropRotate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D25AFFD5D7B1D45F45FCE4B02C1B71A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6396C2246FFD2A2599D092F329CD1E3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "TOCropViewController-TOCropViewControllerBundle";
+			target = A41247537FF5DFA100F2D2D5442B2088 /* TOCropViewController-TOCropViewControllerBundle */;
+			targetProxy = 1DC150C91BEA6C056660ABFF5DAF6487 /* PBXContainerItemProxy */;
+		};
+		F38D02B5E48AEA6B25D793A000AAABFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TOCropViewController;
+			target = C8EAD153103F2C5F74C92DFE6C0D63DD /* TOCropViewController */;
+			targetProxy = 29FA38B2289DF08DE3DD76493358AD2A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		12C4B864767C59600DBFA238F1E2F8BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		59F0302F2371FCC6B73EF0A418D40734 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		C5C5CE27C726B4535C36E59F2206E2BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C56DEB5A4269653C86AB58BD5F05D78 /* Pods-LiveCollage.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LiveCollage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LiveCollage/Pods-LiveCollage.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_LiveCollage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C7F474C6F77DED795B27CEC6FBBE84CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F081645CB7FF2DCC5671E8A406AD2F7B /* TOCropViewController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/TOCropViewController";
+				INFOPLIST_FILE = "Target Support Files/TOCropViewController/ResourceBundle-TOCropViewControllerBundle-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = TOCropViewControllerBundle;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		CD8974CDAE1E8C7C574B64E6B5C7264D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F081645CB7FF2DCC5671E8A406AD2F7B /* TOCropViewController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TOCropViewController/TOCropViewController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TOCropViewController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TOCropViewController/TOCropViewController.modulemap";
+				PRODUCT_NAME = TOCropViewController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D3AAC8C20C7C722EE5CCC76266B79D28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F081645CB7FF2DCC5671E8A406AD2F7B /* TOCropViewController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/TOCropViewController";
+				INFOPLIST_FILE = "Target Support Files/TOCropViewController/ResourceBundle-TOCropViewControllerBundle-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = TOCropViewControllerBundle;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		F776E797C3D31038CD9DD238C79FDEE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 49CF3EDF7172B53750F279ADA54DD79C /* Pods-LiveCollage.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LiveCollage/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LiveCollage/Pods-LiveCollage.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_LiveCollage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FBB3701012B3F1338D1693F82EB1A4EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F081645CB7FF2DCC5671E8A406AD2F7B /* TOCropViewController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TOCropViewController/TOCropViewController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TOCropViewController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TOCropViewController/TOCropViewController.modulemap";
+				PRODUCT_NAME = TOCropViewController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59F0302F2371FCC6B73EF0A418D40734 /* Debug */,
+				12C4B864767C59600DBFA238F1E2F8BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F0C52EE78F97998E46C5A38F94747B5 /* Build configuration list for PBXNativeTarget "TOCropViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBB3701012B3F1338D1693F82EB1A4EB /* Debug */,
+				CD8974CDAE1E8C7C574B64E6B5C7264D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D018CA05547FF8D626038F54E983466 /* Build configuration list for PBXNativeTarget "Pods-LiveCollage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5C5CE27C726B4535C36E59F2206E2BF /* Debug */,
+				F776E797C3D31038CD9DD238C79FDEE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8963FA66981AE989325A9C990653340D /* Build configuration list for PBXNativeTarget "TOCropViewController-TOCropViewControllerBundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3AAC8C20C7C722EE5CCC76266B79D28 /* Debug */,
+				C7F474C6F77DED795B27CEC6FBBE84CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

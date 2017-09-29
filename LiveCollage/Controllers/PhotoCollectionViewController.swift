@@ -26,6 +26,11 @@ class PhotoCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //only for MVP
+        navigationController?.title = "Deepix"
+        self.isEdit = true
+        //EOMVP
+
         //Disables selection for edition mode
         self.collectionView?.allowsSelection = true
         self.collectionView?.allowsMultipleSelection = !isEdit
@@ -248,15 +253,34 @@ extension PhotoCollectionViewController: PHPhotoLibraryChangeObserver {
 }
 
 //MARK - CollectionViewDelegate
-extension PhotoCollectionViewController {
+extension PhotoCollectionViewController : TOCropViewControllerDelegate {
+    
+    fileprivate func showEditViewController(_ asset: PHAsset) {
+        let controller = EditViewController.getInstance(asset: asset)
+        self.navigationController?.show( controller, sender: nil)
+        return
+    }
+    
+    fileprivate func presentCropViewController(_ asset: PHAsset) {
+        let targetSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
+        AssetHelper.shared.getAsset(asset: asset, forSize: targetSize, resultHandler: { image, _ in
+            let cropViewController = TOCropViewController(image: image!)
+            cropViewController.delegate = self
+            self.present(cropViewController, animated: true, completion: nil)
+        })
+    }
+    
+    fileprivate func cropViewController(_ cropViewController: TOCropViewController!, didCropTo image: UIImage!, with cropRect: CGRect, angle: Int) {
+        // 'image' is the newly cropped version of the original image
+        // call showEditViewController
+    }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if isEdit {
             let asset = fetchResult.object(at: indexPath.item) as PHAsset
-            let controller = EditViewController.getInstance(asset: asset)
-            self.navigationController?.show( controller, sender: nil)
-            return
+            
+            return presentCropViewController(asset)
         }
         
         

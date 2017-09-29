@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="cdt-iG-tdR" kind="relationship" relationship="rootViewController" id="85n-zM-ELG"/>
+                        <segue destination="wMD-rf-Hpz" kind="relationship" relationship="rootViewController" id="1fs-3y-k2I"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="guY-kx-8to" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -36,6 +36,7 @@
         <!--Deepix-->
         <scene sceneID="C1A-9t-syU">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hmu-XT-cNf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Deepix" id="cdt-iG-tdR" customClass="HomeViewController" customModule="LiveCollage" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ljT-Ma-And"/>
@@ -46,7 +47,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eoi-Nv-eYv">
-                                <rect key="frame" x="75.5" y="149" width="224" height="211"/>
+                                <rect key="frame" x="75.5" y="105" width="224" height="211"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSq-ae-Ud9">
                                         <rect key="frame" x="8" y="0.0" width="100" height="100"/>
@@ -129,9 +130,8 @@ GIF</string>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="NTo-Rb-TzX"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hmu-XT-cNf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1504.3478260869567" y="750.81521739130437"/>
+            <point key="canvasLocation" x="-470" y="18"/>
         </scene>
         <!--Layout Collection View Controller-->
         <scene sceneID="SOz-C8-cM1">
@@ -591,6 +591,7 @@ GIF</string>
                             <outlet property="delegate" destination="wMD-rf-Hpz" id="3PY-9t-6CA"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="nuC-J7-qL6"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="wOn-s2-n2A" id="tXd-Tq-vm5"/>
@@ -598,7 +599,10 @@ GIF</string>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QJg-uM-4hV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1504" y="1502"/>
+            <point key="canvasLocation" x="-1503" y="749"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Or0-Sv-dFn"/>
+    </inferredMetricsTieBreakers>
 </document>
