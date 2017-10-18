@@ -29,7 +29,7 @@ class EditViewController: UIViewController {
     fileprivate var currentAsset: PHAsset!
     
     //Current Image
-    fileprivate var currentImage: UIImage?
+    fileprivate var currentImage: CIImage?
     
     //Filter state handling
     fileprivate var filterHelper: FilterHelper!
@@ -52,24 +52,34 @@ class EditViewController: UIViewController {
     
     fileprivate var currentFilter: FilterType = .None
     
+    var depthEnabled: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        editedImage.setImage(withAsset: currentAsset)
-        filterHelper = FilterHelper(editedImage: editedImage.image!, frame: editedImage.frame)
         
         //Disable depth by default
         depthLabel.isHidden = true
         depthSlider.isEnabled = false
+        slopeSlider.isEnabled = false
+        focalSlider.isEnabled = false
         
         //Get Image Data Async
         AssetHelper.shared().getImageData(asset: currentAsset) { [weak self] imageData in
             
-            if imageData.info == nil  || imageData.data == nil{
+            if imageData.info == nil  || imageData.data == nil {
                 return
             }
             
-            self?.currentImage = UIImage(data: imageData.data!)
+            
+            self?.currentImage = CIImage(data: imageData.data!)
+//            let tranform = self?.currentImage?.orientationTransform(for: .up)
+//            self?.currentImage = self?.currentImage?.transformed(by: tranform!)
+            
+            
+            if self?.currentImage != nil {
+                self?.editedImage.image = UIImage(ciImage: (self?.currentImage!)!)
+                self?.filterHelper = FilterHelper(editedImage: (self?.currentImage!)!, frame: (self?.editedImage.frame)!)
+            }
             
             //Check if image has depth info
             if AssetHelper.shared().hasDepthInformation(info: imageData.info!) {
@@ -87,6 +97,14 @@ class EditViewController: UIViewController {
     //MARK: filter set
     //Binds the sliders to a specific filter
     @IBAction func onFilterSelected(_ sender: UIButton) {
+        
+        focalSlider.isEnabled = true
+        
+        if depthEnabled {
+            depthSlider.isEnabled = true
+            slopeSlider.isEnabled = true
+        }
+        
         currentFilter = FilterType(rawValue: sender.tag)!
         
         switch FilterType(rawValue: sender.tag) {
@@ -152,18 +170,38 @@ class EditViewController: UIViewController {
 extension EditViewController {
     
     func enableDepth(imageData: Data) {
-        depthLabel.isHidden = false
-        depthSlider.isEnabled = true
         
         disparityImage = AssetHelper.shared().getDisparityImage(imageData: imageData)
+        guard let size = currentImage?.extent.size else {
+            return
+        }
+        
+        guard let dispSize = disparityImage?.extent.size else {
+            return
+        }
+        
+        
+        let scaleX = Float((size.width)) / Float((dispSize.width))
+        let scaley = Float(size.height) / Float(dispSize.height)
+        let transform = CGAffineTransform(scaleX: CGFloat(scaleX), y: CGFloat(scaley))
+        disparityImage = disparityImage?.transformed(by: transform)
         if disparityImage != nil {
             //Uncomment to display disparity image
             //editedImage.image = UIImage(ciImage: disparityImage!)
+            filterHelper.setDisparity(image: disparityImage!)
+            depthEnabled = true
+            depthLabel.isHidden = false
+            
+            if currentFilter != .None {
+                depthSlider.isEnabled = true
+                slopeSlider.isEnabled = true
+            }
+            
             Logger.VERBOSE(message: "Disparity image obtained!! 💕")
         }
     }
     
-    func updateValues(value: Float) {
+    private func updateFilter(value: Float) -> CIFilter {
         var filter: CIFilter = CIFilter()
         switch currentFilter {
         case .Frame:
@@ -189,18 +227,27 @@ extension EditViewController {
             filter = filterControls
             break
         default:
-            return
+            return filter
         }
         
-        _ = filterHelper.addFiterToChain(filter: filter, value: CGFloat(value), depthValue: CGFloat(depthSlider.value))
+        return filter
+    }
+    
+    func updateValues(value: Float) {
+        let filter = updateFilter(value: value)
+        _ = filterHelper.addFiterToChain(filter: filter, value: CGFloat(value), depthEnabled: disparityImage != nil, depth: CGFloat(depthSlider.value), slope: CGFloat(slopeSlider.value))
         updateRender()
     }
 
     func updateDepth(value: Float) {
+        let filter = updateFilter(value: focalSlider.value)
+        _ = filterHelper.addFiterToChain(filter: filter, value: CGFloat(focalSlider.value), depthEnabled: disparityImage != nil, depth: CGFloat(value), slope: CGFloat(slopeSlider.value))
         updateRender()
     }
     
     func updateSlope(value: Float) {
+        let filter = updateFilter(value: focalSlider.value)
+        _ = filterHelper.addFiterToChain(filter: filter, value: CGFloat(focalSlider.value), depthEnabled: disparityImage != nil, depth: CGFloat(depthSlider.value), slope: CGFloat(slopeSlider.value))
         updateRender()
     }
     
@@ -209,27 +256,21 @@ extension EditViewController {
             return
         }
         
-                let scale = CGFloat(slopeSlider.value)
-                let height = currentImage!.size.height
-                let width = currentImage!.size.width
-                let sample = AssetHelper.shared().sampleDiparity(disparityImage: disparityImage!,
-                                                                 rect: CGRect(x: 0, y: CGFloat(depthSlider.value) * height,
-                                                                              width: width ,
-                                                                              height: height * scale))
-        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!,
-                                                     slope:  CGFloat(slopeSlider.value),
-                                                     bias: CGFloat(depthSlider.value))
+        let scale = CGFloat(slopeSlider.value)
+        let height = editedImage.image!.size.height
+        let width = editedImage.image!.size.width
+        _ = AssetHelper.shared().sampleDiparity(disparityImage: disparityImage!,
+                                                         rect: CGRect(x: 0, y: CGFloat(depthSlider.value) * height,
+                                                                      width: width ,
+                                                                      height: height * scale))
+        if disparityImage == nil {
+            let chained = filterHelper.applyChain()
+            editedImage.image = chained
+        } else {
+            let chained = filterHelper.applyDepthChain()
+            editedImage.image = chained
+        }
         
-        var chainedFilter = filterHelper.applyChain()
-        chainedFilter = chainedFilter.resize(targetSize: (currentImage?.size)!)!
-        
-        let currentCIImage = CIImage(cgImage: (currentImage?.cgImage)!)
-        
-        
-        let blend = AssetHelper.shared().blendImages(background: CIImage(cgImage: chainedFilter.cgImage!),
-                                                     foreground: currentCIImage,
-                                                     mask: mask)
-        editedImage.image = UIImage(ciImage: blend)
     }
 }
 

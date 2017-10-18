@@ -56,7 +56,7 @@ class FilterState: Originator {
     var nextId: Int = 0
     
     func addFilterStateEntry(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat) {
-        let entry = FilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: valueDepth, valueSlope: slope)
+        let entry = FilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: depth, valueSlope: slope)
         entries.append(entry)
         nextId = nextId + 1
     }
@@ -124,7 +124,7 @@ extension FilterState {
         entries.remove(at: entries.count)
     }
     
-    func replaceEntry(filter: CIFilter, value: CGFloat, depthValue: CGFloat) {
+    func replaceEntry(filter: CIFilter, value: CGFloat, depthEnabled: Bool, valueDepth: CGFloat, valueSlope: CGFloat) {
         var position = 0
         var found = false
         for entry in entries {
@@ -135,7 +135,7 @@ extension FilterState {
             position = position + 1
         }
         if found {
-            entries[position] = FilterStateEntry(filter: filter, value: value, valueDepth: depthValue)
+            entries[position] = FilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: valueDepth, valueSlope: valueSlope)
         }
     }
     

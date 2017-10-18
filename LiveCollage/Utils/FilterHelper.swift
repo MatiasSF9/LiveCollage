@@ -12,7 +12,7 @@ import CoreImage
 protocol FilterHelperProtocol {
     
     //Add or Update filter values
-    func addFiterToChain(filter: CIFilter, value: CGFloat, depthValue: CGFloat) -> UIImage
+    func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat) -> UIImage 
     //Remove filter with given name
     func removeFilter(filterName: String) -> UIImage
     //Removes last filter
@@ -27,11 +27,11 @@ class FilterHelper: FilterHelperProtocol {
     fileprivate let context = CIContext()
     private let filterChain = FilterState()
     fileprivate let frame:CGRect!
-    private let editedImage: UIImage!
+    private let editedImage: CIImage!
     private var disparityImage: CIImage?
     
     
-    init(editedImage: UIImage, frame: CGRect) {
+    init(editedImage: CIImage, frame: CGRect) {
         self.editedImage = editedImage
         self.frame = frame
     }
@@ -41,11 +41,11 @@ class FilterHelper: FilterHelperProtocol {
     }
     
     //Add or Update filter values
-    func addFiterToChain(filter: CIFilter, value: CGFloat, depthValue: CGFloat) -> UIImage {
+    func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat) -> UIImage {
         if getFilter(filterName: filter.name) != nil {
-            filterChain.replaceEntry(filter: filter, value: value, depthValue: depthValue)
+            filterChain.replaceEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: depth, valueSlope: slope)
         } else {
-            filterChain.addFilterStateEntry(filter: filter, value: value, valueDepth: depthValue)
+            filterChain.addFilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, depth: depth, slope: slope)
         }
         return applyChain()
     }
@@ -67,52 +67,88 @@ class FilterHelper: FilterHelperProtocol {
         return filterChain.getStateForFilter(name: filterName)
     }
     
+    func applyDepthChain() -> UIImage{
+        Logger.log(type: .DEBUG, string: "Applying depth filter chain")
+        
+        //Get unedited image
+        guard var tempForeground = editedImage else {
+            Logger.log(type: .WARNING, string: "Unable to blend images")
+            return UIImage(ciImage: editedImage)
+        }
+        
+        for i in (0..<filterChain.entries.count).reversed() {
+            //Last entry
+            let entry = filterChain.entries[i]
+            guard let tempBackground = applyFilter(filter: entry.filter, image: tempForeground) else {
+                //TODO: handle errors
+                Logger.log(type: .WARNING, string: "Unable to blend images")
+                return UIImage(ciImage: editedImage)
+            }
+            
+            if entry.depthEnabled{
+                guard let blend = applyBlend(background: tempBackground, disparity: disparityImage!,
+                                             foreground: tempForeground, slope: entry.valueSlope,
+                                             bias: entry.valueDepth) else {
+                    //TODO: handle errors
+                    Logger.log(type: .WARNING, string: "Unable to blend images")
+                    return UIImage(ciImage: editedImage)
+                }
+                tempForeground = blend
+            } else {
+                tempForeground = tempBackground
+            }
+        }
+        return UIImage(ciImage: tempForeground)
+    }
+    
     //Applies filter change to UIImage
     func applyChain() ->  UIImage {
         Logger.log(type: .DEBUG, string: "Applying filter chain")
-        var tempCGImage = editedImage.cgImage
+        
+        var tempCIImage = editedImage
         for entry in filterChain.entries {
-            tempCGImage = applyFilter(filter: entry.filter, image: tempCGImage!)
-            if tempCGImage == nil {
+            if tempCIImage == nil {
                 Logger.log(type: .WARNING, string: "No filted applied. Returning default image.")
-                return UIImage(cgImage: editedImage.cgImage!)
+                return UIImage(ciImage: editedImage)
+            } else {
+                tempCIImage = applyFilter(filter: entry.filter, image: tempCIImage!)
             }
         }
         Logger.log(type: .DEBUG, string: "Filter chain end")
-        return UIImage(cgImage: tempCGImage!)
+        return UIImage(ciImage: tempCIImage!)
     }
 
     
-    private func applyFilter(filter: CIFilter, image: CGImage) -> CGImage? {
+    private func applyFilter(filter: CIFilter, image: CIImage) -> CIImage? {
         Logger.log(type: .DEBUG, string: "Applying filter \(filter.name)")
-        filter.setValue(CIImage(cgImage: image), forKey: kCIInputImageKey)
+        
+        filter.setValue(image, forKey: kCIInputImageKey)
+        
         guard let result = filter.outputImage else {
             Logger.log(type: .WARNING, string: "Unable to generate output image from filter \(filter.name)")
             return nil
         }
+        
         guard let cgImage = context.createCGImage(result, from: result.extent) else {
             Logger.log(type: .WARNING, string: "Unable to generate CGImage from context with filter \(filter.name)")
             return nil
         }
+        
         context.clearCaches()
+        
         Logger.log(type: .DEBUG, string: "Filter \(filter.name) applied!")
-        return cgImage
+        return CIImage(cgImage: cgImage)
     }
     
+    
     //Applies blend mask for depth enabled images
-    private func applyBlend() {
-        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!,
-                                                     slope:  CGFloat(slopeSlider.value),
-                                                     bias: CGFloat(depthSlider.value))
+    private func applyBlend(background: CIImage, disparity: CIImage, foreground: CIImage, slope: CGFloat, bias: CGFloat) -> CIImage? {
         
-        var chainedFilter = filterHelper.applyChain()
-        chainedFilter = chainedFilter.resize(targetSize: (currentImage?.size)!)!
+        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparity, slope:  slope, bias: bias)
+    
+        //Upscale filtered image
+//        let resized = background.resize(targetSize: (background.size)!)!
         
-        let currentCIImage = CIImage(cgImage: (currentImage?.cgImage)!)
-        
-        
-        let blend = AssetHelper.shared().blendImages(background: CIImage(cgImage: chainedFilter.cgImage!),
-                                                     foreground: currentCIImage,
-                                                     mask: mask)
+        return AssetHelper.shared().blendImages(background: background, foreground: foreground, mask: mask)
     }
 }

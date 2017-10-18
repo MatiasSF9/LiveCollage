@@ -16,6 +16,7 @@ import Foundation
 struct ImageData {
     var data: Data?
     var info: [AnyHashable: Any]?
+    var orientation: UIImageOrientation?
 }
 
 class AssetHelper {
@@ -69,12 +70,12 @@ extension AssetHelper {
         manager.requestImageData(for: asset, options: options) { (imageData, dataType, orientation, info) in
             
             guard let data = imageData?.CFData() else {
-                resultHandler(ImageData(data: imageData, info: nil))
+                resultHandler(ImageData(data: nil, info: nil, orientation: nil))
                 return
 
             }
             let properties = self.imagePropertiesFromImageData(imageData: data) as? [AnyHashable: Any]
-            resultHandler(ImageData(data: imageData, info: properties))
+            resultHandler(ImageData(data: imageData, info: properties, orientation: orientation))
             
         }
     }
