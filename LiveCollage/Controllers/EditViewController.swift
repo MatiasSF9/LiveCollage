@@ -13,7 +13,7 @@ import ImageIO
 
 public let kColorFilter: String = "CIColorControls"
 public let kTempFilter: String = "CITemperatureAndTint"
-public let kMotionBlurFilter: String = "CIMotionBlur"
+public let kMotionBlurFilter: String = "CIBoxBlur"
 
 enum FilterType: Int {
     case Frame = 0, Brightness, Contrast, Temp, Fx, Blur, None
@@ -74,7 +74,6 @@ class EditViewController: UIViewController {
             self?.currentImage = CIImage(data: imageData.data!)
 //            let tranform = self?.currentImage?.orientationTransform(for: .up)
 //            self?.currentImage = self?.currentImage?.transformed(by: tranform!)
-            
             
             if self?.currentImage != nil {
                 self?.editedImage.image = UIImage(ciImage: (self?.currentImage!)!)
@@ -138,8 +137,8 @@ class EditViewController: UIViewController {
                 return
             }
             filterControls = state.filter
-            let vector = state.filter.value(forKey: kCIInputRadiusKey) as! CIVector
-            focalSlider.value = Float(vector.x / 6500)
+            let vector = state.filter.value(forKey: "inputRadius") as! NSNumber
+            focalSlider.value = Float(vector.floatValue / 200.0)
             break
         case .None?: break
         default: break
@@ -186,8 +185,10 @@ extension EditViewController {
         let transform = CGAffineTransform(scaleX: CGFloat(scaleX), y: CGFloat(scaley))
         disparityImage = disparityImage?.transformed(by: transform)
         if disparityImage != nil {
+            
             //Uncomment to display disparity image
             //editedImage.image = UIImage(ciImage: disparityImage!)
+            
             filterHelper.setDisparity(image: disparityImage!)
             depthEnabled = true
             depthLabel.isHidden = false
@@ -196,6 +197,9 @@ extension EditViewController {
                 depthSlider.isEnabled = true
                 slopeSlider.isEnabled = true
             }
+            
+//            let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!, slope: 0.3, bias: 0.3)
+//            self.editedImage.image = UIImage(ciImage: mask)
             
             Logger.VERBOSE(message: "Disparity image obtained!! 💕")
         }
@@ -223,7 +227,7 @@ extension EditViewController {
         case .Fx:
             break
         case .Blur:
-            filterBlur.setValue(value*100, forKey: kCIInputRadiusKey)
+            filterBlur.setValue(value * 200.0, forKey: "inputRadius")
             filter = filterControls
             break
         default:
@@ -252,6 +256,12 @@ extension EditViewController {
     }
     
     private func updateRender() {
+        
+        
+//        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!, slope: CGFloat(slopeSlider.value), bias: CGFloat(depthSlider.value))
+//        self.editedImage.image = UIImage(ciImage: mask)
+//        return
+        
         if currentImage == nil {
             return
         }
@@ -259,7 +269,7 @@ extension EditViewController {
         let scale = CGFloat(slopeSlider.value)
         let height = editedImage.image!.size.height
         let width = editedImage.image!.size.width
-        _ = AssetHelper.shared().sampleDiparity(disparityImage: disparityImage!,
+        let minMax = AssetHelper.shared().sampleDiparity(disparityImage: disparityImage!,
                                                          rect: CGRect(x: 0, y: CGFloat(depthSlider.value) * height,
                                                                       width: width ,
                                                                       height: height * scale))

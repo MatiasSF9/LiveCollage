@@ -12,7 +12,7 @@ import CoreImage
 protocol FilterHelperProtocol {
     
     //Add or Update filter values
-    func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat) -> UIImage 
+    func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat) 
     //Remove filter with given name
     func removeFilter(filterName: String) -> UIImage
     //Removes last filter
@@ -41,13 +41,18 @@ class FilterHelper: FilterHelperProtocol {
     }
     
     //Add or Update filter values
-    func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat) -> UIImage {
+    func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat) {
         if getFilter(filterName: filter.name) != nil {
             filterChain.replaceEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: depth, valueSlope: slope)
         } else {
             filterChain.addFilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, depth: depth, slope: slope)
         }
-        return applyChain()
+//        if !depthEnabled {
+//            return applyChain()
+//        }
+//        else {
+//            return applyDepthChain()
+//        }
     }
     
     //Remove filter with given name

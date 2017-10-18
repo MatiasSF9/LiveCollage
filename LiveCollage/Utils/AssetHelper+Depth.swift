@@ -65,10 +65,14 @@ extension AssetHelper {
         
         //Scales and offset disparity values according to the slider arguments.
         //CIColorMatrix: Multiplies source color values and adds a bias factor to each color component
-        let mask = disparityImage.applyingFilter("CIColorMatrix", parameters: ["inputRVector": CIVector(x: slope, y: 0, z: 0, w: 0),
+        var mask = disparityImage.applyingFilter("CIColorMatrix", parameters: ["inputRVector": CIVector(x: slope, y: 0, z: 0, w: 0),
                                                                                "inputGVector": CIVector(x: 0, y: slope, z: 0, w: 0),
                                                                                "inputBVector": CIVector(x: 0, y: 0, z: slope, w: 0),
                                                                                "inputBiasVector": CIVector(x: bias, y: bias, z: bias, w: 0)])
+        
+        //Turns red scale into grayscale usable for blend
+        mask = mask.applyingFilter("CIMaximumComponent")
+        
         //Clamp the mask values to [0,1]
         //CIFilterClamp: Modifies color values to keep them within a specified range.)
         return mask.applyingFilter("CIColorClamp")
