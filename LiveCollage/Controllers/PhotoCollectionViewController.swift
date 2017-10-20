@@ -98,10 +98,9 @@ class PhotoCollectionViewController: UICollectionViewController {
 //    }
     
     // MARK: Asset Caching
-    
     fileprivate func resetCachedAssets() {
         
-        AssetHelper.shared.stopCaching()
+        AssetHelper.shared().stopCaching()
         previousPreheatRect = .zero
     }
 
@@ -192,7 +191,7 @@ extension PhotoCollectionViewController {
         
         // Request an image for the asset from the PHCachingImageManager.
         cell.representedAssetIdentifier = asset.localIdentifier
-        AssetHelper.shared.getAsset(asset: asset, forSize: cell.imageView.frame.size, resultHandler: { image, _ in
+        AssetHelper.shared().getAsset(asset: asset, forSize: cell.imageView.frame.size, resultHandler: { image, _ in
             // The cell may have been recycled by the time this handler gets called;
             // set the cell's thumbnail image only if it's still showing the same asset.
             if cell.representedAssetIdentifier == asset.localIdentifier && image != nil {

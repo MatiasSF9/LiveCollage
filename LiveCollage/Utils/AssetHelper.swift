@@ -16,14 +16,19 @@ import Foundation
 struct ImageData {
     var data: Data?
     var info: [AnyHashable: Any]?
+    var orientation: UIImageOrientation?
 }
 
 class AssetHelper {
     
-    static let shared = AssetHelper()
+    static let instance = AssetHelper()
     
     fileprivate var manager = PHCachingImageManager()
     fileprivate var editManager = PHContentEditingInput()
+    
+    static func shared() -> AssetHelper {
+        return instance
+    }
     
     //Gets image from PHAsset.
     //Returns image in callback
@@ -65,12 +70,12 @@ extension AssetHelper {
         manager.requestImageData(for: asset, options: options) { (imageData, dataType, orientation, info) in
             
             guard let data = imageData?.CFData() else {
-                resultHandler(ImageData(data: imageData, info: nil))
+                resultHandler(ImageData(data: nil, info: nil, orientation: nil))
                 return
 
             }
             let properties = self.imagePropertiesFromImageData(imageData: data) as? [AnyHashable: Any]
-            resultHandler(ImageData(data: imageData, info: properties))
+            resultHandler(ImageData(data: imageData, info: properties, orientation: orientation))
             
         }
     }
@@ -123,27 +128,4 @@ extension AssetHelper {
         //TODO: Save image
     }
     
-}
-
-
-//MARK: Utility Methods
-extension URL {
-    
-    func CFURL() -> CFURL? {
-        let ns = self as NSURL
-        return ns as CFURL
-    }
-}
-
-extension Dictionary {
-    func CFDictionary() -> CFDictionary? {
-        return NSDictionary(dictionary: self) as CFDictionary
-    }
-}
-
-extension Data {
-    func CFData() -> CFData? {
-        let data = NSData(data: self) as CFData
-        return data
-    }
 }

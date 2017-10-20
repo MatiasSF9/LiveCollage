@@ -24,7 +24,10 @@ protocol Originator {
 struct FilterStateEntry {
     var filter: CIFilter
     var value: CGFloat
+    var depthEnabled: Bool
     var valueDepth: CGFloat
+    var valueSlope: CGFloat
+    
     
     func isType(name: String) -> Bool {
         return self.filter.name.elementsEqual(name)
@@ -52,8 +55,8 @@ class FilterState: Originator {
     var entries: [FilterStateEntry] = []
     var nextId: Int = 0
     
-    func addFilterStateEntry(filter: CIFilter, value: CGFloat, valueDepth: CGFloat) {
-        let entry = FilterStateEntry(filter: filter, value: value, valueDepth: valueDepth)
+    func addFilterStateEntry(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat) {
+        let entry = FilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: depth, valueSlope: slope)
         entries.append(entry)
         nextId = nextId + 1
     }
@@ -121,7 +124,7 @@ extension FilterState {
         entries.remove(at: entries.count)
     }
     
-    func replaceEntry(filter: CIFilter, value: CGFloat, depthValue: CGFloat) {
+    func replaceEntry(filter: CIFilter, value: CGFloat, depthEnabled: Bool, valueDepth: CGFloat, valueSlope: CGFloat) {
         var position = 0
         var found = false
         for entry in entries {
@@ -132,7 +135,8 @@ extension FilterState {
             position = position + 1
         }
         if found {
-            entries[position] = FilterStateEntry(filter: filter, value: value, valueDepth: depthValue)
+            entries[position] = FilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: valueDepth, valueSlope: valueSlope)
         }
     }
+    
 }
