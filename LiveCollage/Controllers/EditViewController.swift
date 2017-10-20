@@ -13,7 +13,7 @@ import ImageIO
 
 public let kColorFilter: String = "CIColorControls"
 public let kTempFilter: String = "CITemperatureAndTint"
-public let kMotionBlurFilter: String = "CIBoxBlur"
+public let kMotionBlurFilter: String = "CIGaussianBlur"
 
 enum FilterType: Int {
     case Frame = 0, Brightness, Contrast, Temp, Fx, Blur, None
@@ -41,8 +41,11 @@ class EditViewController: UIViewController {
     @IBOutlet fileprivate weak var editedImage: UIImageView!
     @IBOutlet fileprivate weak var depthSlider: UISlider!
     @IBOutlet fileprivate weak var focalSlider: UISlider!
-    @IBOutlet weak var slopeSlider: UISlider!
-    @IBOutlet weak var depthLabel: UILabel!
+    @IBOutlet fileprivate weak var slopeSlider: UISlider!
+    @IBOutlet fileprivate weak var depthLabel: UILabel!
+    @IBOutlet fileprivate weak var lblSlopeValue: UILabel!
+    @IBOutlet fileprivate weak var lblDepthValue: UILabel!
+    @IBOutlet fileprivate weak var lblFocalValue: UILabel!
     
     //Filters Setup
     fileprivate let context = CIContext()
@@ -69,11 +72,10 @@ class EditViewController: UIViewController {
             if imageData.info == nil  || imageData.data == nil {
                 return
             }
-            
-            
+       
             self?.currentImage = CIImage(data: imageData.data!)
-//            let tranform = self?.currentImage?.orientationTransform(for: .up)
-//            self?.currentImage = self?.currentImage?.transformed(by: tranform!)
+            
+            //ROTATE IMAGE
             
             if self?.currentImage != nil {
                 self?.editedImage.image = UIImage(ciImage: (self?.currentImage!)!)
@@ -114,21 +116,24 @@ class EditViewController: UIViewController {
                 return
             }
             filterControls = state.filter
-            focalSlider.value = state.filter.value(forKey: kCIInputBrightnessKey) as! Float
+            let focal = state.filter.value(forKey: kCIInputBrightnessKey) as! Float
+            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope))
             break
         case .Contrast?:
             guard let state = filterHelper.getFilter(filterName: kColorFilter) else {
                 return
             }
             filterControls = state.filter
-            focalSlider.value = state.filter.value(forKey: kCIInputContrastKey) as! Float
+            let focal = state.filter.value(forKey: kCIInputContrastKey) as! Float
+            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope))
             break
         case .Temp?:
             guard let state = filterHelper.getFilter(filterName: kTempFilter) else {
                 return
             }
             filterControls = state.filter
-            focalSlider.value = state.filter.value(forKey: kCIInputNeutralTemperatureKey) as! Float
+            let focal = state.filter.value(forKey: kCIInputNeutralTemperatureKey) as! Float
+            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope))
             break
         case .Fx?:
             break
@@ -137,38 +142,52 @@ class EditViewController: UIViewController {
                 return
             }
             filterControls = state.filter
-            let vector = state.filter.value(forKey: "inputRadius") as! NSNumber
-            focalSlider.value = Float(vector.floatValue / 200.0)
+            let vector = state.filter.value(forKey: "inputRadius") as! Float
+            restoreSliders(focal: Float(vector), depth: Float(state.valueDepth), slope: Float(state.valueSlope))
             break
         case .None?: break
         default: break
-            
         }
+        
+    }
+    
+    private func restoreSliders(focal: Float, depth: Float, slope: Float) {
+        focalSlider.value = focal
+        depthSlider.value = depth
+        slopeSlider.value = slope
     }
     
     @IBAction func onValueChange(_ sender: UISlider) {
         
-        let value = sender.value
-        switch SliderType(rawValue: sender.tag) {
-        case .Depth?:
-            updateDepth(value: value)
+        switch sender.tag {
+        case SliderType.Depth.rawValue:
+            lblDepthValue.text = "\(depthSlider.value)"
             break
-        case .Focal?:
-            updateValues(value: value)
+        case SliderType.Slope.rawValue:
+            lblSlopeValue.text = "\(slopeSlider.value)"
             break
-        case .Slope?:
-            updateSlope(value: value)
+        case SliderType.Focal.rawValue:
+            lblFocalValue.text = "\(focalSlider.value)"
             break
-        default: break
-
+        default:
+            break
         }
+        
+        
+        let filter = updateFilter(value: sender.value)
+        filterHelper.addFiterToChain(filter: filter,
+                                     value: CGFloat(focalSlider.value),
+                                     depthEnabled: disparityImage != nil,
+                                     depth: CGFloat(depthSlider.value),
+                                     slope: CGFloat(slopeSlider.value))
+        updateRender()
     }
 }
 
 //MARK: Effect Actions
 extension EditViewController {
     
-    func enableDepth(imageData: Data) {
+    private func enableDepth(imageData: Data) {
         
         disparityImage = AssetHelper.shared().getDisparityImage(imageData: imageData)
         guard let size = currentImage?.extent.size else {
@@ -198,9 +217,6 @@ extension EditViewController {
                 slopeSlider.isEnabled = true
             }
             
-//            let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!, slope: 0.3, bias: 0.3)
-//            self.editedImage.image = UIImage(ciImage: mask)
-            
             Logger.VERBOSE(message: "Disparity image obtained!! 💕")
         }
     }
@@ -209,7 +225,7 @@ extension EditViewController {
         var filter: CIFilter = CIFilter()
         switch currentFilter {
         case .Frame:
-            //TODO:
+            //TODO: crop
             break
         case .Brightness:
             filterControls.setValue(value, forKey: kCIInputBrightnessKey)
@@ -227,8 +243,8 @@ extension EditViewController {
         case .Fx:
             break
         case .Blur:
-            filterBlur.setValue(value * 200.0, forKey: "inputRadius")
-            filter = filterControls
+            filterBlur.setValue(10.0, forKey: "inputRadius")
+            filter = filterBlur
             break
         default:
             return filter
@@ -236,31 +252,9 @@ extension EditViewController {
         
         return filter
     }
-    
-    func updateValues(value: Float) {
-        let filter = updateFilter(value: value)
-        _ = filterHelper.addFiterToChain(filter: filter, value: CGFloat(value), depthEnabled: disparityImage != nil, depth: CGFloat(depthSlider.value), slope: CGFloat(slopeSlider.value))
-        updateRender()
-    }
 
-    func updateDepth(value: Float) {
-        let filter = updateFilter(value: focalSlider.value)
-        _ = filterHelper.addFiterToChain(filter: filter, value: CGFloat(focalSlider.value), depthEnabled: disparityImage != nil, depth: CGFloat(value), slope: CGFloat(slopeSlider.value))
-        updateRender()
-    }
-    
-    func updateSlope(value: Float) {
-        let filter = updateFilter(value: focalSlider.value)
-        _ = filterHelper.addFiterToChain(filter: filter, value: CGFloat(focalSlider.value), depthEnabled: disparityImage != nil, depth: CGFloat(depthSlider.value), slope: CGFloat(slopeSlider.value))
-        updateRender()
-    }
-    
+    //Updates the image displayed by applying the filter chain
     private func updateRender() {
-        
-        
-//        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!, slope: CGFloat(slopeSlider.value), bias: CGFloat(depthSlider.value))
-//        self.editedImage.image = UIImage(ciImage: mask)
-//        return
         
         if currentImage == nil {
             return
@@ -269,10 +263,8 @@ extension EditViewController {
         let scale = CGFloat(slopeSlider.value)
         let height = editedImage.image!.size.height
         let width = editedImage.image!.size.width
-        let minMax = AssetHelper.shared().sampleDiparity(disparityImage: disparityImage!,
-                                                         rect: CGRect(x: 0, y: CGFloat(depthSlider.value) * height,
-                                                                      width: width ,
-                                                                      height: height * scale))
+        let rect = CGRect(x: 0, y: CGFloat(depthSlider.value) * height, width: width, height: height * scale)
+        let minMax = AssetHelper.shared().sampleDiparity(disparityImage: disparityImage!, rect: rect)
         if disparityImage == nil {
             let chained = filterHelper.applyChain()
             editedImage.image = chained
@@ -284,7 +276,7 @@ extension EditViewController {
     }
 }
 
-//Instance Factory
+//MARK: Instance Factory
 extension EditViewController {
     
     static func getInstance(asset: PHAsset) -> EditViewController {

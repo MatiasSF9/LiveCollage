@@ -6,8 +6,9 @@
 //  Copyright © 2017 M2Media. All rights reserved.
 //
 
-import AVFoundation
+import UIKit
 import CoreImage
+import AVFoundation
 
 //MARK: Data and Depth retrieval
 
@@ -121,11 +122,5 @@ extension AssetHelper {
         let disparityImage = depthImage.applyingFilter("CIDepthToDisparity")
         
         return disparityImage
-    }
-    
-    //For some reason is rotates -90degrees clockwise
-    func rotateImage(image: CIImage, orientation: CGImagePropertyOrientation) -> CIImage {
-        let transform = image.orientationTransform(for: orientation)
-        return image.transformed(by: transform)
     }
 }
