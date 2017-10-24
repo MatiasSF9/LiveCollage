@@ -92,10 +92,10 @@ class EditViewController: UIViewController {
             if self?.currentImage != nil {
                 
                 //Crop if needed
-                if self?.croppedRect != nil {
-                    self?.originalSize = self?.currentImage?.extent
-                    self?.currentImage = self?.currentImage!.cropped(to: (self?.croppedRect!)!)
-                }
+//                if self?.croppedRect != nil {
+//                    self?.originalSize = self?.currentImage?.extent
+//                    self?.currentImage = self?.currentImage!.cropped(to: (self?.croppedRect!)!)
+//                }
                 
                 self?.editedImage.image = UIImage(ciImage: (self?.currentImage!)!)
                 self?.filterHelper = FilterHelper(editedImage: (self?.currentImage!)!, frame: (self?.editedImage.frame)!)
@@ -217,11 +217,11 @@ extension EditViewController {
             return
         }
         
-        
-        if croppedRect != nil {
-            size = (originalSize?.size)!
-        }
-        
+//        
+//        if croppedRect != nil {
+//            size = (originalSize?.size)!
+//        }
+//        
         let scaleX = Float((size.width)) / Float((dispSize.width))
         let scaley = Float(size.height) / Float(dispSize.height)
         let transform = CGAffineTransform(scaleX: CGFloat(5.25), y: CGFloat(5.25))
@@ -230,9 +230,9 @@ extension EditViewController {
         if disparityImage != nil {
             
             //Crop if needed
-            if croppedRect != nil {
-                disparityImage = disparityImage?.cropped(to: croppedRect!)
-            }
+//            if croppedRect != nil {
+//                disparityImage = disparityImage?.cropped(to: croppedRect!)
+//            }
             
             //Uncomment to display disparity image
             //editedImage.image = UIImage(ciImage: disparityImage!)
@@ -302,12 +302,20 @@ extension EditViewController {
         let minMax = AssetHelper.shared().sampleDiparity(disparityImage: disparityImage!, rect: rect)
         if disparityImage == nil {
             let chained = filterHelper.applyChain()
-            editedImage.image = chained
+            displayImage(image: chained)
         } else {
             let chained = filterHelper.applyDepthChain()
-            editedImage.image = chained
+            displayImage(image: chained)
         }
         
+    }
+    
+    private func displayImage(image: UIImage) {
+        if croppedRect != nil {
+            editedImage.image = image.croppedImage(withFrame: croppedRect!, angle: 0, circularClip: false)
+        } else {
+            editedImage.image = image
+        }
     }
 }
 

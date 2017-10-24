@@ -59,7 +59,7 @@
 		6075E6EA1F7BCE08001CCFB5 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6075E6EB1F7BCE08001CCFB5 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		6093BA861F6C55CD00570867 /* FilterMemento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMemento.swift; sourceTree = "<group>"; };
-		6093BA881F6C709700570867 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = LiveCollage/MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		6093BA881F6C709700570867 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		60AD56E71F71642A005E5E06 /* FilterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHelper.swift; sourceTree = "<group>"; };
 		60B79E491F66E58300634F35 /* LayoutCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutCollectionViewController.swift; sourceTree = "<group>"; };
 		60CD15D41F97D75700DBA7D9 /* UIImage+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
@@ -169,6 +169,7 @@
 		60FE24F21EA3AFC2000F21DF = {
 			isa = PBXGroup;
 			children = (
+				6093BA881F6C709700570867 /* MyPlayground.playground */,
 				60FE24FD1EA3AFC2000F21DF /* LiveCollage */,
 				60FE24FC1EA3AFC2000F21DF /* Products */,
 				4924B1921F490BC8003C88E8 /* Frameworks */,
@@ -187,7 +188,6 @@
 		60FE24FD1EA3AFC2000F21DF /* LiveCollage */ = {
 			isa = PBXGroup;
 			children = (
-				6093BA881F6C709700570867 /* MyPlayground.playground */,
 				60CD15D61F97D77F00DBA7D9 /* Filters */,
 				60542D301F686E37006666B8 /* Extensions */,
 				499CB01E1F4A4921008D45D8 /* Utils */,

@@ -73,7 +73,7 @@ extension AssetHelper {
         
         //Turns red scale into grayscale usable for blend
         mask = mask.applyingFilter("CIMaximumComponent")
-        
+//        mask = mask.applyingFilter("CIColorInvert")
         //Clamp the mask values to [0,1]
         //CIFilterClamp: Modifies color values to keep them within a specified range.)
         return mask.applyingFilter("CIColorClamp")

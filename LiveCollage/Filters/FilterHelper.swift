@@ -47,12 +47,6 @@ class FilterHelper: FilterHelperProtocol {
         } else {
             filterChain.addFilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, depth: depth, slope: slope)
         }
-//        if !depthEnabled {
-//            return applyChain()
-//        }
-//        else {
-//            return applyDepthChain()
-//        }
     }
     
     //Remove filter with given name
@@ -133,19 +127,8 @@ class FilterHelper: FilterHelperProtocol {
             Logger.log(type: .WARNING, string: "Unable to generate output image from filter \(filter.name)")
             return nil
         }
-        
-
-//
-//        guard let cgImage = context.createCGImage(result, from: result.extent) else {
-//            Logger.log(type: .WARNING, string: "Unable to generate CGImage from context with filter \(filter.name)")
-//            return nil
-//        }
-//
         context.clearCaches()
-//
-//        Logger.log(type: .DEBUG, string: "Filter \(filter.name) applied!")
-//        return CIImage(cgImage: cgImage)
-                return result
+        return result
     }
     
     
@@ -153,10 +136,6 @@ class FilterHelper: FilterHelperProtocol {
     private func applyBlend(background: CIImage, disparity: CIImage, foreground: CIImage, slope: CGFloat, bias: CGFloat) -> CIImage? {
         
         let mask = AssetHelper.shared().getBlendMask(disparityImage: disparity, slope:  slope, bias: bias)
-    
-        //Upscale filtered image
-//        let resized = background.resize(targetSize: (background.size)!)!
-        
         return AssetHelper.shared().blendImages(background: background, foreground: foreground, mask: mask)
     }
 }
