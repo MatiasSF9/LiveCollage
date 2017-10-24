@@ -229,7 +229,7 @@ extension EditViewController {
         
         disparityImage = AssetHelper.shared().getDisparityImage(imageData: imageData)
         
-        guard var size = currentImage?.extent.size else {
+        guard let size = currentImage?.extent.size else {
             return
         }
         
@@ -237,22 +237,12 @@ extension EditViewController {
             return
         }
         
-//        
-//        if croppedRect != nil {
-//            size = (originalSize?.size)!
-//        }
-//        
         let scaleX = Float((size.width)) / Float((dispSize.width))
-        let scaley = Float(size.height) / Float(dispSize.height)
+        let scaleY = Float(size.height) / Float(dispSize.height)
         let transform = CGAffineTransform(scaleX: CGFloat(5.25), y: CGFloat(5.25))
         disparityImage = disparityImage?.rotateImage(orientation: (self.imageOrientation)!)
         disparityImage = disparityImage?.transformed(by: transform)
         if disparityImage != nil {
-            
-            //Crop if needed
-//            if croppedRect != nil {
-//                disparityImage = disparityImage?.cropped(to: croppedRect!)
-//            }
             
             //Uncomment to display disparity image
             //editedImage.image = UIImage(ciImage: disparityImage!)

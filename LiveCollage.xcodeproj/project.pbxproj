@@ -238,7 +238,7 @@
 				60FE24F71EA3AFC2000F21DF /* Sources */,
 				60FE24F81EA3AFC2000F21DF /* Frameworks */,
 				60FE24F91EA3AFC2000F21DF /* Resources */,
-				60C334A91F7AEF7600DA675F /* ShellScript */,
+				60C334A91F7AEF7600DA675F /* Run Script */,
 				ADD71AE278A35E3FBD46FF5F /* [CP] Embed Pods Frameworks */,
 				4200715DC84C90DF42B83403 /* [CP] Copy Pods Resources */,
 			);
@@ -334,13 +334,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiveCollage/Pods-LiveCollage-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		60C334A91F7AEF7600DA675F /* ShellScript */ = {
+		60C334A91F7AEF7600DA675F /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -496,6 +498,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -562,7 +565,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -586,7 +589,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "LiveCollage/LiveCollage-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
