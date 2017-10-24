@@ -20,6 +20,8 @@ class PhotoCollectionViewController: UICollectionViewController {
     fileprivate var thumbnailSize: CGSize!
     fileprivate var previousPreheatRect = CGRect.zero
     
+    fileprivate var selectedAsset: PHAsset?
+    
     var observer: PhotoCollectionSelectionObserver?
     
     var isEdit = false
@@ -211,6 +213,31 @@ extension PhotoCollectionViewController {
     }
 }
 
+//MARK: Collection View Delegate
+extension PhotoCollectionViewController {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if isEdit {
+            selectedAsset = fetchResult.object(at: indexPath.item) as PHAsset
+            return presentCropViewController(selectedAsset!)
+        }
+        
+        
+        let cell = collectionView.cellForItem(at: indexPath) as? GridViewCell
+        cell?.isSelected = true
+        cell?.imageView.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
+        cell?.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
+        
+        observer?.didSelect(image: fetchResult.object(at: indexPath.item), index: indexPath)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? GridViewCell
+        cell?.isSelected = true
+        observer?.didDeselect(image: fetchResult.object(at: indexPath.item), index: indexPath)
+    }
+}
+
 // MARK: PHPhotoLibraryChangeObserver
 extension PhotoCollectionViewController: PHPhotoLibraryChangeObserver {
     
@@ -259,46 +286,30 @@ extension PhotoCollectionViewController : TOCropViewControllerDelegate {
     fileprivate func showEditViewController(_ asset: PHAsset) {
         let controller = EditViewController.getInstance(asset: asset)
         self.navigationController?.show( controller, sender: nil)
-        return
     }
     
     fileprivate func presentCropViewController(_ asset: PHAsset) {
         let targetSize = CGSize(width: asset.pixelWidth, height: asset.pixelHeight)
-        AssetHelper.shared.getAsset(asset: asset, forSize: targetSize, resultHandler: { image, _ in
+        AssetHelper.shared().getAsset(asset: asset, forSize: targetSize, resultHandler: { image, _ in
             let cropViewController = TOCropViewController(image: image!)
             cropViewController.delegate = self
             self.present(cropViewController, animated: true, completion: nil)
+            
         })
     }
     
-    fileprivate func cropViewController(_ cropViewController: TOCropViewController!, didCropTo image: UIImage!, with cropRect: CGRect, angle: Int) {
-        // 'image' is the newly cropped version of the original image
-        // call showEditViewController
+    internal func cropViewController(_ cropViewController: TOCropViewController, didCropToRect cropRect: CGRect, angle: Int) {
+        
+        self.navigationController?.dismiss(animated: false, completion: {
+            let controller = EditViewController.getInstance(asset: self.selectedAsset!, cropped: cropRect)
+            self.navigationController?.show( controller, sender: nil)
+        })
+        
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    internal func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
         
-        if isEdit {
-            let asset = fetchResult.object(at: indexPath.item) as PHAsset
-            
-            return presentCropViewController(asset)
-        }
-        
-        
-        let cell = collectionView.cellForItem(at: indexPath) as? GridViewCell
-        cell?.isSelected = true
-        cell?.imageView.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
-        cell?.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
-        
-        observer?.didSelect(image: fetchResult.object(at: indexPath.item), index: indexPath)
     }
-    
-    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? GridViewCell
-        cell?.isSelected = true
-        observer?.didDeselect(image: fetchResult.object(at: indexPath.item), index: indexPath)
-    }
-    
     
 }
 

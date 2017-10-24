@@ -32,4 +32,11 @@ extension CIImage {
         return self.transformed(by: tranform)
     }
 
+    func cropToRect(rect: CGRect) -> CIImage? {
+        let vector = CIVector(x: rect.origin.x, y: rect.origin.y, z: rect.size.width, w: rect.size.height)
+        let filter = CIFilter(name: "CICrop")
+        filter?.setValue(self, forKey: "inputImage")
+        filter?.setValue(vector, forKey: "inputRectangle")
+        return filter?.outputImage
+    }
 }

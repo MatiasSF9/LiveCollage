@@ -134,15 +134,18 @@ class FilterHelper: FilterHelperProtocol {
             return nil
         }
         
-        guard let cgImage = context.createCGImage(result, from: result.extent) else {
-            Logger.log(type: .WARNING, string: "Unable to generate CGImage from context with filter \(filter.name)")
-            return nil
-        }
-        
+
+//
+//        guard let cgImage = context.createCGImage(result, from: result.extent) else {
+//            Logger.log(type: .WARNING, string: "Unable to generate CGImage from context with filter \(filter.name)")
+//            return nil
+//        }
+//
         context.clearCaches()
-        
-        Logger.log(type: .DEBUG, string: "Filter \(filter.name) applied!")
-        return CIImage(cgImage: cgImage)
+//
+//        Logger.log(type: .DEBUG, string: "Filter \(filter.name) applied!")
+//        return CIImage(cgImage: cgImage)
+                return result
     }
     
     

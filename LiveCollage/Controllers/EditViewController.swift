@@ -27,6 +27,9 @@ class EditViewController: UIViewController {
 
     //Current Assets
     fileprivate var currentAsset: PHAsset!
+    fileprivate var croppedRect: CGRect?
+    fileprivate var originalSize: CGRect?
+    fileprivate var imageOrientation: UIImageOrientation?
     
     //Current Image
     fileprivate var currentImage: CIImage?
@@ -67,17 +70,33 @@ class EditViewController: UIViewController {
         focalSlider.isEnabled = false
         
         //Get Image Data Async
+        if currentAsset != nil {
+            getImageFromAsset()
+        }
+        
+    }
+
+    private func getImageFromAsset() {
         AssetHelper.shared().getImageData(asset: currentAsset) { [weak self] imageData in
             
             if imageData.info == nil  || imageData.data == nil {
                 return
             }
-       
+            
             self?.currentImage = CIImage(data: imageData.data!)
             
-            //ROTATE IMAGE
+            //TODO: ROTATE IMAGE
+            self?.imageOrientation = imageData.orientation
+            self?.currentImage = self?.currentImage?.rotateImage(orientation: (self?.imageOrientation)!)
             
             if self?.currentImage != nil {
+                
+                //Crop if needed
+                if self?.croppedRect != nil {
+                    self?.originalSize = self?.currentImage?.extent
+                    self?.currentImage = self?.currentImage!.cropped(to: (self?.croppedRect!)!)
+                }
+                
                 self?.editedImage.image = UIImage(ciImage: (self?.currentImage!)!)
                 self?.filterHelper = FilterHelper(editedImage: (self?.currentImage!)!, frame: (self?.editedImage.frame)!)
             }
@@ -87,9 +106,8 @@ class EditViewController: UIViewController {
                 self?.enableDepth(imageData: imageData.data!)
             }
         }
-        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -174,7 +192,7 @@ class EditViewController: UIViewController {
         }
         
         
-        let filter = updateFilter(value: sender.value)
+        let filter = updateFilter(value: focalSlider.value)
         filterHelper.addFiterToChain(filter: filter,
                                      value: CGFloat(focalSlider.value),
                                      depthEnabled: disparityImage != nil,
@@ -190,7 +208,8 @@ extension EditViewController {
     private func enableDepth(imageData: Data) {
         
         disparityImage = AssetHelper.shared().getDisparityImage(imageData: imageData)
-        guard let size = currentImage?.extent.size else {
+        
+        guard var size = currentImage?.extent.size else {
             return
         }
         
@@ -199,11 +218,21 @@ extension EditViewController {
         }
         
         
+        if croppedRect != nil {
+            size = (originalSize?.size)!
+        }
+        
         let scaleX = Float((size.width)) / Float((dispSize.width))
         let scaley = Float(size.height) / Float(dispSize.height)
-        let transform = CGAffineTransform(scaleX: CGFloat(scaleX), y: CGFloat(scaley))
+        let transform = CGAffineTransform(scaleX: CGFloat(5.25), y: CGFloat(5.25))
+        disparityImage = disparityImage?.rotateImage(orientation: (self.imageOrientation)!)
         disparityImage = disparityImage?.transformed(by: transform)
         if disparityImage != nil {
+            
+            //Crop if needed
+            if croppedRect != nil {
+                disparityImage = disparityImage?.cropped(to: croppedRect!)
+            }
             
             //Uncomment to display disparity image
             //editedImage.image = UIImage(ciImage: disparityImage!)
@@ -259,6 +288,12 @@ extension EditViewController {
         if currentImage == nil {
             return
         }
+
+        //UNcomment to display mask
+//        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!, slope:  CGFloat(slopeSlider.value), bias: CGFloat(depthSlider.value))
+//        editedImage.image = UIImage(ciImage: mask)
+//        return
+        
         
         let scale = CGFloat(slopeSlider.value)
         let height = editedImage.image!.size.height
@@ -286,4 +321,11 @@ extension EditViewController {
         return controller
     }
     
+    static func getInstance(asset: PHAsset, cropped: CGRect) -> EditViewController {
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let controller = story.instantiateViewController(withIdentifier: "EditViewController") as! EditViewController
+        controller.currentAsset = asset
+        controller.croppedRect = cropped
+        return controller
+    }
 }

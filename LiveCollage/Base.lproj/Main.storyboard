@@ -36,7 +36,6 @@
         <!--Deepix-->
         <scene sceneID="C1A-9t-syU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hmu-XT-cNf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Deepix" id="cdt-iG-tdR" customClass="HomeViewController" customModule="LiveCollage" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ljT-Ma-And"/>
@@ -130,6 +129,7 @@ GIF</string>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="NTo-Rb-TzX"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hmu-XT-cNf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-470" y="18"/>
         </scene>
@@ -380,7 +380,7 @@ GIF</string>
                                     <constraint firstAttribute="width" secondItem="uOR-xZ-zED" secondAttribute="height" multiplier="1:1" id="C8b-ZD-YTj"/>
                                 </constraints>
                             </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="px5-hb-3j7">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="-2" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="px5-hb-3j7">
                                 <rect key="frame" x="54" y="453" width="254" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="ZmI-Zs-cxw"/>
@@ -391,7 +391,7 @@ GIF</string>
                                     <action selector="onValueChange:" destination="LgK-B3-Qgd" eventType="valueChanged" id="LJS-gc-cz0"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="OAU-I1-BbU">
+                            <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="OAU-I1-BbU">
                                 <rect key="frame" x="54" y="416" width="254" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="Cum-Z3-hJw"/>
@@ -489,7 +489,7 @@ GIF</string>
                                     <constraint firstAttribute="height" constant="44" id="6of-Su-5uj"/>
                                 </constraints>
                             </view>
-                            <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yi0-he-hci">
+                            <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="-10" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="Yi0-he-hci">
                                 <rect key="frame" x="54" y="492" width="254" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="seC-pZ-UOh"/>
