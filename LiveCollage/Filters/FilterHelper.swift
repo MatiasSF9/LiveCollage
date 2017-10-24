@@ -12,7 +12,7 @@ import CoreImage
 protocol FilterHelperProtocol {
     
     //Add or Update filter values
-    func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat) 
+    func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat, background: Bool)
     //Remove filter with given name
     func removeFilter(filterName: String) -> UIImage
     //Removes last filter
@@ -41,11 +41,11 @@ class FilterHelper: FilterHelperProtocol {
     }
     
     //Add or Update filter values
-    func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat) {
+    func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat, background: Bool) {
         if getFilter(filterName: filter.name) != nil {
-            filterChain.replaceEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: depth, valueSlope: slope)
+            filterChain.replaceEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: depth, valueSlope: slope, background: background)
         } else {
-            filterChain.addFilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, depth: depth, slope: slope)
+            filterChain.addFilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, depth: depth, slope: slope, background: background)
         }
     }
     
@@ -87,7 +87,7 @@ class FilterHelper: FilterHelperProtocol {
             if entry.depthEnabled{
                 guard let blend = applyBlend(background: tempBackground, disparity: disparityImage!,
                                              foreground: tempForeground, slope: entry.valueSlope,
-                                             bias: entry.valueDepth) else {
+                                             bias: entry.valueDepth, inverted: !entry.background) else {
                     //TODO: handle errors
                     Logger.log(type: .WARNING, string: "Unable to blend images")
                     return UIImage(ciImage: editedImage)
@@ -133,9 +133,9 @@ class FilterHelper: FilterHelperProtocol {
     
     
     //Applies blend mask for depth enabled images
-    private func applyBlend(background: CIImage, disparity: CIImage, foreground: CIImage, slope: CGFloat, bias: CGFloat) -> CIImage? {
+    private func applyBlend(background: CIImage, disparity: CIImage, foreground: CIImage, slope: CGFloat, bias: CGFloat, inverted: Bool) -> CIImage? {
         
-        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparity, slope:  slope, bias: bias)
+        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparity, slope:  slope, bias: bias, inverted: inverted)
         return AssetHelper.shared().blendImages(background: background, foreground: foreground, mask: mask)
     }
 }

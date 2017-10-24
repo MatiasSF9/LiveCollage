@@ -429,6 +429,9 @@ GIF</string>
                                         <state key="normal" title="Frame">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.1529411765" green="0.80000000000000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="onFilterSelected:" destination="LgK-B3-Qgd" eventType="touchUpInside" id="Trm-Fa-FiN"/>
                                         </connections>
@@ -438,6 +441,9 @@ GIF</string>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Bright">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.1529411765" green="0.80000000000000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="onFilterSelected:" destination="LgK-B3-Qgd" eventType="touchUpInside" id="Uum-9k-ppI"/>
@@ -449,6 +455,9 @@ GIF</string>
                                         <state key="normal" title="Cont">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.1529411765" green="0.80000000000000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="onFilterSelected:" destination="LgK-B3-Qgd" eventType="touchUpInside" id="dGz-lr-eq5"/>
                                         </connections>
@@ -458,6 +467,9 @@ GIF</string>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Temp">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.1529411765" green="0.80000000000000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="onFilterSelected:" destination="LgK-B3-Qgd" eventType="touchUpInside" id="tvo-Yf-ePb"/>
@@ -469,6 +481,9 @@ GIF</string>
                                         <state key="normal" title="Fx">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.1529411765" green="0.80000000000000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="onFilterSelected:" destination="LgK-B3-Qgd" eventType="touchUpInside" id="F1w-Tj-TkU"/>
                                         </connections>
@@ -478,6 +493,9 @@ GIF</string>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Blur">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleColor" red="0.1529411765" green="0.80000000000000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="onFilterSelected:" destination="LgK-B3-Qgd" eventType="touchUpInside" id="Zkr-2e-8a1"/>
@@ -539,6 +557,17 @@ GIF</string>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="r9K-6S-zTW">
+                                <rect key="frame" x="97" y="373" width="181" height="29"/>
+                                <segments>
+                                    <segment title="Background"/>
+                                    <segment title="Foregroud"/>
+                                </segments>
+                                <color key="tintColor" red="0.1529411765" green="0.80000000000000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="onSegmentChange:" destination="LgK-B3-Qgd" eventType="valueChanged" id="X2d-E9-Bug"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.047058823529411764" green="0.14509803921568626" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -558,8 +587,10 @@ GIF</string>
                             <constraint firstItem="px5-hb-3j7" firstAttribute="leading" secondItem="uB6-zp-ZyL" secondAttribute="trailing" constant="11.5" id="JPP-bn-efQ"/>
                             <constraint firstItem="Oeo-cZ-xfj" firstAttribute="top" secondItem="79x-4V-Dhf" secondAttribute="bottom" constant="25" id="Osq-r2-MbA"/>
                             <constraint firstAttribute="trailing" secondItem="uOR-xZ-zED" secondAttribute="trailing" constant="10" id="R5L-bW-6Ee"/>
+                            <constraint firstItem="r9K-6S-zTW" firstAttribute="top" secondItem="uOR-xZ-zED" secondAttribute="bottom" constant="8" id="TGw-6P-pJ2"/>
                             <constraint firstItem="px5-hb-3j7" firstAttribute="top" secondItem="uOR-xZ-zED" secondAttribute="bottom" constant="88" id="U2E-iu-KvP"/>
                             <constraint firstItem="Yi0-he-hci" firstAttribute="top" secondItem="px5-hb-3j7" secondAttribute="bottom" constant="10" id="Ze1-y3-gsf"/>
+                            <constraint firstItem="r9K-6S-zTW" firstAttribute="centerX" secondItem="Ftf-hu-a7z" secondAttribute="centerX" id="bgi-BY-kN8"/>
                             <constraint firstItem="79x-4V-Dhf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OAU-I1-BbU" secondAttribute="trailing" constant="8" symbolic="YES" id="e4C-0h-lnh"/>
                             <constraint firstAttribute="trailing" secondItem="Yi0-he-hci" secondAttribute="trailing" constant="69" id="ei5-8M-yle"/>
                             <constraint firstItem="uB6-zp-ZyL" firstAttribute="top" secondItem="uOR-xZ-zED" secondAttribute="bottom" constant="92" id="gNg-Xq-uFT"/>
@@ -585,7 +616,14 @@ GIF</string>
                         <outlet property="lblDepthValue" destination="Oeo-cZ-xfj" id="ajw-wd-086"/>
                         <outlet property="lblFocalValue" destination="xc7-J3-YYi" id="b3I-5C-Wau"/>
                         <outlet property="lblSlopeValue" destination="79x-4V-Dhf" id="ACX-vs-Pdg"/>
+                        <outlet property="segmentedControl" destination="r9K-6S-zTW" id="8wD-T2-Io3"/>
                         <outlet property="slopeSlider" destination="OAU-I1-BbU" id="Xea-ML-oA0"/>
+                        <outletCollection property="buttons" destination="AgK-jB-drD" collectionClass="NSMutableArray" id="Ph7-Rr-foI"/>
+                        <outletCollection property="buttons" destination="ieS-Al-zdR" collectionClass="NSMutableArray" id="YAc-1u-iOe"/>
+                        <outletCollection property="buttons" destination="FCl-vH-3oe" collectionClass="NSMutableArray" id="DlG-1g-pIg"/>
+                        <outletCollection property="buttons" destination="xYa-Wj-4pu" collectionClass="NSMutableArray" id="Md3-rs-wAL"/>
+                        <outletCollection property="buttons" destination="rdr-47-ljO" collectionClass="NSMutableArray" id="Myf-TQ-hhk"/>
+                        <outletCollection property="buttons" destination="dAi-Pk-gv3" collectionClass="NSMutableArray" id="dVg-UN-j9c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaG-7H-2HT" userLabel="First Responder" sceneMemberID="firstResponder"/>

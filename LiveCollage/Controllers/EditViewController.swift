@@ -19,6 +19,10 @@ enum FilterType: Int {
     case Frame = 0, Brightness, Contrast, Temp, Fx, Blur, None
 }
 
+enum FilterSwitch: Int {
+    case Background = 0, Foreground
+}
+
 enum SliderType: Int {
     case Depth = 0, Focal, Slope
 }
@@ -30,6 +34,7 @@ class EditViewController: UIViewController {
     fileprivate var croppedRect: CGRect?
     fileprivate var originalSize: CGRect?
     fileprivate var imageOrientation: UIImageOrientation?
+    fileprivate var currentType: FilterSwitch = .Background
     
     //Current Image
     fileprivate var currentImage: CIImage?
@@ -41,6 +46,7 @@ class EditViewController: UIViewController {
     fileprivate var disparityImage: CIImage?
     
     //Outlets
+    @IBOutlet var buttons: [UIButton]!
     @IBOutlet fileprivate weak var editedImage: UIImageView!
     @IBOutlet fileprivate weak var depthSlider: UISlider!
     @IBOutlet fileprivate weak var focalSlider: UISlider!
@@ -49,6 +55,7 @@ class EditViewController: UIViewController {
     @IBOutlet fileprivate weak var lblSlopeValue: UILabel!
     @IBOutlet fileprivate weak var lblDepthValue: UILabel!
     @IBOutlet fileprivate weak var lblFocalValue: UILabel!
+    @IBOutlet fileprivate weak var segmentedControl: UISegmentedControl!
     
     //Filters Setup
     fileprivate let context = CIContext()
@@ -91,13 +98,7 @@ class EditViewController: UIViewController {
             
             if self?.currentImage != nil {
                 
-                //Crop if needed
-//                if self?.croppedRect != nil {
-//                    self?.originalSize = self?.currentImage?.extent
-//                    self?.currentImage = self?.currentImage!.cropped(to: (self?.croppedRect!)!)
-//                }
-                
-                self?.editedImage.image = UIImage(ciImage: (self?.currentImage!)!)
+                self?.displayImage(image: UIImage(ciImage: (self?.currentImage!)!))
                 self?.filterHelper = FilterHelper(editedImage: (self?.currentImage!)!, frame: (self?.editedImage.frame)!)
             }
             
@@ -117,6 +118,14 @@ class EditViewController: UIViewController {
     //Binds the sliders to a specific filter
     @IBAction func onFilterSelected(_ sender: UIButton) {
         
+        for button in buttons {
+            if button.tag != sender.tag {
+                button.isSelected = false
+            } else {
+                button.isSelected = true
+            }
+        }
+        
         focalSlider.isEnabled = true
         
         if depthEnabled {
@@ -135,7 +144,7 @@ class EditViewController: UIViewController {
             }
             filterControls = state.filter
             let focal = state.filter.value(forKey: kCIInputBrightnessKey) as! Float
-            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope))
+            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope), background: state.background)
             break
         case .Contrast?:
             guard let state = filterHelper.getFilter(filterName: kColorFilter) else {
@@ -143,7 +152,7 @@ class EditViewController: UIViewController {
             }
             filterControls = state.filter
             let focal = state.filter.value(forKey: kCIInputContrastKey) as! Float
-            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope))
+            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope), background: state.background)
             break
         case .Temp?:
             guard let state = filterHelper.getFilter(filterName: kTempFilter) else {
@@ -151,7 +160,7 @@ class EditViewController: UIViewController {
             }
             filterControls = state.filter
             let focal = state.filter.value(forKey: kCIInputNeutralTemperatureKey) as! Float
-            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope))
+            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope), background: state.background)
             break
         case .Fx?:
             break
@@ -161,7 +170,7 @@ class EditViewController: UIViewController {
             }
             filterControls = state.filter
             let vector = state.filter.value(forKey: "inputRadius") as! Float
-            restoreSliders(focal: Float(vector), depth: Float(state.valueDepth), slope: Float(state.valueSlope))
+            restoreSliders(focal: Float(vector), depth: Float(state.valueDepth), slope: Float(state.valueSlope), background: state.background)
             break
         case .None?: break
         default: break
@@ -169,10 +178,12 @@ class EditViewController: UIViewController {
         
     }
     
-    private func restoreSliders(focal: Float, depth: Float, slope: Float) {
+    private func restoreSliders(focal: Float, depth: Float, slope: Float, background: Bool) {
         focalSlider.value = focal
         depthSlider.value = depth
         slopeSlider.value = slope
+        currentType = background ? .Background : .Foreground
+        segmentedControl.selectedSegmentIndex = background ? 0 : 1
     }
     
     @IBAction func onValueChange(_ sender: UISlider) {
@@ -190,14 +201,23 @@ class EditViewController: UIViewController {
         default:
             break
         }
-        
-        
-        let filter = updateFilter(value: focalSlider.value)
-        filterHelper.addFiterToChain(filter: filter,
-                                     value: CGFloat(focalSlider.value),
-                                     depthEnabled: disparityImage != nil,
-                                     depth: CGFloat(depthSlider.value),
-                                     slope: CGFloat(slopeSlider.value))
+
+        updateFilter()
+        updateRender()
+    }
+  
+    @IBAction func onSegmentChange(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case FilterSwitch.Background.rawValue:
+            currentType = FilterSwitch.Background
+            break
+        case FilterSwitch.Foreground.rawValue:
+            currentType = FilterSwitch.Foreground
+            break;
+        default:
+            currentType = FilterSwitch.Background
+        }
+        updateFilter()
         updateRender()
     }
 }
@@ -250,8 +270,9 @@ extension EditViewController {
         }
     }
     
-    private func updateFilter(value: Float) -> CIFilter {
+    private func updateFilter() {
         var filter: CIFilter = CIFilter()
+        let value = focalSlider.value
         switch currentFilter {
         case .Frame:
             //TODO: crop
@@ -276,10 +297,16 @@ extension EditViewController {
             filter = filterBlur
             break
         default:
-            return filter
+            break
         }
         
-        return filter
+        
+        filterHelper.addFiterToChain(filter: filter,
+                                     value: CGFloat(focalSlider.value),
+                                     depthEnabled: disparityImage != nil,
+                                     depth: CGFloat(depthSlider.value),
+                                     slope: CGFloat(slopeSlider.value), background: currentType == FilterSwitch.Background)
+
     }
 
     //Updates the image displayed by applying the filter chain

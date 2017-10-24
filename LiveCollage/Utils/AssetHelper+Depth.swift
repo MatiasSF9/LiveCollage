@@ -62,7 +62,7 @@ extension AssetHelper {
     }
     
     //Builds a blend mask
-    func getBlendMask(disparityImage: CIImage, slope: CGFloat, bias: CGFloat) -> CIImage {
+    func getBlendMask(disparityImage: CIImage, slope: CGFloat, bias: CGFloat, inverted: Bool) -> CIImage {
         
         //Scales and offset disparity values according to the slider arguments.
         //CIColorMatrix: Multiplies source color values and adds a bias factor to each color component
@@ -73,7 +73,9 @@ extension AssetHelper {
         
         //Turns red scale into grayscale usable for blend
         mask = mask.applyingFilter("CIMaximumComponent")
-//        mask = mask.applyingFilter("CIColorInvert")
+        if inverted {
+            mask = mask.applyingFilter("CIColorInvert")
+        }
         //Clamp the mask values to [0,1]
         //CIFilterClamp: Modifies color values to keep them within a specified range.)
         return mask.applyingFilter("CIColorClamp")
