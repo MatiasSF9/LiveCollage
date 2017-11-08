@@ -24,7 +24,7 @@ enum FilterSwitch: Int {
 }
 
 enum SliderType: Int {
-    case Depth = 0, Focal, Slope
+    case Depth = 0, Focal
 }
 
 class EditViewController: UIViewController {
@@ -50,9 +50,7 @@ class EditViewController: UIViewController {
     @IBOutlet fileprivate weak var editedImage: UIImageView!
     @IBOutlet fileprivate weak var depthSlider: UISlider!
     @IBOutlet fileprivate weak var focalSlider: UISlider!
-    @IBOutlet fileprivate weak var slopeSlider: UISlider!
     @IBOutlet fileprivate weak var depthLabel: UILabel!
-    @IBOutlet fileprivate weak var lblSlopeValue: UILabel!
     @IBOutlet fileprivate weak var lblDepthValue: UILabel!
     @IBOutlet fileprivate weak var lblFocalValue: UILabel!
     @IBOutlet fileprivate weak var segmentedControl: UISegmentedControl!
@@ -73,7 +71,6 @@ class EditViewController: UIViewController {
         //Disable depth by default
         depthLabel.isHidden = true
         depthSlider.isEnabled = false
-        slopeSlider.isEnabled = false
         focalSlider.isEnabled = false
         
         //Get Image Data Async
@@ -130,7 +127,6 @@ class EditViewController: UIViewController {
         
         if depthEnabled {
             depthSlider.isEnabled = true
-            slopeSlider.isEnabled = true
         }
         
         currentFilter = FilterType(rawValue: sender.tag)!
@@ -181,7 +177,6 @@ class EditViewController: UIViewController {
     private func restoreSliders(focal: Float, depth: Float, slope: Float, background: Bool) {
         focalSlider.value = focal
         depthSlider.value = depth
-        slopeSlider.value = slope
         currentType = background ? .Background : .Foreground
         segmentedControl.selectedSegmentIndex = background ? 0 : 1
     }
@@ -191,9 +186,6 @@ class EditViewController: UIViewController {
         switch sender.tag {
         case SliderType.Depth.rawValue:
             lblDepthValue.text = "\(depthSlider.value)"
-            break
-        case SliderType.Slope.rawValue:
-            lblSlopeValue.text = "\(slopeSlider.value)"
             break
         case SliderType.Focal.rawValue:
             lblFocalValue.text = "\(focalSlider.value)"
@@ -253,7 +245,6 @@ extension EditViewController {
             
             if currentFilter != .None {
                 depthSlider.isEnabled = true
-                slopeSlider.isEnabled = true
             }
             
             Logger.VERBOSE(message: "Disparity image obtained!! 💕")
@@ -290,12 +281,10 @@ extension EditViewController {
             break
         }
         
-        
-        filterHelper.addFiterToChain(filter: filter,
-                                     value: CGFloat(focalSlider.value),
+        filterHelper.addFiterToChain(filter: filter,  value: CGFloat(focalSlider.value),
                                      depthEnabled: disparityImage != nil,
-                                     depth: CGFloat(depthSlider.value),
-                                     slope: CGFloat(slopeSlider.value), background: currentType == FilterSwitch.Background)
+                                     depth: CGFloat(depthSlider.value), slope: 1,
+                                     background: currentType == FilterSwitch.Background)
 
     }
 
@@ -307,16 +296,17 @@ extension EditViewController {
         }
 
         //UNcomment to display mask
-//        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!, slope:  CGFloat(slopeSlider.value), bias: CGFloat(depthSlider.value), inverted: currentType == .Foreground)
+//        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!,
+//                                                     slope:  1,
+//                                                     bias: CGFloat(depthSlider.value),
+//                                                     inverted: currentType == .Foreground)
 //        editedImage.image = UIImage(ciImage: mask)
 //        return
         
-        
-        let scale = CGFloat(slopeSlider.value)
         let height = editedImage.image!.size.height
         let width = editedImage.image!.size.width
-        let rect = CGRect(x: 0, y: CGFloat(depthSlider.value) * height, width: width, height: height * scale)
-        let minMax = AssetHelper.shared().sampleDiparity(disparityImage: disparityImage!, rect: rect)
+//        let rect = CGRect(x: 0, y: CGFloat(depthSlider.value) * height, width: width, height: height * 1)
+//        let minMax = AssetHelper.shared().sampleDiparity(disparityImage: disparityImage!, rect: rect)
         if disparityImage == nil {
             let chained = filterHelper.applyChain()
             displayImage(image: chained)
