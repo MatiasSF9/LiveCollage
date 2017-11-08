@@ -21,19 +21,6 @@ import AVFoundation
 // 6 - Apply blend between original and background using mask
 
 extension AssetHelper {
-    
-    //MARK: AVDEPTHDATA
-    //Get depth information from image URL
-    func getDepthDataFromURL(imageURL: URL) -> AVDepthData? {
-        guard let imageSource = CGImageSourceCreateWithURL(imageURL.CFURL()!, nil) else {return nil}
-        return getDepthDataFromSource(source: imageSource)
-    }
-    
-    func depthDataFromImageData(data: CFData) -> AVDepthData? {
-        Logger.log(type: .VERBOSE, string: "Getting Depth Data from Image")
-        guard let imageSource = CGImageSourceCreateWithData(data, nil) else {return nil}
-        return getDepthDataFromSource(source: imageSource)
-    }
    
     //MARK: CIIMage Depth Image
     //Convert Image Data to Disparity Image
@@ -61,60 +48,10 @@ extension AssetHelper {
         return (min: Float(pixel[0]) / 255.0, max: Float(pixel[1]) / 255.0)
     }
     
-    //Builds a blend mask
-    func getBlendMask(disparityImage: CIImage, slope: CGFloat, bias: CGFloat, inverted: Bool) -> CIImage {
-        
-        //Scales and offset disparity values according to the slider arguments.
-        //CIColorMatrix: Multiplies source color values and adds a bias factor to each color component
-        var mask = disparityImage.applyingFilter("CIColorMatrix", parameters: ["inputRVector": CIVector(x: slope, y: 0, z: 0, w: 0),
-                                                                               "inputGVector": CIVector(x: 0, y: slope, z: 0, w: 0),
-                                                                               "inputBVector": CIVector(x: 0, y: 0, z: slope, w: 0),
-                                                                               "inputBiasVector": CIVector(x: bias, y: bias, z: bias, w: 0)])
-        
-        //Turns red scale into grayscale usable for blend
-        mask = mask.applyingFilter("CIMaximumComponent")
-        if inverted {
-            mask = mask.applyingFilter("CIColorInvert")
-        }
-        //Clamp the mask values to [0,1]
-        //CIFilterClamp: Modifies color values to keep them within a specified range.)
-        return mask.applyingFilter("CIColorClamp")
-    }
-    
-    //Blends background and foreground images according to the provided mask
-    func blendImages(background: CIImage, foreground: CIImage, mask: CIImage) -> CIImage {
-        return foreground.applyingFilter("CIBlendWithMask", parameters: [kCIInputBackgroundImageKey : background, kCIInputMaskImageKey: mask])
-    }
-    
 }
 
 //MARK: Private Methods
 extension AssetHelper {
-    
-    //Convert Image Source to AVDepthData
-    fileprivate func getDepthDataFromSource(source: CGImageSource) -> AVDepthData? {
-        let auxData = CGImageSourceCopyAuxiliaryDataInfoAtIndex(source, 0, kCGImageAuxiliaryDataTypeDisparity) as? [AnyHashable: Any]
-        if auxData != nil {
-            do {
-                // Create a depth data object from auxiliary data
-                var depthData = try AVDepthData(fromDictionaryRepresentation: auxData!)
-                // Check native depth data type
-                if depthData.depthDataType != kCVPixelFormatType_DisparityFloat16 {
-                    //Convert to half float disparity data
-                    depthData = depthData.converting(toDepthDataType: kCVPixelFormatType_DisparityFloat32)
-                }
-                
-                let depthMap: CVPixelBuffer = depthData.depthDataMap
-                Logger.log(type: .VERBOSE, string: "Depth Data found!")
-                return depthData
-            } catch {
-                Logger.log(type: .ERROR, string: "Catching error from Depth Data retrieval")
-                return nil
-            }
-        }
-        Logger.log(type: .WARNING, string: "No depth data found")
-        return nil
-    }
 
     //Convert Depth Image to Disparity Image
     fileprivate func getDisparityFromDepthImage(depthImage: CIImage) -> CIImage? {

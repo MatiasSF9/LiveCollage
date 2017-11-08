@@ -307,7 +307,7 @@ extension EditViewController {
         }
 
         //UNcomment to display mask
-//        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!, slope:  CGFloat(slopeSlider.value), bias: CGFloat(depthSlider.value))
+//        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparityImage!, slope:  CGFloat(slopeSlider.value), bias: CGFloat(depthSlider.value), inverted: currentType == .Foreground)
 //        editedImage.image = UIImage(ciImage: mask)
 //        return
         

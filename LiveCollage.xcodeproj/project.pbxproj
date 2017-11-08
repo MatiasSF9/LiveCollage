@@ -20,6 +20,7 @@
 		499CB01C1F49E1A7008D45D8 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CB01B1F49E1A7008D45D8 /* GridLayout.swift */; };
 		499CB0201F4A4935008D45D8 /* AssetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CB01F1F4A4935008D45D8 /* AssetHelper.swift */; };
 		49FCF14C1F3E51FF0079D0D1 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF14B1F3E51FF0079D0D1 /* CollageViewController.swift */; };
+		603F59A31FAE4FC800712A6D /* ColorCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F59A21FAE4FC800712A6D /* ColorCube.swift */; };
 		604E018D1F7AE4EA002F67C1 /* AssetHelper+Depth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */; };
 		60542D2D1F683A87006666B8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D2C1F683A87006666B8 /* EditViewController.swift */; };
 		60542D2F1F6869F1006666B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D2E1F6869F1006666B8 /* HomeViewController.swift */; };
@@ -52,6 +53,7 @@
 		499CB01F1F4A4935008D45D8 /* AssetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetHelper.swift; sourceTree = "<group>"; };
 		49FCF14B1F3E51FF0079D0D1 /* CollageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageViewController.swift; sourceTree = "<group>"; };
 		58A976F8DFB05B59CF6D7A87 /* Pods-LiveCollage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveCollage.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveCollage/Pods-LiveCollage.release.xcconfig"; sourceTree = "<group>"; };
+		603F59A21FAE4FC800712A6D /* ColorCube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCube.swift; sourceTree = "<group>"; };
 		604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetHelper+Depth.swift"; sourceTree = "<group>"; };
 		60542D2C1F683A87006666B8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		60542D2E1F6869F1006666B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				499CB01F1F4A4935008D45D8 /* AssetHelper.swift */,
 				604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */,
 				495273451F4A5A1F00EE14F9 /* Logger.swift */,
+				603F59A21FAE4FC800712A6D /* ColorCube.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				60CD15D81F97D7FB00DBA7D9 /* Foundation+Utils.swift in Sources */,
 				60AD56E81F71642A005E5E06 /* FilterHelper.swift in Sources */,
 				60FE24FF1EA3AFC2000F21DF /* AppDelegate.swift in Sources */,
+				603F59A31FAE4FC800712A6D /* ColorCube.swift in Sources */,
 				49503B531F3F92FD00D3C84C /* PreorderedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,13 +563,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.m2.media.deepix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "218ba887-0ab4-482b-8d07-2817c895fc64";
+				PROVISIONING_PROFILE = "4ab3d558-34bb-453b-8b1d-80127d2e3578";
 				PROVISIONING_PROFILE_SPECIFIER = "Deepix Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "LiveCollage/LiveCollage-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -589,7 +593,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "LiveCollage/LiveCollage-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

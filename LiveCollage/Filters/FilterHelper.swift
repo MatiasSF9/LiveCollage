@@ -29,6 +29,7 @@ class FilterHelper: FilterHelperProtocol {
     fileprivate let frame:CGRect!
     private let editedImage: CIImage!
     private var disparityImage: CIImage?
+    fileprivate let filterCube = ColorCube.colorCubeFilterForChromaKey(valueFilter: 0.95)
     
     
     init(editedImage: CIImage, frame: CGRect) {
@@ -135,7 +136,49 @@ class FilterHelper: FilterHelperProtocol {
     //Applies blend mask for depth enabled images
     private func applyBlend(background: CIImage, disparity: CIImage, foreground: CIImage, slope: CGFloat, bias: CGFloat, inverted: Bool) -> CIImage? {
         
-        let mask = AssetHelper.shared().getBlendMask(disparityImage: disparity, slope:  slope, bias: bias, inverted: inverted)
-        return AssetHelper.shared().blendImages(background: background, foreground: foreground, mask: mask)
+        let mask = getBlendMask(disparityImage: disparity, slope:  slope, bias: bias, inverted: inverted)
+        return blendImages(background: background, foreground: foreground, mask: mask)
+    }
+}
+//MARK: Disparity and blends
+extension FilterHelper {
+    //Builds a blend mask
+    func getBlendMask(disparityImage: CIImage, slope: CGFloat, bias: CGFloat, inverted: Bool) -> CIImage {
+        
+        //Turns red scale into grayscale usable for blend
+        var mask = disparityImage.applyingFilter("CIMaximumComponent")
+        
+        
+        //Scales and offset disparity values according to the slider arguments.
+        //CIColorMatrix: Multiplies source color values and adds a bias factor to each color component
+        mask = mask.applyingFilter("CIColorMatrix", parameters: ["inputRVector": CIVector(x: slope, y: 0, z: 0, w: 0),
+                                                                 "inputGVector": CIVector(x: 0, y: slope, z: 0, w: 0),
+                                                                 "inputBVector": CIVector(x: 0, y: 0, z: slope, w: 0),
+                                                                 "inputAVector": CIVector(x: 0, y: 0, z: 0, w: 1),
+                                                                 "inputBiasVector": CIVector(x: bias, y: bias, z: bias, w: 0)])
+        
+        if inverted {
+            mask = mask.applyingFilter("CIColorInvert")
+        }
+        //Clamp the mask values to [0,1]
+        //CIFilterClamp: Modifies color values to keep them within a specified range.)
+        mask = mask.applyingFilter("CIColorClamp")
+        
+        return filterGreys(ciimage: mask)
+    }
+    
+    //Blends background and foreground images according to the provided mask
+    func blendImages(background: CIImage, foreground: CIImage, mask: CIImage) -> CIImage {
+        return foreground.applyingFilter("CIBlendWithMask", parameters: [kCIInputBackgroundImageKey : background, kCIInputMaskImageKey: mask])
+    }
+    
+    func filterGreys(ciimage: CIImage) -> CIImage {
+        
+        filterCube.setValue(ciimage, forKey: kCIInputImageKey)
+        
+        guard let output = filterCube.outputImage else {
+            return ciimage
+        }
+        return output
     }
 }

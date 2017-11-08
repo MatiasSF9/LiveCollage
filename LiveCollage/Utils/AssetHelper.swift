@@ -26,6 +26,9 @@ class AssetHelper {
     fileprivate var manager = PHCachingImageManager()
     fileprivate var editManager = PHContentEditingInput()
     
+    var data: Data?
+    var filterCube : CIFilter?
+    
     static func shared() -> AssetHelper {
         return instance
     }
