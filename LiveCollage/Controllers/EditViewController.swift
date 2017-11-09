@@ -19,10 +19,6 @@ enum FilterType: Int {
     case Frame = 0, Brightness, Contrast, Temp, Fx, Blur, None
 }
 
-enum FilterSwitch: Int {
-    case Background = 0, Foreground
-}
-
 enum SliderType: Int {
     case Depth = 0, Focal
 }
@@ -57,9 +53,9 @@ class EditViewController: UIViewController {
     
     //Filters Setup
     fileprivate let context = CIContext()
-    fileprivate var filterControls = CIFilter(name: kColorFilter)!
-    fileprivate var filterTempAndTint = CIFilter(name: kTempFilter)!
-    fileprivate var filterBlur = CIFilter(name: kMotionBlurFilter)!
+    fileprivate var filterControls: CIFilter?
+    fileprivate var filterTempAndTint: CIFilter?
+    fileprivate var filterBlur: CIFilter?
     
     fileprivate var currentFilter: FilterType = .None
     
@@ -124,61 +120,69 @@ class EditViewController: UIViewController {
         }
         
         focalSlider.isEnabled = true
-        
         if depthEnabled {
             depthSlider.isEnabled = true
         }
         
         currentFilter = FilterType(rawValue: sender.tag)!
+        restoreFilter(filterType: currentFilter)
         
-        switch FilterType(rawValue: sender.tag) {
-        case .Frame?:
+    }
+    
+    private func restoreFilter(filterType: FilterType) {
+        
+        let depth = filterHelper.getDepth(filterSwitch: currentType)
+        
+        switch filterType {
+        case .Frame:
             break
-        case .Brightness?:
-            guard let state = filterHelper.getFilter(filterName: kColorFilter) else {
+        case .Brightness:
+            guard let state = filterHelper.getFilter(filterName: kColorFilter, filterSwitch: currentType) else {
+                filterControls = CIFilter(name: kColorFilter)!
                 return
             }
             filterControls = state.filter
             let focal = state.filter.value(forKey: kCIInputBrightnessKey) as! Float
-            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope), background: state.background)
+            restoreSliders(focal: focal, depth: Float(depth), slope: 1.0)
             break
-        case .Contrast?:
-            guard let state = filterHelper.getFilter(filterName: kColorFilter) else {
+        case .Contrast:
+            guard let state = filterHelper.getFilter(filterName: kColorFilter, filterSwitch: currentType) else {
+                filterControls = CIFilter(name: kColorFilter)!
                 return
             }
             filterControls = state.filter
             let focal = state.filter.value(forKey: kCIInputContrastKey) as! Float
-            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope), background: state.background)
+            restoreSliders(focal: focal, depth: Float(depth), slope: 1.0)
             break
-        case .Temp?:
-            guard let state = filterHelper.getFilter(filterName: kTempFilter) else {
+        case .Temp:
+            guard let state = filterHelper.getFilter(filterName: kTempFilter, filterSwitch: currentType) else {
+                filterTempAndTint = CIFilter(name: kTempFilter)!
                 return
             }
             filterControls = state.filter
             let focal = state.filter.value(forKey: kCIInputNeutralTemperatureKey) as! Float
-            restoreSliders(focal: focal, depth: Float(state.valueDepth), slope: Float(state.valueSlope), background: state.background)
+            restoreSliders(focal: focal, depth: Float(depth), slope: 1.0)
             break
-        case .Fx?:
+        case .Fx:
             break
-        case .Blur?:
-            guard let state = filterHelper.getFilter(filterName: kMotionBlurFilter) else {
+        case .Blur:
+            guard let state = filterHelper.getFilter(filterName: kMotionBlurFilter, filterSwitch: currentType) else {
+                filterBlur = CIFilter(name: kMotionBlurFilter)
                 return
             }
             filterControls = state.filter
             let vector = state.filter.value(forKey: "inputRadius") as! Float
-            restoreSliders(focal: Float(vector), depth: Float(state.valueDepth), slope: Float(state.valueSlope), background: state.background)
+            restoreSliders(focal: Float(vector), depth: Float(depth), slope: 1.0)
             break
-        case .None?: break
+        case .None: break
         default: break
         }
         
     }
     
-    private func restoreSliders(focal: Float, depth: Float, slope: Float, background: Bool) {
+    private func restoreSliders(focal: Float, depth: Float, slope: Float) {
         focalSlider.value = focal
         depthSlider.value = depth
-        currentType = background ? .Background : .Foreground
-        segmentedControl.selectedSegmentIndex = background ? 0 : 1
     }
     
     @IBAction func onValueChange(_ sender: UISlider) {
@@ -209,6 +213,8 @@ class EditViewController: UIViewController {
         default:
             currentType = FilterSwitch.Background
         }
+        
+        restoreFilter(filterType: currentFilter)
         updateFilter()
         updateRender()
     }
@@ -229,7 +235,7 @@ extension EditViewController {
             return
         }
         
-        let scaleX = Float((size.width)) / Float((dispSize.width))
+        let scaleX = Float(size.width) / Float(dispSize.width)
         let scaleY = Float(size.height) / Float(dispSize.height)
         let transform = CGAffineTransform(scaleX: CGFloat(5.25), y: CGFloat(5.25))
         disparityImage = disparityImage?.rotateImage(orientation: (self.imageOrientation)!)
@@ -252,39 +258,42 @@ extension EditViewController {
     }
     
     private func updateFilter() {
-        var filter: CIFilter = CIFilter()
+        var filter: CIFilter?
         let value = focalSlider.value
         switch currentFilter {
         case .Frame:
             //TODO: crop
             break
         case .Brightness:
-            filterControls.setValue(value, forKey: kCIInputBrightnessKey)
+            filterControls?.setValue(value, forKey: kCIInputBrightnessKey)
             filter = filterControls
             break
         case .Contrast:
-            filterControls.setValue(value, forKey: kCIInputContrastKey)
+            filterControls?.setValue(value, forKey: kCIInputContrastKey)
             filter = filterControls
             break
         case .Temp:
             let scale: CGFloat = CGFloat(6500 * value)
             let vector = CIVector(x: scale, y: 0)
-            filterTempAndTint.setValue(vector, forKey: kCIInputNeutralTemperatureKey)
+            filterTempAndTint?.setValue(vector, forKey: kCIInputNeutralTemperatureKey)
             break
         case .Fx:
             break
         case .Blur:
-            filterBlur.setValue(10.0, forKey: "inputRadius")
+            filterBlur?.setValue(10.0, forKey: "inputRadius")
             filter = filterBlur
             break
         default:
             break
         }
-        
-        filterHelper.addFiterToChain(filter: filter,  value: CGFloat(focalSlider.value),
+
+        if filter == nil {
+            return
+        }
+        filterHelper.addFiterToChain(filter: filter!,  value: CGFloat(focalSlider.value),
                                      depthEnabled: disparityImage != nil,
                                      depth: CGFloat(depthSlider.value), slope: 1,
-                                     background: currentType == FilterSwitch.Background)
+                                     filterSwitch: currentType)
 
     }
 

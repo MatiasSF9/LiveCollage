@@ -24,11 +24,6 @@ protocol Originator {
 struct FilterStateEntry {
     var filter: CIFilter
     var value: CGFloat
-    var depthEnabled: Bool
-    var valueDepth: CGFloat
-    var valueSlope: CGFloat
-    var background: Bool
-    
     
     func isType(name: String) -> Bool {
         return self.filter.name.elementsEqual(name)
@@ -56,8 +51,8 @@ class FilterState: Originator {
     var entries: [FilterStateEntry] = []
     var nextId: Int = 0
     
-    func addFilterStateEntry(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat, background: Bool) {
-        let entry = FilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: depth, valueSlope: slope, background: background)
+    func addFilterStateEntry(filter: CIFilter, value: CGFloat) {
+        let entry = FilterStateEntry(filter: filter, value: value)
         entries.append(entry)
         nextId = nextId + 1
     }
@@ -74,7 +69,7 @@ class FilterState: Originator {
     func printCheckPoint() {
         print("Printing filters....")
         for entry in entries {
-            print("Filter: \(entry.filter), Value: \(entry.value), Depth Value: \(entry.valueDepth)")
+            print("Filter: \(entry.filter), Value: \(entry.value)")
         }
         print("Total filters: \(entries.count)\n")
         
@@ -125,7 +120,7 @@ extension FilterState {
         entries.remove(at: entries.count)
     }
     
-    func replaceEntry(filter: CIFilter, value: CGFloat, depthEnabled: Bool, valueDepth: CGFloat, valueSlope: CGFloat, background: Bool) {
+    func replaceEntry(filter: CIFilter, value: CGFloat) {
         var position = 0
         var found = false
         for entry in entries {
@@ -136,7 +131,7 @@ extension FilterState {
             position = position + 1
         }
         if found {
-            entries[position] = FilterStateEntry(filter: filter, value: value, depthEnabled: depthEnabled, valueDepth: valueDepth, valueSlope: valueSlope, background: background)
+            entries[position] = FilterStateEntry(filter: filter, value: value)
         }
     }
     
