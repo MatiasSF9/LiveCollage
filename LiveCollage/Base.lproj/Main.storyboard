@@ -376,9 +376,13 @@ GIF</string>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uOR-xZ-zED">
                                 <rect key="frame" x="0.0" y="10" width="375" height="520"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="uOR-xZ-zED" secondAttribute="height" multiplier="75:104" id="xKa-p9-Vbx"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="RR2-Js-iBL" appends="YES" id="gYN-sS-jqE"/>
+                                </connections>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEPTH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge3-QV-Ztl">
                                 <rect key="frame" x="144" y="20" width="87" height="21"/>
@@ -647,6 +651,11 @@ GIF</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaG-7H-2HT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="RR2-Js-iBL">
+                    <connections>
+                        <outlet property="delegate" destination="LgK-B3-Qgd" id="GsA-zK-0i7"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-279.5" y="1888.5"/>
         </scene>

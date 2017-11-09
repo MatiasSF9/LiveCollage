@@ -61,6 +61,10 @@ class EditViewController: UIViewController {
     
     var depthEnabled: Bool = false
     
+    //Temp Image
+    var tempImage:UIImage?
+    var displayOriginal:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -226,6 +230,7 @@ class EditViewController: UIViewController {
 //        updateFilter()
         updateRender()
     }
+
 }
 
 //MARK: Effect Actions
@@ -329,8 +334,10 @@ extension EditViewController {
         if disparityImage == nil {
             let chained = filterHelper.applyChain()
             displayImage(image: chained)
+            tempImage = chained
         } else {
             let chained = filterHelper.applyDepthChain()
+            tempImage = chained
             displayImage(image: chained)
         }
         
@@ -362,4 +369,31 @@ extension EditViewController {
         controller.croppedRect = cropped
         return controller
     }
+}
+
+
+extension EditViewController: UIGestureRecognizerDelegate {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        Logger.VERBOSE(message: "Touches Began")
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        Logger.VERBOSE(message: "Displaying Edited")
+        displayImage(image: tempImage!)
+        displayOriginal = false
+    }
+    
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            if touch.force > 0.5 && !displayOriginal {
+                displayOriginal = true
+                displayImage(image: UIImage(ciImage: currentImage!))
+                Logger.VERBOSE(message: "Displaying Original")
+            }
+            
+        }
+    }
+    
 }
