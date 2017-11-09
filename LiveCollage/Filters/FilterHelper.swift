@@ -35,8 +35,8 @@ class FilterHelper: FilterHelperProtocol {
     private var disparityImage: CIImage?
     
     private var depthEnabled: Bool = false
-    private var valueDepthBackground: CGFloat = 1.0
-    private var valueDepthForeground: CGFloat = 0.0
+    private var valueDepthBackground: CGFloat = 2.0
+    private var valueDepthForeground: CGFloat = -2.0
     private let filterChainBackground = FilterState()
     private let filterChainForeground = FilterState()
     

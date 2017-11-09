@@ -10,6 +10,7 @@ import UIKit
 import PhotosUI
 import CoreImage
 import ImageIO
+import AudioToolbox
 
 public let kColorFilter: String = "CIColorControls"
 public let kTempFilter: String = "CITemperatureAndTint"
@@ -380,17 +381,30 @@ extension EditViewController: UIGestureRecognizerDelegate {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         Logger.VERBOSE(message: "Displaying Edited")
-        displayImage(image: tempImage!)
+        if tempImage != nil {
+            displayImage(image: tempImage!)
+        }
         displayOriginal = false
     }
     
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            if touch.force > 0.5 && !displayOriginal {
+            
+            if touch.force > 2.0 && !displayOriginal {
+                UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
                 displayOriginal = true
                 displayImage(image: UIImage(ciImage: currentImage!))
                 Logger.VERBOSE(message: "Displaying Original")
+            } else {
+                let location = touch.location(in: editedImage)
+                let size = editedImage.frame.size
+                let bias = Float(location.y) / Float(size.height)
+                
+                depthSlider.value = -(bias * 4 - 2)
+                lblDepthValue.text = "\(depthSlider.value)"
+                updateFilter()
+                updateRender()
             }
             
         }
