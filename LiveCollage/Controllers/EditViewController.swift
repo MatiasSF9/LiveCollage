@@ -66,6 +66,8 @@ class EditViewController: UIViewController {
         
         //Disable depth by default
         depthLabel.isHidden = true
+        depthLabel.layer.masksToBounds = true
+        depthLabel.layer.cornerRadius = 4.0
         depthSlider.isEnabled = false
         focalSlider.isEnabled = false
         
@@ -137,6 +139,8 @@ class EditViewController: UIViewController {
         case .Frame:
             break
         case .Brightness:
+            focalSlider.minimumValue = -0.1
+            focalSlider.maximumValue = 0.1
             guard let state = filterHelper.getFilter(filterName: kColorFilter, filterSwitch: currentType) else {
                 filterControls = CIFilter(name: kColorFilter)!
                 return
@@ -146,6 +150,8 @@ class EditViewController: UIViewController {
             restoreSliders(focal: focal, depth: Float(depth), slope: 1.0)
             break
         case .Contrast:
+            focalSlider.minimumValue = 0.9
+            focalSlider.maximumValue = 1.1
             guard let state = filterHelper.getFilter(filterName: kColorFilter, filterSwitch: currentType) else {
                 filterControls = CIFilter(name: kColorFilter)!
                 return
@@ -155,13 +161,15 @@ class EditViewController: UIViewController {
             restoreSliders(focal: focal, depth: Float(depth), slope: 1.0)
             break
         case .Temp:
+            focalSlider.minimumValue = 2000
+            focalSlider.maximumValue = 10000
             guard let state = filterHelper.getFilter(filterName: kTempFilter, filterSwitch: currentType) else {
                 filterTempAndTint = CIFilter(name: kTempFilter)!
                 return
             }
-            filterControls = state.filter
-            let focal = state.filter.value(forKey: kCIInputNeutralTemperatureKey) as! Float
-            restoreSliders(focal: focal, depth: Float(depth), slope: 1.0)
+            filterTempAndTint = state.filter
+            let focal = state.filter.value(forKey: "inputNeutral") as! CIVector
+            restoreSliders(focal: Float(focal.x), depth: Float(depth), slope: 1.0)
             break
         case .Fx:
             break
@@ -170,7 +178,7 @@ class EditViewController: UIViewController {
                 filterBlur = CIFilter(name: kMotionBlurFilter)
                 return
             }
-            filterControls = state.filter
+            filterBlur = state.filter
             let vector = state.filter.value(forKey: "inputRadius") as! Float
             restoreSliders(focal: Float(vector), depth: Float(depth), slope: 1.0)
             break
@@ -215,7 +223,7 @@ class EditViewController: UIViewController {
         }
         
         restoreFilter(filterType: currentFilter)
-        updateFilter()
+//        updateFilter()
         updateRender()
     }
 }
@@ -273,9 +281,11 @@ extension EditViewController {
             filter = filterControls
             break
         case .Temp:
-            let scale: CGFloat = CGFloat(6500 * value)
+            let scale: CGFloat = CGFloat(value)
             let vector = CIVector(x: scale, y: 0)
-            filterTempAndTint?.setValue(vector, forKey: kCIInputNeutralTemperatureKey)
+            filterTempAndTint?.setValue(vector, forKey: "inputNeutral")
+            filterTempAndTint?.setValue(CIVector(x: 6500, y:0), forKey: "inputTargetNeutral")
+            filter = filterTempAndTint
             break
         case .Fx:
             break
