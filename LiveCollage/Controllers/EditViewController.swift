@@ -57,6 +57,7 @@ class EditViewController: UIViewController {
     fileprivate var filterControls: CIFilter?
     fileprivate var filterTempAndTint: CIFilter?
     fileprivate var filterBlur: CIFilter?
+    fileprivate var filterFX: HB2Filter?
     
     fileprivate var currentFilter: FilterType = .None
     
@@ -177,6 +178,12 @@ class EditViewController: UIViewController {
             restoreSliders(focal: Float(focal.x), depth: Float(depth), slope: 1.0)
             break
         case .Fx:
+            guard let state = filterHelper.getFilter(filterName: "HB2Filter", filterSwitch: currentType) else {
+                filterFX = HB2Filter()
+                return
+            }
+            filterFX = state.filter as! HB2Filter
+            restoreSliders(focal: 1, depth: Float(depth), slope: 1)
             break
         case .Blur:
             guard let state = filterHelper.getFilter(filterName: kMotionBlurFilter, filterSwitch: currentType) else {
@@ -294,6 +301,7 @@ extension EditViewController {
             filter = filterTempAndTint
             break
         case .Fx:
+            filter = filterFX
             break
         case .Blur:
             filterBlur?.setValue(10.0, forKey: "inputRadius")

@@ -28,6 +28,7 @@
 		6093BA871F6C55CD00570867 /* FilterMemento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6093BA861F6C55CD00570867 /* FilterMemento.swift */; };
 		60AD56E81F71642A005E5E06 /* FilterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AD56E71F71642A005E5E06 /* FilterHelper.swift */; };
 		60B79E4A1F66E58300634F35 /* LayoutCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B79E491F66E58300634F35 /* LayoutCollectionViewController.swift */; };
+		60C654A51FB6091700577C69 /* HB2Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C654A41FB6091700577C69 /* HB2Filter.swift */; };
 		60CD15D51F97D75700DBA7D9 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD15D41F97D75700DBA7D9 /* UIImage+Utils.swift */; };
 		60CD15D81F97D7FB00DBA7D9 /* Foundation+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD15D71F97D7FB00DBA7D9 /* Foundation+Utils.swift */; };
 		60CD15DA1F97ED1C00DBA7D9 /* CIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CD15D91F97ED1C00DBA7D9 /* CIImage+Utils.swift */; };
@@ -63,6 +64,7 @@
 		6093BA861F6C55CD00570867 /* FilterMemento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMemento.swift; sourceTree = "<group>"; };
 		60AD56E71F71642A005E5E06 /* FilterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHelper.swift; sourceTree = "<group>"; };
 		60B79E491F66E58300634F35 /* LayoutCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutCollectionViewController.swift; sourceTree = "<group>"; };
+		60C654A41FB6091700577C69 /* HB2Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HB2Filter.swift; sourceTree = "<group>"; };
 		60CD15D41F97D75700DBA7D9 /* UIImage+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 		60CD15D71F97D7FB00DBA7D9 /* Foundation+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+Utils.swift"; sourceTree = "<group>"; };
 		60CD15D91F97ED1C00DBA7D9 /* CIImage+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Utils.swift"; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				6093BA861F6C55CD00570867 /* FilterMemento.swift */,
 				60AD56E71F71642A005E5E06 /* FilterHelper.swift */,
+				60C654A41FB6091700577C69 /* HB2Filter.swift */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				499CB01C1F49E1A7008D45D8 /* GridLayout.swift in Sources */,
 				60CD15D81F97D7FB00DBA7D9 /* Foundation+Utils.swift in Sources */,
 				60AD56E81F71642A005E5E06 /* FilterHelper.swift in Sources */,
+				60C654A51FB6091700577C69 /* HB2Filter.swift in Sources */,
 				60FE24FF1EA3AFC2000F21DF /* AppDelegate.swift in Sources */,
 				603F59A31FAE4FC800712A6D /* ColorCube.swift in Sources */,
 				49503B531F3F92FD00D3C84C /* PreorderedViewController.swift in Sources */,
