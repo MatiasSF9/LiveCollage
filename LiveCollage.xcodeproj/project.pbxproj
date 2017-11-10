@@ -20,6 +20,7 @@
 		499CB01C1F49E1A7008D45D8 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CB01B1F49E1A7008D45D8 /* GridLayout.swift */; };
 		499CB0201F4A4935008D45D8 /* AssetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CB01F1F4A4935008D45D8 /* AssetHelper.swift */; };
 		49FCF14C1F3E51FF0079D0D1 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF14B1F3E51FF0079D0D1 /* CollageViewController.swift */; };
+		600ED8EF1FB6342A00FB09D1 /* CandyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600ED8EE1FB6342A00FB09D1 /* CandyFilter.swift */; };
 		603F59A31FAE4FC800712A6D /* ColorCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F59A21FAE4FC800712A6D /* ColorCube.swift */; };
 		604E018D1F7AE4EA002F67C1 /* AssetHelper+Depth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */; };
 		60542D2D1F683A87006666B8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D2C1F683A87006666B8 /* EditViewController.swift */; };
@@ -54,6 +55,7 @@
 		499CB01F1F4A4935008D45D8 /* AssetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetHelper.swift; sourceTree = "<group>"; };
 		49FCF14B1F3E51FF0079D0D1 /* CollageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageViewController.swift; sourceTree = "<group>"; };
 		58A976F8DFB05B59CF6D7A87 /* Pods-LiveCollage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveCollage.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveCollage/Pods-LiveCollage.release.xcconfig"; sourceTree = "<group>"; };
+		600ED8EE1FB6342A00FB09D1 /* CandyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandyFilter.swift; sourceTree = "<group>"; };
 		603F59A21FAE4FC800712A6D /* ColorCube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCube.swift; sourceTree = "<group>"; };
 		604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetHelper+Depth.swift"; sourceTree = "<group>"; };
 		60542D2C1F683A87006666B8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				6093BA861F6C55CD00570867 /* FilterMemento.swift */,
 				60AD56E71F71642A005E5E06 /* FilterHelper.swift */,
 				60C654A41FB6091700577C69 /* HB2Filter.swift */,
+				600ED8EE1FB6342A00FB09D1 /* CandyFilter.swift */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				60FE25181EA3B146000F21DF /* LiveImageCell.swift in Sources */,
 				604E018D1F7AE4EA002F67C1 /* AssetHelper+Depth.swift in Sources */,
 				60FE25161EA3B13A000F21DF /* AddImageCell.swift in Sources */,
+				600ED8EF1FB6342A00FB09D1 /* CandyFilter.swift in Sources */,
 				6093BA871F6C55CD00570867 /* FilterMemento.swift in Sources */,
 				4924B18F1F487F1C003C88E8 /* PhotoCollectionViewController.swift in Sources */,
 				60FE25141EA3B10E000F21DF /* BaseCollectionCell.swift in Sources */,

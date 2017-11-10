@@ -57,7 +57,7 @@ class EditViewController: UIViewController {
     fileprivate var filterControls: CIFilter?
     fileprivate var filterTempAndTint: CIFilter?
     fileprivate var filterBlur: CIFilter?
-    fileprivate var filterFX: HB2Filter?
+    fileprivate var filterFX: CandyFilter?
     
     fileprivate var currentFilter: FilterType = .None
     
@@ -178,11 +178,11 @@ class EditViewController: UIViewController {
             restoreSliders(focal: Float(focal.x), depth: Float(depth), slope: 1.0)
             break
         case .Fx:
-            guard let state = filterHelper.getFilter(filterName: "HB2Filter", filterSwitch: currentType) else {
-                filterFX = HB2Filter()
+            guard let state = filterHelper.getFilter(filterName: "CandyFilter", filterSwitch: currentType) else {
+                filterFX = CandyFilter()
                 return
             }
-            filterFX = state.filter as! HB2Filter
+            filterFX = state.filter as! CandyFilter
             restoreSliders(focal: 1, depth: Float(depth), slope: 1)
             break
         case .Blur:
