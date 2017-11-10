@@ -308,7 +308,7 @@ extension PhotoCollectionViewController : TOCropViewControllerDelegate {
     }
     
     internal func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
-        
+        cropViewController.dismiss(animated: true, completion: nil)
     }
     
 }
