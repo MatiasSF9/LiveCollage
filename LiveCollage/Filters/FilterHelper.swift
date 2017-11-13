@@ -18,7 +18,7 @@ protocol FilterHelperProtocol {
     //Add or Update filter values
     func addFiterToChain(filter: CIFilter, value: CGFloat, depthEnabled: Bool, depth: CGFloat, slope: CGFloat, filterSwitch: FilterSwitch)
     //Remove filter with given name
-    func removeFilter(filterName: String, filterSwitch: FilterSwitch) -> UIImage
+    func removeFilter(filterName: String, filterSwitch: FilterSwitch)
     //Removes last filter
     func undo(filterSwitch: FilterSwitch) -> UIImage
     //Gets filter with given name
@@ -75,13 +75,12 @@ class FilterHelper: FilterHelperProtocol {
     }
     
     //Remove filter with given name
-    func removeFilter(filterName: String, filterSwitch: FilterSwitch) -> UIImage {
+    func removeFilter(filterName: String, filterSwitch: FilterSwitch) {
         if filterSwitch == .Background {
             filterChainBackground.removeFilter(filterName: filterName)
         } else {
             filterChainForeground.removeFilter(filterName: filterName)
         }
-        return applyChain()
     }
     
     //Removes last filter

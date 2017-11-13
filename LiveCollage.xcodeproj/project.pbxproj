@@ -21,6 +21,10 @@
 		499CB0201F4A4935008D45D8 /* AssetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CB01F1F4A4935008D45D8 /* AssetHelper.swift */; };
 		49FCF14C1F3E51FF0079D0D1 /* CollageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FCF14B1F3E51FF0079D0D1 /* CollageViewController.swift */; };
 		600ED8EF1FB6342A00FB09D1 /* CandyFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600ED8EE1FB6342A00FB09D1 /* CandyFilter.swift */; };
+		600ED8F11FB9D04700FB09D1 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600ED8F01FB9D04700FB09D1 /* FilterViewController.swift */; };
+		600ED8F31FB9D1EC00FB09D1 /* FilterCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600ED8F21FB9D1EC00FB09D1 /* FilterCollectionCell.swift */; };
+		600ED8F51FB9D64000FB09D1 /* BaseEditControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600ED8F41FB9D64000FB09D1 /* BaseEditControllerViewController.swift */; };
+		600ED8F81FBA122700FB09D1 /* DarkSummer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600ED8F71FBA122700FB09D1 /* DarkSummer.swift */; };
 		603F59A31FAE4FC800712A6D /* ColorCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603F59A21FAE4FC800712A6D /* ColorCube.swift */; };
 		604E018D1F7AE4EA002F67C1 /* AssetHelper+Depth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */; };
 		60542D2D1F683A87006666B8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D2C1F683A87006666B8 /* EditViewController.swift */; };
@@ -56,6 +60,10 @@
 		49FCF14B1F3E51FF0079D0D1 /* CollageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollageViewController.swift; sourceTree = "<group>"; };
 		58A976F8DFB05B59CF6D7A87 /* Pods-LiveCollage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveCollage.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveCollage/Pods-LiveCollage.release.xcconfig"; sourceTree = "<group>"; };
 		600ED8EE1FB6342A00FB09D1 /* CandyFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandyFilter.swift; sourceTree = "<group>"; };
+		600ED8F01FB9D04700FB09D1 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		600ED8F21FB9D1EC00FB09D1 /* FilterCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionCell.swift; sourceTree = "<group>"; };
+		600ED8F41FB9D64000FB09D1 /* BaseEditControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEditControllerViewController.swift; sourceTree = "<group>"; };
+		600ED8F71FBA122700FB09D1 /* DarkSummer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSummer.swift; sourceTree = "<group>"; };
 		603F59A21FAE4FC800712A6D /* ColorCube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCube.swift; sourceTree = "<group>"; };
 		604E018C1F7AE4EA002F67C1 /* AssetHelper+Depth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AssetHelper+Depth.swift"; sourceTree = "<group>"; };
 		60542D2C1F683A87006666B8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -142,14 +150,24 @@
 		49FCF14A1F3E51FF0079D0D1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				600ED8F61FB9F89500FB09D1 /* FilterControllers */,
 				60542D2E1F6869F1006666B8 /* HomeViewController.swift */,
 				49FCF14B1F3E51FF0079D0D1 /* CollageViewController.swift */,
-				60542D2C1F683A87006666B8 /* EditViewController.swift */,
 				49503B521F3F92FD00D3C84C /* PreorderedViewController.swift */,
 				4924B18E1F487F1C003C88E8 /* PhotoCollectionViewController.swift */,
 				60B79E491F66E58300634F35 /* LayoutCollectionViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		600ED8F61FB9F89500FB09D1 /* FilterControllers */ = {
+			isa = PBXGroup;
+			children = (
+				600ED8F41FB9D64000FB09D1 /* BaseEditControllerViewController.swift */,
+				60542D2C1F683A87006666B8 /* EditViewController.swift */,
+				600ED8F01FB9D04700FB09D1 /* FilterViewController.swift */,
+			);
+			path = FilterControllers;
 			sourceTree = "<group>";
 		};
 		60542D301F686E37006666B8 /* Extensions */ = {
@@ -170,6 +188,7 @@
 				60AD56E71F71642A005E5E06 /* FilterHelper.swift */,
 				60C654A41FB6091700577C69 /* HB2Filter.swift */,
 				600ED8EE1FB6342A00FB09D1 /* CandyFilter.swift */,
+				600ED8F71FBA122700FB09D1 /* DarkSummer.swift */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -216,6 +235,7 @@
 				60FE25151EA3B13A000F21DF /* AddImageCell.swift */,
 				60FE25171EA3B146000F21DF /* LiveImageCell.swift */,
 				4924B1901F490283003C88E8 /* GridViewCell.swift */,
+				600ED8F21FB9D1EC00FB09D1 /* FilterCollectionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -405,6 +425,7 @@
 				60CD15DA1F97ED1C00DBA7D9 /* CIImage+Utils.swift in Sources */,
 				499CB0201F4A4935008D45D8 /* AssetHelper.swift in Sources */,
 				60CD15D51F97D75700DBA7D9 /* UIImage+Utils.swift in Sources */,
+				600ED8F31FB9D1EC00FB09D1 /* FilterCollectionCell.swift in Sources */,
 				495273461F4A5A1F00EE14F9 /* Logger.swift in Sources */,
 				49FCF14C1F3E51FF0079D0D1 /* CollageViewController.swift in Sources */,
 				60B79E4A1F66E58300634F35 /* LayoutCollectionViewController.swift in Sources */,
@@ -413,12 +434,15 @@
 				604E018D1F7AE4EA002F67C1 /* AssetHelper+Depth.swift in Sources */,
 				60FE25161EA3B13A000F21DF /* AddImageCell.swift in Sources */,
 				600ED8EF1FB6342A00FB09D1 /* CandyFilter.swift in Sources */,
+				600ED8F81FBA122700FB09D1 /* DarkSummer.swift in Sources */,
 				6093BA871F6C55CD00570867 /* FilterMemento.swift in Sources */,
 				4924B18F1F487F1C003C88E8 /* PhotoCollectionViewController.swift in Sources */,
 				60FE25141EA3B10E000F21DF /* BaseCollectionCell.swift in Sources */,
+				600ED8F51FB9D64000FB09D1 /* BaseEditControllerViewController.swift in Sources */,
 				4924B1911F490283003C88E8 /* GridViewCell.swift in Sources */,
 				499CB01C1F49E1A7008D45D8 /* GridLayout.swift in Sources */,
 				60CD15D81F97D7FB00DBA7D9 /* Foundation+Utils.swift in Sources */,
+				600ED8F11FB9D04700FB09D1 /* FilterViewController.swift in Sources */,
 				60AD56E81F71642A005E5E06 /* FilterHelper.swift in Sources */,
 				60C654A51FB6091700577C69 /* HB2Filter.swift in Sources */,
 				60FE24FF1EA3AFC2000F21DF /* AppDelegate.swift in Sources */,

@@ -301,7 +301,8 @@ extension PhotoCollectionViewController : TOCropViewControllerDelegate {
     internal func cropViewController(_ cropViewController: TOCropViewController, didCropToRect cropRect: CGRect, angle: Int) {
         
         self.navigationController?.dismiss(animated: false, completion: {
-            let controller = EditViewController.getInstance(asset: self.selectedAsset!, cropped: cropRect)
+//            let controller = EditViewController.getInstance(asset: self.selectedAsset!, cropped: cropRect)
+            let controller = FilterViewController.getInstance(asset: self.selectedAsset!, cropped: cropRect)
             self.navigationController?.show( controller, sender: nil)
         })
         
