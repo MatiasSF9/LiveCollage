@@ -18,12 +18,21 @@ class FilterViewController: BaseEditControllerViewController {
     let filters = ["HB2Filter", "CandyFilter", "DarkSummer", "Sepia", "Chrome", "Fade", "B&W"]
     var bSelections = [false, false, false, false, false, false, false]
     var fSelections = [false, false, false, false, false, false, false]
+    var fImages = [UIImage]()
     
     var currentFilter:CIFilter? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        for name in filters {
+            guard let filter = filter(name: name) else {
+                fImages.append(UIImage(ciImage: currentImage!))
+                return
+            }
+            let tmp = UIImage(ciImage: filter.outputImage!)
+            fImages.append(tmp)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,6 +81,9 @@ class FilterViewController: BaseEditControllerViewController {
         else if name == "Noir" {
             filter = CIFilter(name: "CIPhotoEffectNoir")
         }
+        else if name == "B&W" {
+            filter = CIFilter(name: "CIPhotoEffectNoir")
+        }
         filter?.setValue(currentImage!, forKey: kCIInputImageKey)
         return filter
     }
@@ -112,7 +124,7 @@ extension FilterViewController: UICollectionViewDataSource {
         let tmpFilter = filter(name: filters[indexPath.row])
         
         if currentImage != nil && tmpFilter != nil {
-            cell.configure(ciimage: currentImage!, filter: tmpFilter!)
+            cell.configure(image: fImages[indexPath.row], name: filters[indexPath.row])
         }
         
         var selected = false

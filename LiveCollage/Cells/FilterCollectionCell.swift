@@ -13,28 +13,14 @@ class FilterCollectionCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView?
     @IBOutlet weak var lblName: UILabel?
     
-    private var filter: CIFilter?
-    private var image: CIImage?
     
-    func configure(ciimage: CIImage, filter: CIFilter) {
-        self.image = ciimage
-        self.filter = filter
-        
-        filter.setValue(self.image, forKey: kCIInputImageKey)
-        guard let output = filter.outputImage else {
-            return
-        }
-        lblName?.text = filter.name
-        imageView?.image = UIImage(ciImage: output)
-    }
-    
-    func getFilter() -> CIFilter? {
-        return filter
+    func configure(image: UIImage, name: String) {
+        imageView?.image = image
+        lblName?.text = name
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView?.image = nil
-        filter = nil
     }
 }
