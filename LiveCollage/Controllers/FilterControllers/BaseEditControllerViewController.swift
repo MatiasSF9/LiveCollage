@@ -81,6 +81,8 @@ class BaseEditControllerViewController: UIViewController {
             //Check if image has depth info
             if AssetHelper.shared().hasDepthInformation(info: imageData.info!) {
                 self?.enableDepth(imageData: imageData.data!)
+            } else {
+                Logger.VERBOSE(message: "No depth information 💔")
             }
         }
     }
@@ -96,8 +98,8 @@ class BaseEditControllerViewController: UIViewController {
     internal func enableDepth(imageData: Data) {
         
         disparityImage = AssetHelper.shared().getDisparityImage(imageData: imageData)
+        disparityImage = disparityImage?.rotateImage(orientation: (self.imageOrientation)!)
         
-        /*
         guard let size = currentImage?.extent.size else {
             return
         }
@@ -108,10 +110,10 @@ class BaseEditControllerViewController: UIViewController {
         
         let scaleX = Float(size.width) / Float(dispSize.width)
         let scaleY = Float(size.height) / Float(dispSize.height)
-         */
+        
         //TODO: remove hardcoded scale
-        let transform = CGAffineTransform(scaleX: CGFloat(5.25), y: CGFloat(5.25))
-        disparityImage = disparityImage?.rotateImage(orientation: (self.imageOrientation)!)
+        let transform = CGAffineTransform(scaleX: CGFloat(scaleX), y: CGFloat(scaleY))
+        
         disparityImage = disparityImage?.transformed(by: transform)
         if disparityImage != nil {
             
@@ -123,6 +125,8 @@ class BaseEditControllerViewController: UIViewController {
             lblDepth.isHidden = false
             
             Logger.VERBOSE(message: "Disparity image obtained!! 💕")
+        } else {
+            Logger.VERBOSE(message: "No disparity image available!! 💔")
         }
     }
     
