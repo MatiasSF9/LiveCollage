@@ -56,7 +56,7 @@ extension AssetHelper {
     //Convert Depth Image to Disparity Image
     fileprivate func getDisparityFromDepthImage(depthImage: CIImage) -> CIImage? {
         //Get AVDepthData Object
-        let depthData = depthImage.depthData
+//        let depthData = depthImage.depthData
         //Convert to disparity
         let disparityImage = depthImage.applyingFilter("CIDepthToDisparity")
         

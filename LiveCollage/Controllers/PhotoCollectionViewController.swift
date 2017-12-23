@@ -40,6 +40,10 @@ class PhotoCollectionViewController: UICollectionViewController {
         self.collectionView?.allowsMultipleSelection = !isEdit
         
         initPhotoLibrary()
+        
+        let layout = self.collectionView?.collectionViewLayout as? GridLayout
+        layout?.fixedDivisionCount = 5
+        layout?.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -190,7 +194,6 @@ extension PhotoCollectionViewController {
         if asset.mediaSubtypes.contains(.photoLive) {
             cell.livePhotoBadgeImage = PHLivePhotoView.livePhotoBadgeImage(options: .overContent)
         }
-        
         // Request an image for the asset from the PHCachingImageManager.
         cell.representedAssetIdentifier = asset.localIdentifier
         AssetHelper.shared().getAsset(asset: asset, forSize: cell.imageView.frame.size, resultHandler: { image, _ in
@@ -201,12 +204,16 @@ extension PhotoCollectionViewController {
             }
         })
         
+        cell.layer.borderColor = UIColor.white.cgColor
+        cell.layer.borderWidth = 2.0
+        
+        
         if cell.isSelected {
             cell.imageView.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
             cell.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
         } else {
-            cell.imageView.layer.borderColor = UIColor.clear.cgColor
-            cell.layer.borderColor = UIColor.clear.cgColor
+//            cell.imageView.layer.borderColor = UIColor.clear.cgColor
+//            cell.layer.borderColor = UIColor.clear.cgColor
         }
         
         return cell
@@ -298,15 +305,14 @@ extension PhotoCollectionViewController : TOCropViewControllerDelegate {
         })
     }
     
-    internal func cropViewController(_ cropViewController: TOCropViewController, didCropToRect cropRect: CGRect, angle: Int) {
-        
+    func cropViewController(_ cropViewController: TOCropViewController, didCropImageToRect cropRect: CGRect, angle: Int) {
         self.navigationController?.dismiss(animated: false, completion: {
-//            let controller = EditViewController.getInstance(asset: self.selectedAsset!, cropped: cropRect)
+            //            let controller = EditViewController.getInstance(asset: self.selectedAsset!, cropped: cropRect)
             let controller = FilterViewController.getInstance(asset: self.selectedAsset!, cropped: cropRect)
             self.navigationController?.show( controller, sender: nil)
         })
-        
     }
+    
     
     internal func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
         cropViewController.dismiss(animated: true, completion: nil)
@@ -329,5 +335,16 @@ protocol PhotoCollectionSelectionObserver {
     func didSelect(image: PHAsset, index: IndexPath)
     
     func didDeselect(image: PHAsset, index: IndexPath)
+    
+}
+
+extension PhotoCollectionViewController: GridLayoutDelegate {
+    
+    func scaleForItem(inCollectionView collectionView: UICollectionView, withLayout layout: UICollectionViewLayout, atIndexPath indexPath: IndexPath) -> UInt {
+        
+        let size = (indexPath.row % 3 == 0 || indexPath.row == 0 || indexPath.row % 5 == 0) ? 3 : 2
+        
+        return UInt(size)
+    }
     
 }

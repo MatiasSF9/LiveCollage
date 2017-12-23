@@ -375,7 +375,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 77b6befa955270d3f5c48a809f24036dd073e84c d931540228807b1ccaebbf7c282ab0d6af6a138d97e0f7580d92e97728481ce1";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 77b6befa955270d3f5c48a809f24036dd073e84c d931540228807b1ccaebbf7c282ab0d6af6a138d97e0f7580d92e97728481ce1";
 		};
 		A6D64E4D2152CF495E92200D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -504,7 +504,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -595,7 +595,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.m2.media.deepix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ab3d558-34bb-453b-8b1d-80127d2e3578";
+				PROVISIONING_PROFILE = "a97c81fd-b9ad-4174-b7cd-f5ff7ee029ab";
 				PROVISIONING_PROFILE_SPECIFIER = "Deepix Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "LiveCollage/LiveCollage-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -612,7 +612,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = EBUWSDW773;
 				INFOPLIST_FILE = LiveCollage/Info.plist;
@@ -620,8 +620,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.m2.media.deepix;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bece0673-6f43-45d4-ba7d-cbbcc5a4dae1";
-				PROVISIONING_PROFILE_SPECIFIER = "Deepix Store";
+				PROVISIONING_PROFILE = "a97c81fd-b9ad-4174-b7cd-f5ff7ee029ab";
+				PROVISIONING_PROFILE_SPECIFIER = "Deepix Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "LiveCollage/LiveCollage-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
