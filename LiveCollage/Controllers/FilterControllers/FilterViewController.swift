@@ -16,8 +16,8 @@ class FilterViewController: BaseEditControllerViewController {
     @IBOutlet weak var filterCollection: UICollectionView!
     
     let filters = ["HB2Filter", "CandyFilter", "DarkSummer", "Sepia", "Chrome", "Fade", "B&W"]
-    var bSelections = [false, false, false, false, false, false, false]
-    var fSelections = [false, false, false, false, false, false, false]
+    var backgroundIndex: Int = -1
+    var foregroundIndex: Int = -1
     var fImages = [UIImage]()
     
     var currentFilter:CIFilter? = nil
@@ -43,6 +43,7 @@ class FilterViewController: BaseEditControllerViewController {
     //MARK: Actions
     
     @IBAction func onSegmentChange(_ sender: Any) {
+        var row = currentSwitch() == .Background ? backgroundIndex : foregroundIndex
         self.filterCollection.reloadData()
     }
     
@@ -128,27 +129,28 @@ extension FilterViewController: UICollectionViewDataSource {
         }
         
         var selected = false
-        switch currentSwitch() {
-        case .Background:
-            selected = bSelections[indexPath.row]
-        case .Foreground:
-            selected = fSelections[indexPath.row]
+        if indexPath.row == backgroundIndex && currentSwitch() == .Background ||
+            indexPath.row == foregroundIndex && currentSwitch() == .Foreground {
+            selected = true
         }
-        
         setSelected(selected: selected, cell: cell)
         
         return cell
     }
     
-    func setSelected(selected: Bool, cell: UICollectionViewCell) {
+    func setSelected(selected: Bool, cell: UICollectionViewCell?) {
+        guard let currentCell = cell else {
+            return
+        }
+        currentCell.isSelected = selected
         if selected {
-            cell.layer.cornerRadius = 0.8
-            cell.layer.borderColor = UIColor.cyan.cgColor
-            cell.layer.borderWidth = 2.0
+            currentCell.layer.cornerRadius = 0.8
+            currentCell.layer.borderColor = UIColor.cyan.cgColor
+            currentCell.layer.borderWidth = 2.0
         } else {
-            cell.layer.cornerRadius = 0.8
-            cell.layer.borderColor = UIColor.black.cgColor
-            cell.layer.borderWidth = 2.0
+            currentCell.layer.cornerRadius = 0.8
+            currentCell.layer.borderColor = UIColor.black.cgColor
+            currentCell.layer.borderWidth = 2.0
         }
     }
     
@@ -165,28 +167,67 @@ extension FilterViewController: UICollectionViewDelegate {
         
         switch currentSwitch() {
         case .Background:
-            bSelections[indexPath.row] = !bSelections[indexPath.row]
+            if backgroundIndex == indexPath.row {
+                filterHelper.removeFilter(filterName: tmpFilter.name, filterSwitch: currentSwitch())
+                setSelected(selected: false, cell: collectionView.cellForItem(at: IndexPath(item: backgroundIndex, section: 0)))
+                currentFilter = nil
+                backgroundIndex = -1
+            } else {
+                //Remove old filter
+                if backgroundIndex != -1 {
+                    guard let prevFilter = filter(name: filters[backgroundIndex]) else {
+                        return
+                    }
+                    filterHelper.removeFilter(filterName: prevFilter.name, filterSwitch: currentSwitch())
+                    setSelected(selected: false, cell: collectionView.cellForItem(at: IndexPath(item: backgroundIndex, section: 0)))
+                    currentFilter = nil
+                }
+                
+                //Set new filter
+                currentFilter = tmpFilter
+                setSelected(selected: true, cell: collectionView.cellForItem(at: indexPath)!)
+                filterHelper.addFiterToChain(filter: tmpFilter, value: 1,
+                                             depthEnabled: depthEnabled, depth: CGFloat(depthSlider.value),
+                                             slope: 1, filterSwitch: currentSwitch())
+                backgroundIndex = indexPath.row
+            }
             break
         case .Foreground:
-            fSelections[indexPath.row] = !fSelections[indexPath.row]
+            if foregroundIndex == indexPath.row {
+                filterHelper.removeFilter(filterName: tmpFilter.name, filterSwitch: currentSwitch())
+                setSelected(selected: false, cell: collectionView.cellForItem(at: IndexPath(item: foregroundIndex, section: 0)))
+                currentFilter = nil
+                foregroundIndex = -1
+            } else {
+                //Remove old filter
+                if foregroundIndex != -1 {
+                    guard let prevFilter = filter(name: filters[foregroundIndex]) else {
+                        return
+                    }
+                    setSelected(selected: false, cell: collectionView.cellForItem(at: IndexPath(item: foregroundIndex, section: 0)))
+                    filterHelper.removeFilter(filterName: prevFilter.name, filterSwitch: currentSwitch())
+                    currentFilter = nil
+                }
+                
+                //Set new filter
+                currentFilter = tmpFilter
+                setSelected(selected: true, cell: collectionView.cellForItem(at: indexPath)!)
+                filterHelper.addFiterToChain(filter: tmpFilter, value: 1,
+                                             depthEnabled: depthEnabled, depth: CGFloat(depthSlider.value),
+                                             slope: 1, filterSwitch: currentSwitch())
+                foregroundIndex = indexPath.row
+            }
             break
         }
         
-        if filterHelper.getFilter(filterName: tmpFilter.name, filterSwitch: currentSwitch() ) == nil {
-            filterHelper.addFiterToChain(filter: tmpFilter, value: 1,
-                                         depthEnabled: depthEnabled, depth: CGFloat(depthSlider.value),
-                                         slope: 1, filterSwitch: currentSwitch())
-            currentFilter = tmpFilter
-            setSelected(selected: true, cell: collectionView.cellForItem(at: indexPath)!)
-        } else {
-            filterHelper.removeFilter(filterName: tmpFilter.name, filterSwitch: currentSwitch())
-            currentFilter = nil
-            setSelected(selected: false, cell: collectionView.cellForItem(at: indexPath)!)
-        }
+        
         depthSlider.isEnabled = true
         updateRender()
     }
     
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+    }
     
 }
 
