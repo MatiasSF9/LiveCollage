@@ -31,6 +31,7 @@
 		60542D2F1F6869F1006666B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D2E1F6869F1006666B8 /* HomeViewController.swift */; };
 		60542D321F686E5D006666B8 /* UIImageView+PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60542D311F686E5D006666B8 /* UIImageView+PHAsset.swift */; };
 		6093BA871F6C55CD00570867 /* FilterMemento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6093BA861F6C55CD00570867 /* FilterMemento.swift */; };
+		60A56975204331F20042D9A6 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A56974204331F20042D9A6 /* PinterestLayout.swift */; };
 		60AD56E81F71642A005E5E06 /* FilterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AD56E71F71642A005E5E06 /* FilterHelper.swift */; };
 		60B79E4A1F66E58300634F35 /* LayoutCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B79E491F66E58300634F35 /* LayoutCollectionViewController.swift */; };
 		60C654A51FB6091700577C69 /* HB2Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C654A41FB6091700577C69 /* HB2Filter.swift */; };
@@ -72,6 +73,7 @@
 		6075E6EA1F7BCE08001CCFB5 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6075E6EB1F7BCE08001CCFB5 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		6093BA861F6C55CD00570867 /* FilterMemento.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMemento.swift; sourceTree = "<group>"; };
+		60A56974204331F20042D9A6 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		60AD56E71F71642A005E5E06 /* FilterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHelper.swift; sourceTree = "<group>"; };
 		60B79E491F66E58300634F35 /* LayoutCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutCollectionViewController.swift; sourceTree = "<group>"; };
 		60C654A41FB6091700577C69 /* HB2Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HB2Filter.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				499CB01B1F49E1A7008D45D8 /* GridLayout.swift */,
+				60A56974204331F20042D9A6 /* PinterestLayout.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -292,9 +295,9 @@
 				TargetAttributes = {
 					60FE24FA1EA3AFC2000F21DF = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = EBUWSDW773;
+						DevelopmentTeam = 9ZM7UP9YG8;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -438,6 +441,7 @@
 				6093BA871F6C55CD00570867 /* FilterMemento.swift in Sources */,
 				4924B18F1F487F1C003C88E8 /* PhotoCollectionViewController.swift in Sources */,
 				60FE25141EA3B10E000F21DF /* BaseCollectionCell.swift in Sources */,
+				60A56975204331F20042D9A6 /* PinterestLayout.swift in Sources */,
 				600ED8F51FB9D64000FB09D1 /* BaseEditControllerViewController.swift in Sources */,
 				4924B1911F490283003C88E8 /* GridViewCell.swift in Sources */,
 				499CB01C1F49E1A7008D45D8 /* GridLayout.swift in Sources */,
@@ -588,15 +592,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = EBUWSDW773;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9ZM7UP9YG8;
 				INFOPLIST_FILE = LiveCollage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.m2.media.deepix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.m2.media.dpx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a97c81fd-b9ad-4174-b7cd-f5ff7ee029ab";
-				PROVISIONING_PROFILE_SPECIFIER = "Deepix Dev";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LiveCollage/LiveCollage-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -613,15 +617,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = EBUWSDW773;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9ZM7UP9YG8;
 				INFOPLIST_FILE = LiveCollage/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.m2.media.deepix;
+				PRODUCT_BUNDLE_IDENTIFIER = com.m2.media.dpx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a97c81fd-b9ad-4174-b7cd-f5ff7ee029ab";
-				PROVISIONING_PROFILE_SPECIFIER = "Deepix Dev";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "LiveCollage/LiveCollage-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;

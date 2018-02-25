@@ -22,6 +22,8 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     fileprivate var selectedAsset: PHAsset?
     
+    fileprivate let button = UIButton()
+    
     var observer: PhotoCollectionSelectionObserver?
     
     var isEdit = false
@@ -41,14 +43,39 @@ class PhotoCollectionViewController: UICollectionViewController {
         
         initPhotoLibrary()
         
-        let layout = self.collectionView?.collectionViewLayout as? GridLayout
-        layout?.fixedDivisionCount = 5
+        let layout = self.collectionView?.collectionViewLayout as? PinterestLayout
         layout?.delegate = self
+        
+        
+        button.frame.size = CGSize(width: 250, height: 250)
+        button.layer.cornerRadius = 30
+        button.layer.borderWidth = 4
+        button.layer.borderColor = UIColor.black.cgColor
+        button.clipsToBounds = true
+        button.titleLabel?.text = ""
+        button.backgroundColor = UIColor.red
+        self.view.addSubview(button)
+        
+        button.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        let bottom = NSLayoutConstraint.init(item: button, attribute: .bottom, relatedBy: .equal,
+                                             toItem: self.collectionView, attribute: .bottom,
+                                             multiplier: 1.0, constant: 0.0)
+        let marginBottom = NSLayoutConstraint.init(item: button, attribute: .bottomMargin,
+                                                   relatedBy: .equal, toItem: self.view,
+                                                   attribute: .bottomMargin, multiplier: 1.0, constant: -20.0)
+        let center = NSLayoutConstraint.init(item: button, attribute: .centerX, relatedBy: .equal,
+                                             toItem: self.view, attribute: .centerX,
+                                             multiplier: 1.0, constant: 0.0)
+        NSLayoutConstraint.activate([center, marginBottom])
+        button.translatesAutoresizingMaskIntoConstraints = false
+        self.view.bringSubview(toFront: button)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateItemSize()
+        
     }
     
     deinit {
@@ -204,8 +231,8 @@ extension PhotoCollectionViewController {
             }
         })
         
-        cell.layer.borderColor = UIColor.white.cgColor
-        cell.layer.borderWidth = 2.0
+//        cell.layer.borderColor = UIColor.white.cgColor
+//        cell.layer.borderWidth = 2.0
         
         
         if cell.isSelected {
@@ -232,8 +259,8 @@ extension PhotoCollectionViewController {
         
         let cell = collectionView.cellForItem(at: indexPath) as? GridViewCell
         cell?.isSelected = true
-        cell?.imageView.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
-        cell?.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
+//        cell?.imageView.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
+//        cell?.layer.borderColor = UIColor(red: 39, green: 204, blue: 255, alpha: 1).cgColor
         
         observer?.didSelect(image: fetchResult.object(at: indexPath.item), index: indexPath)
     }
@@ -338,13 +365,27 @@ protocol PhotoCollectionSelectionObserver {
     
 }
 
-extension PhotoCollectionViewController: GridLayoutDelegate {
+//extension PhotoCollectionViewController: GridLayoutDelegate {
+//
+//    func scaleForItem(inCollectionView collectionView: UICollectionView, withLayout layout: UICollectionViewLayout, atIndexPath indexPath: IndexPath) -> UInt {
+//
+//        let size = (indexPath.row % 3 == 0 || indexPath.row == 0 || indexPath.row % 5 == 0) ? 3 : 2
+//
+//        return UInt(size)
+//    }
+//
+//}
+
+//MARK: - PINTEREST LAYOUT DELEGATE
+extension PhotoCollectionViewController : PinterestLayoutDelegate {
     
-    func scaleForItem(inCollectionView collectionView: UICollectionView, withLayout layout: UICollectionViewLayout, atIndexPath indexPath: IndexPath) -> UInt {
+    // 1. Returns the photo height
+    func collectionView(_ collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath, photoWidth: CGFloat) -> CGFloat{
         
-        let size = (indexPath.row % 3 == 0 || indexPath.row == 0 || indexPath.row % 5 == 0) ? 3 : 2
-        
-        return UInt(size)
+        let asset = fetchResult.object(at: indexPath.item) as PHAsset
+        let wScale = asset.pixelWidth / Int(photoWidth)
+        let h = asset.pixelHeight
+        return CGFloat(h/wScale)
     }
     
 }
